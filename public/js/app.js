@@ -1,0 +1,392 @@
+/* ── App globals ─────────────────────────────────────────────────────────── */
+const SESSION_KEY  = 'hoops-session-id';
+const PACK_KEY     = 'hoops-pack-history';
+const COLL_KEY     = 'hoops-collection';
+const PHOTO_STORE  = 'hoops-photos'; // IndexedDB store name for blob photos
+
+let SESSION_ID = localStorage.getItem(SESSION_KEY);
+if (!SESSION_ID) {
+  SESSION_ID = 'sess-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+  localStorage.setItem(SESSION_KEY, SESSION_ID);
+}
+
+// In-memory cache of fetched player data
+const playerCache = {};
+
+// ── IndexedDB for photo blobs ────────────────────────────────────────────────
+let photoDB = null;
+
+function openPhotoDB() {
+  return new Promise((resolve, reject) => {
+    if (photoDB) return resolve(photoDB);
+    const req = indexedDB.open('hoops-photo-cache', 1);
+    req.onupgradeneeded = e => {
+      e.target.result.createObjectStore(PHOTO_STORE, { keyPath: 'nbaId' });
+    };
+    req.onsuccess  = e => { photoDB = e.target.result; resolve(photoDB); };
+    req.onerror    = e => reject(e.target.error);
+  });
+}
+
+async function getPhotoBlobUrl(nbaId) {
+  try {
+    const db   = await openPhotoDB();
+    const tx   = db.transaction(PHOTO_STORE, 'readonly');
+    const row  = await new Promise((res, rej) => {
+      const r = tx.objectStore(PHOTO_STORE).get(nbaId);
+      r.onsuccess = () => res(r.result);
+      r.onerror   = () => rej(r.error);
+    });
+    if (row?.blob) return URL.createObjectURL(row.blob);
+  } catch {}
+  return null;
+}
+
+async function savePhotoBlob(nbaId, blob) {
+  try {
+    const db = await openPhotoDB();
+    const tx = db.transaction(PHOTO_STORE, 'readwrite');
+    tx.objectStore(PHOTO_STORE).put({ nbaId, blob });
+    await new Promise((res, rej) => { tx.oncomplete = res; tx.onerror = rej; });
+  } catch (e) { console.warn('Photo save failed:', e); }
+}
+
+/**
+ * Fetch a player's photo from the NBA CDN (or future action-photo URL),
+ * convert it to a Blob, store it in IndexedDB, and return an object URL.
+ * Subsequent calls return the cached blob without any network request.
+ */
+async function ensurePhotoBlob(nbaId) {
+  // Check cache first
+  const cached = await getPhotoBlobUrl(nbaId);
+  if (cached) return cached;
+
+  // Fetch from NBA CDN
+  const cdnUrl = `https://cdn.nba.com/headshots/nba/latest/1040x760/${nbaId}.png`;
+  try {
+    const res = await fetch(cdnUrl);
+    if (!res.ok) throw new Error('fetch failed');
+    const blob = await res.blob();
+    await savePhotoBlob(nbaId, blob);
+    return URL.createObjectURL(blob);
+  } catch {
+    return cdnUrl; // fall back to network URL if IndexedDB fails
+  }
+}
+
+/** Pre-fetch and cache photos for an array of players in the background. */
+async function prefetchPhotos(players) {
+  for (const p of players) {
+    const nbaId = p.nba_id || p.nbaId;
+    if (!nbaId) continue;
+    const cached = await getPhotoBlobUrl(nbaId);
+    if (!cached) {
+      await ensurePhotoBlob(nbaId);
+      await new Promise(r => setTimeout(r, 50)); // tiny gap to not saturate
+    }
+  }
+}
+
+// ── Routing ──────────────────────────────────────────────────────────────────
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const el  = document.getElementById('view-' + name);
+  const btn = document.getElementById('nav-' + name);
+  if (el)  el.classList.add('active');
+  if (btn) btn.classList.add('active');
+
+  if (name === 'home')    initHome();
+  if (name === 'pack')    initPack();
+  if (name === 'library') initLibrary();
+}
+
+// ── API helpers ──────────────────────────────────────────────────────────────
+async function apiFetch(url, opts = {}) {
+  const res = await fetch(url, opts);
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+async function getPlayerDetail(id) {
+  if (playerCache[id]) return playerCache[id];
+  const p = await apiFetch(`/api/players/${id}`);
+  playerCache[id] = p;
+  return p;
+}
+
+// ── Local collection helpers ─────────────────────────────────────────────────
+function getLocalCollection() {
+  try { return JSON.parse(localStorage.getItem(COLL_KEY) || '[]'); } catch { return []; }
+}
+function setLocalCollection(arr) {
+  localStorage.setItem(COLL_KEY, JSON.stringify(arr));
+}
+function addToLocalCollection(cards) {
+  const coll = getLocalCollection();
+  const now  = new Date().toISOString();
+  cards.forEach(c => coll.unshift({ ...c, obtainedAt: now, uid: Date.now() + Math.random() }));
+  setLocalCollection(coll);
+}
+function getCollectionCount() { return getLocalCollection().length; }
+function updateBadge() {
+  document.getElementById('collection-count').textContent = getCollectionCount();
+  document.getElementById('stat-collected').textContent   = getCollectionCount();
+}
+
+// ── Pack history ─────────────────────────────────────────────────────────────
+function getLastPackDate()    { return localStorage.getItem(PACK_KEY) || null; }
+function setLastPackDate()    { localStorage.setItem(PACK_KEY, new Date().toISOString().slice(0,10)); }
+function getPacksOpened()     { return parseInt(localStorage.getItem('hoops-packs-count') || '0'); }
+function incPacksOpened()     { localStorage.setItem('hoops-packs-count', getPacksOpened() + 1); }
+function canOpenPackToday()   {
+  const last  = getLastPackDate();
+  const today = new Date().toISOString().slice(0,10);
+  return !last || last !== today;
+}
+
+// ── Countdown ─────────────────────────────────────────────────────────────────
+function formatCountdown(ms) {
+  const t = Math.max(0, ms);
+  const h = Math.floor(t / 3600000);
+  const m = Math.floor((t % 3600000) / 60000);
+  const s = Math.floor((t % 60000)   / 1000);
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+function msUntilMidnight() {
+  const now = new Date();
+  const mid = new Date(now); mid.setHours(24,0,0,0);
+  return mid - now;
+}
+
+// ── HOME ──────────────────────────────────────────────────────────────────────
+async function initHome() {
+  updateBadge();
+  document.getElementById('stat-packs').textContent = getPacksOpened();
+
+  const canOpen    = canOpenPackToday();
+  const statusText = document.getElementById('pack-status-text');
+  const openBtn    = document.getElementById('hero-open-btn');
+  const timerEl    = document.getElementById('hero-timer');
+
+  if (canOpen) {
+    statusText.textContent = 'Your daily pack is ready to open!';
+    openBtn.classList.remove('hidden');
+    timerEl.classList.add('hidden');
+  } else {
+    statusText.textContent = "You've already opened your pack today. Come back tomorrow!";
+    openBtn.classList.add('hidden');
+    timerEl.classList.remove('hidden');
+    const tick = () => { timerEl.textContent = formatCountdown(msUntilMidnight()); };
+    tick();
+    if (window._homeTimer) clearInterval(window._homeTimer);
+    window._homeTimer = setInterval(tick, 1000);
+  }
+
+  // Recent cards
+  const coll          = getLocalCollection();
+  const recentSection = document.getElementById('home-recent');
+  const recentGrid    = document.getElementById('recent-grid');
+
+  if (coll.length > 0) {
+    recentSection.style.display = '';
+    recentGrid.innerHTML = '';
+    for (const card of coll.slice(0, 8)) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'card-outer mini';
+      wrapper.onclick = () => openCardModal(card);
+      wrapper.innerHTML = buildCardFrontHTML(card, 'mini');
+      recentGrid.appendChild(wrapper);
+      // Hydrate photo blob after render
+      hydrateCardPhoto(wrapper, card.nba_id || card.nbaId);
+    }
+  } else {
+    recentSection.style.display = 'none';
+  }
+}
+
+// ── Photo blob hydration ──────────────────────────────────────────────────────
+/**
+ * After a card element is in the DOM, replace its <img> src with the cached
+ * blob URL (or fetch+cache it if not yet stored).
+ */
+async function hydrateCardPhoto(cardEl, nbaId) {
+  if (!nbaId) return;
+  const blobUrl = await ensurePhotoBlob(nbaId);
+  cardEl.querySelectorAll('img[data-nba-id]').forEach(img => {
+    if (parseInt(img.dataset.nbaId) === nbaId) img.src = blobUrl;
+  });
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function showToast(msg, duration = 3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.remove('hidden');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.classList.add('hidden'), duration);
+}
+
+// ── SPARKLE effect ────────────────────────────────────────────────────────────
+function sparkle(x, y, rarity) {
+  const colors = {
+    common:    ['#fff','#ccc','#aaa'],
+    silver:    ['#C0C0C0','#E8E8FF','#FFFFFF'],
+    gold:      ['#FFD700','#FFA500','#FFEC8B'],
+    prismatic: ['#FF0080','#7B00FF','#00EEFF','#FFD700','#FF4500','#00FF88'],
+  };
+  const pallete  = colors[rarity] || colors.common;
+  const container = document.createElement('div');
+  container.className = 'sparkle-container';
+  document.body.appendChild(container);
+  const count = rarity === 'prismatic' ? 28 : rarity === 'gold' ? 18 : 10;
+  for (let i = 0; i < count; i++) {
+    const el   = document.createElement('div');
+    el.className = 'sparkle';
+    const size = 4 + Math.random() * 8;
+    const tx   = (Math.random() - 0.5) * 200;
+    const ty   = (Math.random() - 0.5) * 200 - 80;
+    el.style.cssText = `left:${x}px;top:${y}px;width:${size}px;height:${size}px;
+      background:${pallete[Math.floor(Math.random()*pallete.length)]};
+      --tx:${tx}px;--ty:${ty}px;
+      animation-delay:${Math.random()*0.3}s;
+      animation-duration:${0.8+Math.random()*0.6}s;`;
+    container.appendChild(el);
+  }
+  setTimeout(() => container.remove(), 2000);
+}
+
+// ── MODAL  (single card-3d flip — no double-layer) ───────────────────────────
+let modalIsFlipped = false;
+
+async function openCardModal(card) {
+  // Fetch full player data (for stats on card back)
+  let fullCard = card;
+  try {
+    const detail = await getPlayerDetail(card.id || card.player_id);
+    fullCard = { ...card, ...detail };
+  } catch {}
+  fullCard.rarity = card.rarity || 'common';
+
+  modalIsFlipped = false;
+  const cardEl = document.getElementById('modal-card');
+  cardEl.classList.remove('flipped');
+
+  // Responsive sizing
+  const fw = Math.min(window.innerWidth * 0.88, 380);
+  const fh = Math.round(fw * 1.4);
+  cardEl.style.width  = fw + 'px';
+  cardEl.style.height = fh + 'px';
+  document.getElementById('modal-perspective').style.width  = fw + 'px';
+  document.getElementById('modal-perspective').style.height = fh + 'px';
+
+  // Single card-3d with BOTH faces — the correct flip structure
+  cardEl.innerHTML = buildCardFrontHTML(fullCard, 'full') + buildCardBackHTML(fullCard);
+
+  // Hydrate photo blobs in the modal
+  const nbaId = fullCard.nba_id || fullCard.nbaId;
+  if (nbaId) {
+    ensurePhotoBlob(nbaId).then(url => {
+      cardEl.querySelectorAll('img[data-nba-id]').forEach(img => { img.src = url; });
+    });
+  }
+
+  // Rarity badge
+  const labels = { common:'⚪ Common', silver:'🥈 Silver Chrome', gold:'🥇 Gold Chrome', prismatic:'✨ Prismatic' };
+  const badge  = document.getElementById('modal-rarity-badge');
+  badge.textContent = labels[fullCard.rarity] || fullCard.rarity;
+  badge.className   = `modal-rarity-badge rarity-badge-${fullCard.rarity}`;
+
+  document.getElementById('modal-hint').textContent = 'Click card or press F to flip';
+  document.getElementById('card-modal').classList.remove('hidden');
+}
+
+function flipModalCard() {
+  modalIsFlipped = !modalIsFlipped;
+  document.getElementById('modal-card').classList.toggle('flipped', modalIsFlipped);
+  document.getElementById('modal-hint').textContent = modalIsFlipped
+    ? 'Viewing card back — click or press F to flip back'
+    : 'Viewing card front — click or press F to flip';
+}
+
+function closeCardModal() {
+  document.getElementById('card-modal').classList.add('hidden');
+}
+function closeModal(e) {
+  if (e.target.id === 'card-modal') closeCardModal();
+}
+
+// Clicking the card itself flips it
+document.addEventListener('click', e => {
+  const cardEl = document.getElementById('modal-card');
+  if (cardEl && cardEl.contains(e.target)) flipModalCard();
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeCardModal();
+  if ((e.key === 'f' || e.key === 'F') && !document.getElementById('card-modal').classList.contains('hidden')) {
+    flipModalCard();
+  }
+});
+
+// ── COLLECTION EXPORT ────────────────────────────────────────────────────────
+function exportCollection() {
+  const coll = getLocalCollection();
+  if (!coll.length) { showToast('No cards to export yet!'); return; }
+  const payload = {
+    version:    1,
+    exportedAt: new Date().toISOString(),
+    sessionId:  SESSION_ID,
+    packsOpened: getPacksOpened(),
+    lastPackDate: getLastPackDate(),
+    cards:      coll,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `hoops-collection-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast(`✅ Exported ${coll.length} cards`);
+}
+
+// ── COLLECTION IMPORT ────────────────────────────────────────────────────────
+function importCollection(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const payload = JSON.parse(e.target.result);
+      if (!Array.isArray(payload.cards)) throw new Error('Invalid format');
+      const existing = getLocalCollection();
+      const existingUids = new Set(existing.map(c => c.uid));
+      const newCards = payload.cards.filter(c => !existingUids.has(c.uid));
+      const merged   = [...newCards, ...existing];
+      setLocalCollection(merged);
+      if (payload.packsOpened)  localStorage.setItem('hoops-packs-count', payload.packsOpened);
+      if (payload.lastPackDate) localStorage.setItem(PACK_KEY, payload.lastPackDate);
+      updateBadge();
+      initLibrary();
+      showToast(`✅ Imported ${newCards.length} new cards (${merged.length} total)`);
+    } catch (err) {
+      showToast('⚠️ Could not read that file — make sure it\'s a valid Hoops backup.');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  updateBadge();
+  initHome();
+
+  // Silently pre-cache photos for cards already in collection
+  const coll = getLocalCollection();
+  if (coll.length) {
+    setTimeout(() => prefetchPhotos(coll), 2000);
+  }
+});

@@ -1,0 +1,558 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   CARD CSS — Topps Chrome / Upper Deck aesthetics
+   Card size: 240×336px  (2.5" × 3.5" at ~96dpi)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Card wrapper (handles sizing in different contexts) ─────────────────── */
+.card-outer {
+  position: relative;
+  width: 240px;
+  height: 336px;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+.card-outer.mini {
+  width: 140px;
+  height: 196px;
+}
+.card-outer.full {
+  width: 360px;
+  height: 504px;
+}
+.card-outer.library-card {
+  width: 100%;
+  height: 0;
+  padding-bottom: 140%;
+  cursor: pointer;
+}
+.card-outer.library-card .card-3d { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ── 3D flip container ───────────────────────────────────────────────────── */
+.card-3d {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-3d.flipped { transform: rotateY(180deg); }
+
+/* ── Card faces ──────────────────────────────────────────────────────────── */
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+.card-face-back { transform: rotateY(180deg); }
+
+/* ── CARD FRONT ─────────────────────────────────────────────────────────── */
+.card-front-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  /* Team color bg set via inline style */
+}
+
+/* Chrome / foil border overlay */
+.card-chrome-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Common — subtle silver edge */
+.rarity-common .card-chrome-border {
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,0.18),
+    inset 0 0 0 4px rgba(0,0,0,0.3),
+    0 0 20px rgba(0,0,0,0.6);
+}
+.rarity-common .card-chrome-border::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 12px;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.25) 0%,
+    transparent 30%,
+    rgba(255,255,255,0.08) 60%,
+    transparent 100%
+  );
+}
+
+/* Silver — animated shimmer */
+.rarity-silver .card-chrome-border {
+  box-shadow:
+    inset 0 0 0 3px rgba(200,220,255,0.5),
+    inset 0 0 0 5px rgba(0,0,0,0.3),
+    0 0 30px rgba(192,192,220,0.3),
+    0 0 60px rgba(0,0,0,0.6);
+}
+.rarity-silver .card-chrome-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(105deg,
+    transparent 40%,
+    rgba(220,230,255,0.4) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: silver-shimmer 2.5s linear infinite;
+}
+@keyframes silver-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Gold */
+.rarity-gold .card-chrome-border {
+  box-shadow:
+    inset 0 0 0 3px rgba(255,215,0,0.7),
+    inset 0 0 0 6px rgba(0,0,0,0.3),
+    0 0 30px rgba(255,215,0,0.4),
+    0 0 60px rgba(255,165,0,0.2);
+}
+.rarity-gold .card-chrome-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(105deg,
+    transparent 35%,
+    rgba(255,215,0,0.5)  50%,
+    rgba(255,180,0,0.3)  55%,
+    transparent 65%
+  );
+  background-size: 200% 100%;
+  animation: gold-shimmer 2s linear infinite;
+}
+@keyframes gold-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Prismatic — rainbow holographic */
+.rarity-prismatic .card-chrome-border {
+  box-shadow:
+    inset 0 0 0 3px rgba(255,255,255,0.6),
+    inset 0 0 0 6px rgba(0,0,0,0.2),
+    0 0 40px rgba(168,85,247,0.5),
+    0 0 80px rgba(59,130,246,0.3);
+  animation: prismatic-glow 3s linear infinite;
+}
+@keyframes prismatic-glow {
+  0%   { box-shadow: inset 0 0 0 3px rgba(255,0,0,0.6),  0 0 40px rgba(255,0,0,0.4); }
+  16%  { box-shadow: inset 0 0 0 3px rgba(255,165,0,0.6),0 0 40px rgba(255,165,0,0.4); }
+  33%  { box-shadow: inset 0 0 0 3px rgba(255,255,0,0.6),0 0 40px rgba(255,255,0,0.4); }
+  50%  { box-shadow: inset 0 0 0 3px rgba(0,255,0,0.6),  0 0 40px rgba(0,255,0,0.4); }
+  66%  { box-shadow: inset 0 0 0 3px rgba(0,150,255,0.6),0 0 40px rgba(0,150,255,0.4); }
+  83%  { box-shadow: inset 0 0 0 3px rgba(168,85,247,0.6),0 0 40px rgba(168,85,247,0.4); }
+  100% { box-shadow: inset 0 0 0 3px rgba(255,0,0,0.6),  0 0 40px rgba(255,0,0,0.4); }
+}
+.rarity-prismatic .card-chrome-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(105deg,
+    transparent 30%,
+    rgba(255,0,0,0.2) 38%,
+    rgba(255,165,0,0.2) 42%,
+    rgba(0,255,0,0.2) 46%,
+    rgba(0,200,255,0.2) 50%,
+    rgba(168,85,247,0.2) 54%,
+    transparent 62%
+  );
+  background-size: 300% 100%;
+  animation: prismatic-shimmer 1.8s linear infinite;
+}
+@keyframes prismatic-shimmer {
+  0%   { background-position: 300% 0; }
+  100% { background-position: -300% 0; }
+}
+
+/* ── Front background gradient ──────────────────────────────────────────── */
+.card-bg {
+  position: absolute;
+  inset: 0;
+  /* set via inline background-image/gradient per team colors */
+}
+
+/* Angular graphic design overlay — the "ornamentation" */
+.card-design-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.card-design-layer::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 100%);
+}
+/* Diamond / angular accent lines */
+.card-design-layer::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(225deg,
+    rgba(255,255,255,0.06) 0%,
+    transparent 40%
+  );
+  clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* Geometric accent bar */
+.card-accent-bar {
+  position: absolute;
+  bottom: 88px;
+  left: 0; right: 0;
+  height: 3px;
+  z-index: 5;
+  /* team secondary color set inline */
+  opacity: 0.8;
+}
+
+/* ── Player photo ────────────────────────────────────────────────────────── */
+.card-player-photo {
+  position: absolute;
+  bottom: 80px;
+  left: 0; right: 0;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+.card-player-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
+}
+
+/* ── Graphic corner ornaments ─────────────────────────────────────────────── */
+.card-corner-tl, .card-corner-tr {
+  position: absolute;
+  top: 8px;
+  width: 28px;
+  height: 28px;
+  z-index: 6;
+}
+.card-corner-tl { left: 8px; }
+.card-corner-tr { right: 8px; }
+.card-corner-tl::before, .card-corner-tl::after,
+.card-corner-tr::before, .card-corner-tr::after {
+  content: '';
+  position: absolute;
+  background: rgba(255,255,255,0.5);
+}
+.card-corner-tl::before { width: 28px; height: 2px; top: 0; left: 0; }
+.card-corner-tl::after  { width: 2px; height: 28px; top: 0; left: 0; }
+.card-corner-tr::before { width: 28px; height: 2px; top: 0; right: 0; }
+.card-corner-tr::after  { width: 2px; height: 28px; top: 0; right: 0; }
+
+/* Set name badge (top center) */
+.card-set-badge {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── Info bar (bottom of front) ──────────────────────────────────────────── */
+.card-info-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 10px 14px 12px;
+  z-index: 7;
+}
+.card-position-tag {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-bottom: 4px;
+  /* bg set inline via team secondary */
+  color: #fff;
+}
+.card-player-name {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  margin-bottom: 2px;
+}
+.card-player-name.long { font-size: 17px; }
+.card-team-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+}
+.card-jersey-num {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 32px;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1;
+  z-index: 7;
+}
+.card-number-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── CARD BACK ───────────────────────────────────────────────────────────── */
+.card-back-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f5f4ef 0%, #eceae0 100%);
+  color: #111;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Back header stripe */
+.card-back-header-stripe {
+  height: 8px;
+  width: 100%;
+  /* team primary color set inline */
+}
+
+/* Back top section */
+.card-back-top {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px 8px;
+  border-bottom: 2px solid rgba(0,0,0,0.1);
+  align-items: flex-start;
+}
+.card-back-headshot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(0,0,0,0.15);
+  flex-shrink: 0;
+  background: #ccc;
+}
+.card-back-headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.card-back-name-block {}
+.card-back-name {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 17px;
+  letter-spacing: 1px;
+  color: #111;
+  line-height: 1.1;
+}
+.card-back-team {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.card-back-bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px 6px;
+}
+.card-back-bio-item {
+  font-size: 8px;
+  color: #555;
+  line-height: 1.5;
+}
+.card-back-bio-item strong {
+  font-weight: 700;
+  color: #222;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Bio text */
+.card-back-bio-text {
+  font-size: 8px;
+  color: #555;
+  line-height: 1.5;
+  padding: 6px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  font-style: italic;
+}
+
+/* Stats section */
+.card-back-stats {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.card-back-stats-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 4px 12px;
+  /* team primary bg inline */
+}
+
+.stats-table-wrap {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.stats-table-wrap::-webkit-scrollbar { width: 3px; }
+.stats-table-wrap::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 8.5px;
+}
+.stats-table th {
+  position: sticky;
+  top: 0;
+  background: #e0ddd4;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 3px 2px;
+  color: #333;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  font-size: 8px;
+}
+.stats-table th:first-child,
+.stats-table td:first-child { text-align: left; padding-left: 8px; }
+
+.stats-table td {
+  text-align: center;
+  padding: 2.5px 2px;
+  color: #222;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.stats-table tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+.stats-table tr.current-season td {
+  background: rgba(0,0,0,0.07);
+  font-weight: 700;
+}
+/* League leader highlight — RED */
+.stats-table td.league-leader {
+  color: #cc0000;
+  font-weight: 900;
+}
+.stats-table td.league-leader::after {
+  content: '★';
+  font-size: 7px;
+  vertical-align: super;
+  margin-left: 1px;
+}
+
+/* Card number / set info at very bottom */
+.card-back-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 12px 6px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.04);
+}
+.card-back-card-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 8px;
+  color: #888;
+  letter-spacing: 1px;
+}
+.card-back-set-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 8px;
+  color: #888;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.card-back-rarity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.rarity-dot-common   { background: #aaa; }
+.rarity-dot-silver   { background: linear-gradient(135deg, #999, #ddd); }
+.rarity-dot-gold     { background: linear-gradient(135deg, #b8860b, #ffd700); }
+.rarity-dot-prismatic{ background: conic-gradient(red, orange, yellow, green, blue, violet, red); }
+
+/* ══ Full-size (modal) card overrides ═══════════════════════════════════════
+   #modal-card is the .card-3d element inside .modal-perspective.
+   Both card faces (.card-face-front + .card-face-back) are direct children.
+   ══════════════════════════════════════════════════════════════════════════ */
+#modal-card .card-player-name      { font-size: 30px; }
+#modal-card .card-player-name.long { font-size: 22px; }
+#modal-card .card-jersey-num       { font-size: 44px; }
+#modal-card .card-set-badge        { font-size: 11px; }
+#modal-card .card-team-name        { font-size: 13px; }
+#modal-card .card-position-tag     { font-size: 12px; }
+
+#modal-card .card-back-name         { font-size: 22px; }
+#modal-card .card-back-team         { font-size: 13px; }
+#modal-card .card-back-bio-item     { font-size: 11px; }
+#modal-card .card-back-bio-text     { font-size: 10.5px; }
+#modal-card .card-back-stats-title  { font-size: 12px; padding: 6px 14px; }
+#modal-card .stats-table            { font-size: 11px; }
+#modal-card .stats-table th         { font-size: 10px; padding: 5px 3px; }
+#modal-card .stats-table td         { padding: 4px 3px; }
+#modal-card .card-back-headshot     { width: 72px; height: 72px; }
+#modal-card .card-back-header-stripe{ height: 10px; }
+#modal-card .card-back-card-num,
+#modal-card .card-back-set-name     { font-size: 11px; }

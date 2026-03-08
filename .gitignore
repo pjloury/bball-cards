@@ -1,0 +1,17 @@
+node_modules/
+
+# SQLite database — regenerate with: npm run seed
+db/*.db
+db/*.db-shm
+db/*.db-wal
+
+# Environment / secrets (for future API keys)
+.env
+.env.local
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*

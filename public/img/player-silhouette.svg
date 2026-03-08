@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" fill="none">
+  <rect width="200" height="280" fill="transparent"/>
+  <!-- head -->
+  <circle cx="100" cy="50" r="28" fill="rgba(255,255,255,0.15)"/>
+  <!-- body -->
+  <path d="M60 90 Q100 80 140 90 L150 170 Q100 180 50 170 Z" fill="rgba(255,255,255,0.12)"/>
+  <!-- arms -->
+  <path d="M60 95 L30 150" stroke="rgba(255,255,255,0.12)" stroke-width="18" stroke-linecap="round"/>
+  <path d="M140 95 L170 150" stroke="rgba(255,255,255,0.12)" stroke-width="18" stroke-linecap="round"/>
+  <!-- legs -->
+  <path d="M80 170 L70 250" stroke="rgba(255,255,255,0.12)" stroke-width="18" stroke-linecap="round"/>
+  <path d="M120 170 L130 250" stroke="rgba(255,255,255,0.12)" stroke-width="18" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoops Elite — NBA Card Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/card.css" />
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="nav-brand" onclick="showView('home')">
+    <span class="nav-logo-icon">🏀</span>
+    <span class="nav-logo-text">HOOPS ELITE</span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn active" id="nav-home"    onclick="showView('home')">HOME</button>
+    <button class="nav-btn"        id="nav-pack"    onclick="showView('pack')">OPEN PACK</button>
+    <button class="nav-btn"        id="nav-library" onclick="showView('library')">MY COLLECTION <span id="collection-count" class="badge">0</span></button>
+  </div>
+</nav>
+
+<!-- ── HOME VIEW ──────────────────────────────────────────────────────────── -->
+<div id="view-home" class="view active">
+  <div class="home-hero">
+    <div class="hero-content">
+      <h1 class="hero-title">HOOPS ELITE<br><span>2025–26</span></h1>
+      <p class="hero-sub">The ultimate NBA card collecting experience</p>
+      <div id="pack-status-card" class="pack-status-card">
+        <div class="pack-status-icon">📦</div>
+        <div id="pack-status-text" class="pack-status-text">Checking pack availability...</div>
+        <button id="hero-open-btn" class="btn-primary hidden" onclick="showView('pack')">OPEN TODAY'S PACK</button>
+        <div id="hero-timer" class="countdown hidden"></div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span id="stat-collected">0</span><label>Cards Collected</label></div>
+        <div class="hero-stat"><span>100</span><label>Total Players</label></div>
+        <div class="hero-stat"><span id="stat-packs">0</span><label>Packs Opened</label></div>
+      </div>
+    </div>
+    <div class="hero-cards-preview">
+      <div class="preview-card p1"></div>
+      <div class="preview-card p2"></div>
+      <div class="preview-card p3"></div>
+    </div>
+  </div>
+  <div class="home-recent" id="home-recent" style="display:none">
+    <h2 class="section-title">RECENTLY ADDED</h2>
+    <div class="recent-grid" id="recent-grid"></div>
+  </div>
+</div>
+
+<!-- ── PACK VIEW ──────────────────────────────────────────────────────────── -->
+<div id="view-pack" class="view">
+
+  <!-- Stage 1: Sealed pack -->
+  <div id="stage-sealed" class="pack-stage">
+    <div class="pack-scene">
+      <div class="pack-wrapper" id="pack-wrapper">
+        <div class="pack-body">
+          <div class="pack-foil-layer"></div>
+          <div class="pack-content">
+            <div class="pack-logo">🏀</div>
+            <div class="pack-title">HOOPS ELITE</div>
+            <div class="pack-year">2025–26</div>
+            <div class="pack-subtitle">CHROME SERIES</div>
+            <div class="pack-count">5 CARDS PER PACK</div>
+          </div>
+          <div class="pack-notch-top"></div>
+          <div class="pack-tear-line">✂ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</div>
+        </div>
+      </div>
+      <div class="pack-cta">
+        <p class="pack-cta-sub">Your daily pack is ready!</p>
+        <button class="btn-primary btn-xl" id="tear-open-btn" onclick="tearOpenPack()">
+          TEAR OPEN PACK
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 2: Already opened today -->
+  <div id="stage-wait" class="pack-stage hidden">
+    <div class="wait-content">
+      <div class="wait-icon">⏰</div>
+      <h2>Come Back Tomorrow!</h2>
+      <p>You've already opened your pack for today.</p>
+      <p>Next pack available in:</p>
+      <div class="countdown-big" id="wait-timer">--:--:--</div>
+      <button class="btn-secondary" onclick="showView('library')">VIEW MY COLLECTION</button>
+    </div>
+  </div>
+
+  <!-- Stage 3: Reveal cards one by one -->
+  <div id="stage-reveal" class="pack-stage hidden">
+    <div class="reveal-header">
+      <div class="reveal-progress">
+        <div class="reveal-dots" id="reveal-dots"></div>
+        <p id="reveal-hint">Click the card to reveal it!</p>
+      </div>
+    </div>
+    <div class="reveal-arena" id="reveal-arena">
+      <div class="unrevealed-slot" id="unrevealed-slot">
+        <div class="card-back-face" id="unrevealed-card" onclick="revealCurrentCard()">
+          <div class="card-back-logo">🏀</div>
+          <div class="card-back-text">HOOPS ELITE</div>
+          <div class="card-back-year">2025–26</div>
+        </div>
+      </div>
+      <div class="revealed-tray" id="revealed-tray"></div>
+    </div>
+    <div class="reveal-actions" id="reveal-actions" style="display:none">
+      <button class="btn-primary btn-xl" onclick="addPackToCollection()">✅ ADD ALL TO COLLECTION</button>
+      <button class="btn-ghost" onclick="showView('library')">VIEW COLLECTION</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── LIBRARY VIEW ────────────────────────────────────────────────────────── -->
+<div id="view-library" class="view">
+  <div class="library-header">
+    <div class="library-title-row">
+      <h2 class="section-title">MY COLLECTION</h2>
+      <div class="collection-actions">
+        <button class="btn-ghost btn-sm" onclick="exportCollection()">⬇ Export</button>
+        <label class="btn-ghost btn-sm" style="cursor:pointer">
+          ⬆ Import
+          <input type="file" id="import-file" accept=".json" style="display:none" onchange="importCollection(event)"/>
+        </label>
+      </div>
+    </div>
+    <div class="library-controls">
+      <input type="text" id="search-input" class="search-box" placeholder="Search player or team..." oninput="filterLibrary()" />
+      <select id="filter-rarity" class="filter-select" onchange="filterLibrary()">
+        <option value="">All Rarities</option>
+        <option value="prismatic">✨ Prismatic</option>
+        <option value="gold">🥇 Gold</option>
+        <option value="silver">🥈 Silver</option>
+        <option value="common">Common</option>
+      </select>
+      <select id="filter-position" class="filter-select" onchange="filterLibrary()">
+        <option value="">All Positions</option>
+        <option value="PG">PG</option>
+        <option value="SG">SG</option>
+        <option value="SF">SF</option>
+        <option value="PF">PF</option>
+        <option value="C">C</option>
+      </select>
+      <select id="sort-by" class="filter-select" onchange="filterLibrary()">
+        <option value="recent">Most Recent</option>
+        <option value="name">Name A–Z</option>
+        <option value="team">Team</option>
+        <option value="rarity">Rarity</option>
+      </select>
+    </div>
+  </div>
+  <div class="library-empty hidden" id="library-empty">
+    <div class="empty-icon">📦</div>
+    <h3>No cards yet!</h3>
+    <p>Open your first pack to start your collection.</p>
+    <button class="btn-primary" onclick="showView('pack')">OPEN A PACK</button>
+  </div>
+  <div class="library-grid" id="library-grid"></div>
+</div>
+
+<!-- ── CARD DETAIL MODAL ───────────────────────────────────────────────────── -->
+<!--
+  The modal uses a single .card-3d element (with preserve-3d) as the flip root.
+  Both .card-face-front and .card-face-back are direct children — exactly the
+  same structure used for library cards. No extra wrapper layers.
+-->
+<div id="card-modal" class="modal-overlay hidden" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeCardModal()">✕</button>
+
+    <!-- Perspective wrapper -->
+    <div class="modal-perspective" id="modal-perspective">
+      <!-- card-3d filled by openCardModal() with front + back faces -->
+      <div class="card-3d" id="modal-card"></div>
+    </div>
+
+    <div class="modal-controls">
+      <button class="btn-flip" onclick="flipModalCard()">🔄 FLIP CARD</button>
+      <span class="modal-rarity-badge" id="modal-rarity-badge"></span>
+      <span class="modal-hint" id="modal-hint">Tap card or use button to flip</span>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="/js/app.js"></script>
+<script src="/js/card.js"></script>
+<script src="/js/pack.js"></script>
+<script src="/js/library.js"></script>
+</body>
+</html>

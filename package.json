@@ -1,0 +1,14 @@
+{
+  "name": "hoops-cards",
+  "version": "1.0.0",
+  "description": "NBA Basketball Card Pack Collector",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node db/seed.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "express": "^4.18.2"
+  }
+}
