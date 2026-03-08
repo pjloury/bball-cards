@@ -163,20 +163,25 @@ async function fetchNBADraft(player) {
 }
 
 // Source 5 — ESPN headshot (requires ESPN ID from their player search API)
+// ESPN search returns: { items: [{ id, displayName, type:'player', ... }] }
 const espnIdCache = {};
 async function lookupESPNId(playerName) {
   if (espnIdCache[playerName]) return espnIdCache[playerName];
   try {
-    const query    = encodeURIComponent(playerName);
-    const url      = `https://site.api.espn.com/apis/common/v3/search?query=${query}&limit=5&sport=basketball&league=nba`;
-    const ctrl     = new AbortController();
+    const query = encodeURIComponent(playerName);
+    const url   = `https://site.api.espn.com/apis/common/v3/search?query=${query}&limit=5&type=player&sport=basketball&league=nba`;
+    const ctrl  = new AbortController();
     setTimeout(() => ctrl.abort(), 8000);
-    const res      = await fetch(url, { signal: ctrl.signal });
+    const res   = await fetch(url, {
+      signal: ctrl.signal,
+      headers: { 'User-Agent': 'Mozilla/5.0 Chrome/120', 'Referer': 'https://www.espn.com/' }
+    });
     if (!res.ok) return null;
-    const json     = await res.json();
-    const athletes = json?.athletes?.items || [];
-    if (!athletes.length) return null;
-    const espnId   = String(athletes[0].id);
+    const json  = await res.json();
+    // items[] at top level, each with type:'player'
+    const items = (json?.items || []).filter(i => i.type === 'player');
+    if (!items.length) return null;
+    const espnId = String(items[0].id);
     espnIdCache[playerName] = espnId;
     return espnId;
   } catch { return null; }
@@ -194,13 +199,14 @@ async function fetchESPNHeadshot(player) {
   return { source, status: ok ? 'ok' : 'db-err', bytes: img.data.length };
 }
 
-// Source 6 — ESPN full-body action shot
+// Source 6 — ESPN full-body / hi-res headshot (larger scale)
 async function fetchESPNAction(player) {
   const source = 'espn-action';
   if (alreadyHave(player.nba_id, source)) return { source, status: 'cached' };
   const espnId = await lookupESPNId(player.name);
   if (!espnId) return { source, status: 'no-espn-id' };
-  const url = `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${espnId}.png&w=1000&h=727&scale=crop`;
+  // Use ESPN combiner for largest available crop (500px wide keeps it crisp)
+  const url = `https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/${espnId}.png&w=500&h=364`;
   const img = await fetchImage(url, { referer: 'https://www.espn.com/' });
   if (!img) return { source, status: 'fail' };
   const ok = savePhoto({ playerId: player.id, nbaId: player.nba_id, source, url, ...img, quality: 75 });
