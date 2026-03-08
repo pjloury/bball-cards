@@ -137,6 +137,27 @@ app.get('/api/collection/:collectionId/detail', (req, res) => {
   res.json(row);
 });
 
+// ── GET /api/photos/status  — overall photo cache stats ──────────────────────
+// NOTE: must be declared BEFORE /api/photos/:nbaId so 'status' isn't captured as a param
+app.get('/api/photos/status', (req, res) => {
+  const db = getDb();
+  const tableExists = db.prepare(
+    "SELECT name FROM sqlite_master WHERE type='table' AND name='player_photos'"
+  ).get();
+  if (!tableExists) return res.json({ total: 0, bySource: [], totalMB: 0, covered: 0 });
+  const total = db.prepare('SELECT COUNT(*) as n, SUM(file_size) as sz FROM player_photos').get();
+  const bySource = db.prepare(
+    'SELECT source, COUNT(*) as n, SUM(file_size) as sz FROM player_photos GROUP BY source ORDER BY n DESC'
+  ).all();
+  const covered = db.prepare('SELECT COUNT(DISTINCT nba_id) as n FROM player_photos').get();
+  res.json({
+    total: total.n,
+    covered: covered.n,
+    totalMB: Math.round((total.sz || 0) / 1024 / 1024 * 10) / 10,
+    bySource,
+  });
+});
+
 // ── GET /api/photos/:nbaId  — serve best cached photo blob ──────────────────
 // Priority order: nba-hires > nba-legacy > nba-stats-profile > espn-headshot
 //                 > espn-action > wiki-image > nba-small > nba-draft
@@ -184,28 +205,6 @@ app.get('/api/photos/:nbaId/all', (req, res) => {
     'SELECT source, mime_type, file_size, quality, fetched_at FROM player_photos WHERE nba_id=? ORDER BY quality DESC'
   ).all(req.params.nbaId);
   res.json(rows);
-});
-
-// ── GET /api/photos/status  — overall photo cache stats ──────────────────────
-app.get('/api/photos/status', (req, res) => {
-  const db = getDb();
-  const tableExists = db.prepare(
-    "SELECT name FROM sqlite_master WHERE type='table' AND name='player_photos'"
-  ).get();
-  if (!tableExists) return res.json({ total: 0, bySource: [], totalMB: 0 });
-  const total = db.prepare('SELECT COUNT(*) as n, SUM(file_size) as sz FROM player_photos').get();
-  const bySource = db.prepare(
-    'SELECT source, COUNT(*) as n, SUM(file_size) as sz FROM player_photos GROUP BY source ORDER BY quality DESC'
-  ).all();
-  const covered = db.prepare(
-    'SELECT COUNT(DISTINCT nba_id) as n FROM player_photos'
-  ).get();
-  res.json({
-    total: total.n,
-    covered: covered.n,
-    totalMB: Math.round((total.sz || 0) / 1024 / 1024 * 10) / 10,
-    bySource,
-  });
 });
 
 app.listen(PORT, () => {
