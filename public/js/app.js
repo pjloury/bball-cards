@@ -52,26 +52,45 @@ async function savePhotoBlob(nbaId, blob) {
 }
 
 /**
- * Fetch a player's photo from the NBA CDN (or future action-photo URL),
- * convert it to a Blob, store it in IndexedDB, and return an object URL.
- * Subsequent calls return the cached blob without any network request.
+ * Fetch a player's photo — priority chain:
+ *  1. IndexedDB blob cache (instant, offline)
+ *  2. /api/photos/:nbaId   (server-side blob store — best quality, server-cached)
+ *  3. NBA CDN direct       (always available, headshot only)
+ *
+ * On first fetch the blob is persisted to IndexedDB so every subsequent
+ * call is instant with no network request at all.
  */
 async function ensurePhotoBlob(nbaId) {
-  // Check cache first
+  // 1 — IndexedDB hit
   const cached = await getPhotoBlobUrl(nbaId);
   if (cached) return cached;
 
-  // Fetch from NBA CDN
+  // 2 — Server blob store (populated by npm run fetch-photos)
+  try {
+    const serverRes = await fetch(`/api/photos/${nbaId}`);
+    if (serverRes.ok) {
+      const blob = await serverRes.blob();
+      if (blob.size > 2000) {
+        await savePhotoBlob(nbaId, blob);
+        return URL.createObjectURL(blob);
+      }
+    }
+  } catch {}
+
+  // 3 — NBA CDN direct fallback
   const cdnUrl = `https://cdn.nba.com/headshots/nba/latest/1040x760/${nbaId}.png`;
   try {
     const res = await fetch(cdnUrl);
-    if (!res.ok) throw new Error('fetch failed');
-    const blob = await res.blob();
-    await savePhotoBlob(nbaId, blob);
-    return URL.createObjectURL(blob);
-  } catch {
-    return cdnUrl; // fall back to network URL if IndexedDB fails
-  }
+    if (res.ok) {
+      const blob = await res.blob();
+      if (blob.size > 2000) {
+        await savePhotoBlob(nbaId, blob);
+        return URL.createObjectURL(blob);
+      }
+    }
+  } catch {}
+
+  return cdnUrl; // last resort: network URL (may break offline)
 }
 
 /** Pre-fetch and cache photos for an array of players in the background. */

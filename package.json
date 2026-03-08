@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "seed": "node db/seed.js"
+    "seed": "node db/seed.js",
+    "fetch-photos": "node db/fetch-photos.js",
+    "fetch-photos:refresh": "node db/fetch-photos.js --refresh"
   },
   "dependencies": {
     "better-sqlite3": "^9.4.3",
