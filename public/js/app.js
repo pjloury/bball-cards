@@ -284,6 +284,11 @@ let _modalSourceIdx = 0;      // which source is currently shown
 
 // Source display labels
 const SOURCE_LABELS = {
+  'bing-action-1':    'Action 1',
+  'bing-action-2':    'Action 2',
+  'bing-action-3':    'Action 3',
+  'bing-action-4':    'Action 4',
+  'bing-action-5':    'Action 5',
   'nba-hires':        'NBA Official',
   'nba-legacy':       'NBA Legacy',
   'espn-headshot':    'ESPN',
