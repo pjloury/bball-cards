@@ -67,7 +67,6 @@ function renderLibrary() {
 
   grid.innerHTML = cards.map((card, i) => {
     const rarity = card.rarity || 'common';
-    // Animate cards in with staggered delay
     return `
       <div class="lib-card-wrapper rarity-${rarity}"
            style="animation:tray-pop 0.35s ${Math.min(i*0.04, 0.8)}s both cubic-bezier(0.22,1,0.36,1)"
@@ -84,6 +83,19 @@ function renderLibrary() {
 
   // Keep track of the filtered order for modal navigation
   window._filteredCards = cards;
+
+  // Hydrate photos in small batches so we don't slam the server
+  (async () => {
+    for (const card of cards) {
+      const nbaId = card.nba_id || card.nbaId;
+      if (!nbaId) continue;
+      const els = grid.querySelectorAll(`img[data-nba-id="${nbaId}"]`);
+      if (!els.length) continue;
+      const blobUrl = await ensurePhotoBlob(nbaId);
+      els.forEach(img => { img.src = blobUrl; });
+      await new Promise(r => setTimeout(r, 20)); // yield to keep UI smooth
+    }
+  })();
 }
 
 function rarityIcon(r) {

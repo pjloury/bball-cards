@@ -590,6 +590,73 @@ body {
   color: var(--text-muted);
 }
 
+/* ── Modal card row (prev arrow + card + next arrow) ─────────────────────── */
+.modal-card-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.modal-nav-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+  font-size: 32px;
+  line-height: 1;
+  width: 44px;
+  height: 72px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-nav-btn:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+.modal-nav-btn:active { transform: scale(0.92); }
+
+/* ── Photo source picker ──────────────────────────────────────────────────── */
+.photo-source-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 4px;
+}
+.photo-picker-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+.photo-src-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-muted);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.photo-src-btn:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+.photo-src-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
 /* ── Library title row (title + export/import) ────────────────────────────── */
 .library-title-row {
   display: flex;

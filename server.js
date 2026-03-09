@@ -181,6 +181,19 @@ app.get('/api/photos/:nbaId', (req, res) => {
 
   if (!photos.length) return res.status(404).json({ error: 'No photos for this player' });
 
+  // If a specific source was requested, serve that
+  const reqSource = req.query.source;
+  if (reqSource) {
+    const match = photos.find(p => p.source === reqSource);
+    if (match) {
+      res.set('Content-Type', match.mime_type || 'image/png');
+      res.set('Cache-Control', 'public, max-age=86400');
+      res.set('X-Photo-Source', match.source);
+      return res.send(match.data);
+    }
+    // Requested source not available — fall through to best available
+  }
+
   // Pick highest quality source using priority list
   let best = photos[0];
   for (const src of PHOTO_PRIORITY) {
@@ -194,7 +207,7 @@ app.get('/api/photos/:nbaId', (req, res) => {
   res.send(best.data);
 });
 
-// ── GET /api/photos/:nbaId/all  — list all cached sources for a player ───────
+// ── GET /api/photos/:nbaId/all  — list all cached sources (no blob data) ────
 app.get('/api/photos/:nbaId/all', (req, res) => {
   const db = getDb();
   const tableExists = db.prepare(
@@ -206,6 +219,11 @@ app.get('/api/photos/:nbaId/all', (req, res) => {
   ).all(req.params.nbaId);
   res.json(rows);
 });
+
+// ── GET /api/photos/:nbaId?source=NAME  — serve a specific source blob ──────
+// Falls through to best-available if source param is missing or not found.
+// This is the same route as /:nbaId above but with optional ?source query param.
+// (handled inline in the main route below via req.query.source)
 
 app.listen(PORT, () => {
   console.log(`\n🏀  Hoops Elite running at http://localhost:${PORT}\n`);

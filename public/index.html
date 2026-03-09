@@ -177,17 +177,28 @@
   <div class="modal-content" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeCardModal()">✕</button>
 
-    <!-- Perspective wrapper -->
-    <div class="modal-perspective" id="modal-perspective">
-      <!-- card-3d filled by openCardModal() with front + back faces -->
-      <div class="card-3d" id="modal-card"></div>
+    <!-- Card + prev/next arrows -->
+    <div class="modal-card-row">
+      <button class="modal-nav-btn" onclick="modalNavPrev()" title="Previous card (←)">‹</button>
+
+      <!-- Perspective wrapper -->
+      <div class="modal-perspective" id="modal-perspective">
+        <!-- card-3d filled by openCardModal() with front + back faces -->
+        <div class="card-3d" id="modal-card"></div>
+      </div>
+
+      <button class="modal-nav-btn" onclick="modalNavNext()" title="Next card (→)">›</button>
     </div>
 
+    <!-- Flip + rarity + hint -->
     <div class="modal-controls">
       <button class="btn-flip" onclick="flipModalCard()">🔄 FLIP CARD</button>
       <span class="modal-rarity-badge" id="modal-rarity-badge"></span>
-      <span class="modal-hint" id="modal-hint">Tap card or use button to flip</span>
+      <span class="modal-hint" id="modal-hint">Tap card or F to flip · ← → to browse</span>
     </div>
+
+    <!-- Photo source picker (populated by JS after fetching /api/photos/:id/all) -->
+    <div class="photo-source-picker" id="photo-source-picker"></div>
   </div>
 </div>
 

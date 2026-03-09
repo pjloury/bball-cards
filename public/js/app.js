@@ -210,13 +210,14 @@ async function initHome() {
   if (coll.length > 0) {
     recentSection.style.display = '';
     recentGrid.innerHTML = '';
+    // Set home cards as the nav list so arrow keys work from modal
+    window._filteredCards = coll.slice(0, 8);
     for (const card of coll.slice(0, 8)) {
       const wrapper = document.createElement('div');
       wrapper.className = 'card-outer mini';
       wrapper.onclick = () => openCardModal(card);
       wrapper.innerHTML = buildCardFrontHTML(card, 'mini');
       recentGrid.appendChild(wrapper);
-      // Hydrate photo blob after render
       hydrateCardPhoto(wrapper, card.nba_id || card.nbaId);
     }
   } else {
@@ -276,7 +277,22 @@ function sparkle(x, y, rarity) {
 }
 
 // ── MODAL  (single card-3d flip — no double-layer) ───────────────────────────
-let modalIsFlipped = false;
+let modalIsFlipped  = false;
+let _modalCard      = null;   // current full card object in modal
+let _modalSources   = [];     // available photo sources from server
+let _modalSourceIdx = 0;      // which source is currently shown
+
+// Source display labels
+const SOURCE_LABELS = {
+  'nba-hires':        'NBA Official',
+  'nba-legacy':       'NBA Legacy',
+  'espn-headshot':    'ESPN',
+  'espn-action':      'ESPN Action',
+  'wiki-image':       'Wikipedia',
+  'nba-small':        'NBA Thumb',
+  'nba-draft':        'NBA Draft',
+  'nba-stats-profile':'NBA Stats',
+};
 
 async function openCardModal(card) {
   // Fetch full player data (for stats on card back)
@@ -316,8 +332,49 @@ async function openCardModal(card) {
   badge.textContent = labels[fullCard.rarity] || fullCard.rarity;
   badge.className   = `modal-rarity-badge rarity-badge-${fullCard.rarity}`;
 
-  document.getElementById('modal-hint').textContent = 'Click card or press F to flip';
+  document.getElementById('modal-hint').textContent = 'Click card or F to flip';
   document.getElementById('card-modal').classList.remove('hidden');
+
+  // Load available photo sources from server and build picker
+  _modalCard      = fullCard;
+  _modalSources   = [];
+  _modalSourceIdx = 0;
+  renderPhotoSourcePicker([]);  // reset first
+  const nbaIdForPicker = fullCard.nba_id || fullCard.nbaId;
+  if (nbaIdForPicker) {
+    try {
+      const sources = await apiFetch(`/api/photos/${nbaIdForPicker}/all`);
+      _modalSources = sources.filter(s => s.source !== 'nba-small'); // skip tiny thumb
+      renderPhotoSourcePicker(_modalSources);
+    } catch {}
+  }
+}
+
+function renderPhotoSourcePicker(sources) {
+  let picker = document.getElementById('photo-source-picker');
+  if (!picker) return;
+  if (!sources.length) { picker.innerHTML = ''; return; }
+  picker.innerHTML = `
+    <span class="photo-picker-label">PHOTO:</span>
+    ${sources.map((s, i) => `
+      <button class="photo-src-btn ${i === _modalSourceIdx ? 'active' : ''}"
+              onclick="switchPhotoSource(${i})"
+              title="${SOURCE_LABELS[s.source] || s.source}">
+        ${SOURCE_LABELS[s.source] || s.source}
+      </button>`).join('')}
+  `;
+}
+
+async function switchPhotoSource(idx) {
+  if (!_modalCard || !_modalSources[idx]) return;
+  _modalSourceIdx = idx;
+  renderPhotoSourcePicker(_modalSources);
+  const src   = _modalSources[idx].source;
+  const nbaId = _modalCard.nba_id || _modalCard.nbaId;
+  const url   = `/api/photos/${nbaId}?source=${src}`;
+  // Swap all img[data-nba-id] in the modal
+  const cardEl = document.getElementById('modal-card');
+  cardEl.querySelectorAll('img[data-nba-id]').forEach(img => { img.src = url; });
 }
 
 function flipModalCard() {
@@ -330,9 +387,23 @@ function flipModalCard() {
 
 function closeCardModal() {
   document.getElementById('card-modal').classList.add('hidden');
+  _modalCard = null; _modalSources = []; _modalSourceIdx = 0;
 }
 function closeModal(e) {
   if (e.target.id === 'card-modal') closeCardModal();
+}
+
+// Navigate prev/next through the current view's card list
+function modalNavPrev() { modalNavStep(-1); }
+function modalNavNext() { modalNavStep( 1); }
+async function modalNavStep(dir) {
+  const cards = window._filteredCards || [];
+  if (!cards.length || !_modalCard) return;
+  const cur = cards.findIndex(c => (c.uid || c.id) === (_modalCard.uid || _modalCard.id));
+  if (cur < 0) return;
+  const next = cur + dir;
+  if (next < 0 || next >= cards.length) return;
+  await openCardModal(cards[next]);
 }
 
 // Clicking the card itself flips it
@@ -343,10 +414,11 @@ document.addEventListener('click', e => {
 
 // Keyboard shortcuts
 document.addEventListener('keydown', e => {
+  const modalOpen = !document.getElementById('card-modal').classList.contains('hidden');
   if (e.key === 'Escape') closeCardModal();
-  if ((e.key === 'f' || e.key === 'F') && !document.getElementById('card-modal').classList.contains('hidden')) {
-    flipModalCard();
-  }
+  if (modalOpen && (e.key === 'f' || e.key === 'F')) flipModalCard();
+  if (modalOpen && e.key === 'ArrowLeft')  modalNavPrev();
+  if (modalOpen && e.key === 'ArrowRight') modalNavNext();
 });
 
 // ── COLLECTION EXPORT ────────────────────────────────────────────────────────
