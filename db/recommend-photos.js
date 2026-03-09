@@ -33,10 +33,11 @@ const ACTION_PRIORITY = [
   'bing-action-1',   'bing-action-2',   'bing-action-3',
   'flickr-1', 'flickr-2', 'flickr-general',
   'nba-page-action',
-  'hoopshype',
+  'espn-action',               // large in-game shots
+  'wiki-image',                // large editorial
+  'wikimedia-commons',
   'nba-page-og',
-  'espn-action',
-  'wikimedia-commons', 'wiki-image',
+  'hoopshype',                 // small promo thumbnails (fallback only)
   'google-action-4', 'google-action-5',
   'bing-action-4',   'bing-action-5',
 ];

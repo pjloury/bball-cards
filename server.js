@@ -159,16 +159,19 @@ app.get('/api/photos/status', (req, res) => {
 });
 
 // ── Photo priority lists ──────────────────────────────────────────────────────
-// Action shots (card FRONT): in-game, promotional, editorial — NO headshots
+// Action shots (card FRONT): ordered by actual image quality/size
+// espn-action & wiki images are large game shots (150-300KB avg)
+// hoopshype & nba-page-og are small promo thumbnails (17-110KB avg)
 const ACTION_PRIORITY = [
   'google-action-1', 'google-action-2', 'google-action-3',
   'bing-action-1',   'bing-action-2',   'bing-action-3',
   'flickr-1', 'flickr-2', 'flickr-general',
-  'nba-page-action',            // puppeteer-scraped NBA.com hero shot
-  'hoopshype',
-  'nba-page-og',
-  'espn-action',
-  'wikimedia-commons', 'wiki-image',
+  'nba-page-action',           // puppeteer NBA.com hero shot
+  'espn-action',               // large in-game shots (~184KB avg, 97 players)
+  'wiki-image',                // large editorial photos (~314KB avg, 86 players)
+  'wikimedia-commons',         // CC-licensed editorial (~274KB avg, 19 players)
+  'nba-page-og',               // NBA promo (~110KB avg, 99 players)
+  'hoopshype',                 // small promo thumbnails (~17KB avg, 100 players)
   'google-action-4', 'google-action-5',
   'bing-action-4',   'bing-action-5',
 ];
