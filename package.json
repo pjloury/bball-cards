@@ -9,7 +9,10 @@
     "fetch-photos": "node db/fetch-photos.js",
     "fetch-photos:refresh": "node db/fetch-photos.js --refresh",
     "fetch-bing": "node db/fetch-bing-photos.js",
-    "fetch-bing:refresh": "node db/fetch-bing-photos.js --refresh"
+    "fetch-bing:refresh": "node db/fetch-bing-photos.js --refresh",
+    "fetch-extra": "node db/fetch-extra-photos.js",
+    "fetch-extra:refresh": "node db/fetch-extra-photos.js --refresh",
+    "fetch-all": "node db/fetch-photos.js && node db/fetch-extra-photos.js"
   },
   "dependencies": {
     "better-sqlite3": "^9.4.3",

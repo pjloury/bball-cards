@@ -161,14 +161,18 @@ app.get('/api/photos/status', (req, res) => {
 // ── GET /api/photos/:nbaId  — serve best cached photo blob ──────────────────
 // Priority order: nba-hires > nba-legacy > nba-stats-profile > espn-headshot
 //                 > espn-action > wiki-image > nba-small > nba-draft
-// Bing action shots rank first — full game photos, then NBA/ESPN official, then wiki
+// Priority: Bing action > Flickr game photos > HoopsHype promo >
+//           NBA official headshot > ESPN > Wikipedia > extras
 const PHOTO_PRIORITY = [
   'bing-action-1', 'bing-action-2', 'bing-action-3',
+  'flickr-1', 'flickr-2', 'flickr-general',
+  'hoopshype',
+  'nba-page-og',
   'nba-hires', 'nba-legacy',
   'espn-action', 'espn-headshot',
-  'wiki-image',
+  'wikimedia-commons', 'wiki-image',
   'bing-action-4', 'bing-action-5',
-  'nba-stats-profile', 'nba-small', 'nba-draft',
+  'nba-fantasy', 'nba-stats-profile', 'nba-small', 'nba-draft',
 ];
 
 app.get('/api/photos/:nbaId', (req, res) => {
