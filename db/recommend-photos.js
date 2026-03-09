@@ -33,6 +33,9 @@ const ACTION_PRIORITY = [
   'bing-action-1',   'bing-action-2',   'bing-action-3',
   'flickr-1', 'flickr-2', 'flickr-general',
   'nba-page-action',
+  'espn-hero',                 // ESPN page hero
+  'yahoo-action',              // Yahoo Sports
+  'nba-hero',                  // NBA.com hero CDN
   'espn-action',               // large in-game shots
   'wiki-image',                // large editorial
   'wikimedia-commons',

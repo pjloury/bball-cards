@@ -167,6 +167,9 @@ const ACTION_PRIORITY = [
   'bing-action-1',   'bing-action-2',   'bing-action-3',
   'flickr-1', 'flickr-2', 'flickr-general',
   'nba-page-action',           // puppeteer NBA.com hero shot
+  'espn-hero',                 // ESPN player page hero/banner image
+  'yahoo-action',              // Yahoo Sports player profile photo
+  'nba-hero',                  // NBA.com hero (different CDN path)
   'espn-action',               // large in-game shots (~184KB avg, 97 players)
   'wiki-image',                // large editorial photos (~314KB avg, 86 players)
   'wikimedia-commons',         // CC-licensed editorial (~274KB avg, 19 players)
