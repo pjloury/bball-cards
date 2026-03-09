@@ -161,14 +161,16 @@ app.get('/api/photos/status', (req, res) => {
 // ── Photo priority lists ──────────────────────────────────────────────────────
 // Action shots (card FRONT): in-game, promotional, editorial — NO headshots
 const ACTION_PRIORITY = [
-  'bing-action-1', 'bing-action-2', 'bing-action-3',
+  'google-action-1', 'google-action-2', 'google-action-3',
+  'bing-action-1',   'bing-action-2',   'bing-action-3',
   'flickr-1', 'flickr-2', 'flickr-general',
   'nba-page-action',            // puppeteer-scraped NBA.com hero shot
   'hoopshype',
   'nba-page-og',
   'espn-action',
   'wikimedia-commons', 'wiki-image',
-  'bing-action-4', 'bing-action-5',
+  'google-action-4', 'google-action-5',
+  'bing-action-4',   'bing-action-5',
 ];
 
 // Headshots (card BACK thumbnail): official portrait photos

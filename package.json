@@ -13,6 +13,8 @@
     "fetch-extra": "node db/fetch-extra-photos.js",
     "fetch-extra:refresh": "node db/fetch-extra-photos.js --refresh",
     "fetch-all": "node db/fetch-photos.js && node db/fetch-extra-photos.js",
+    "fetch-google": "node db/fetch-google-photos.js",
+    "fetch-google:refresh": "node db/fetch-google-photos.js --refresh",
     "fetch-puppeteer": "node db/fetch-puppeteer.js",
     "fetch-puppeteer:refresh": "node db/fetch-puppeteer.js --refresh",
     "prune-photos": "node db/prune-photos.js",
