@@ -344,37 +344,59 @@ async function main() {
   console.log(`   Players : ${players.length}  |  Sites: ${sites.join(', ')}`);
   console.log(`   REFRESH : ${REFRESH}\n`);
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox','--disable-setuid-sandbox','--disable-dev-shm-usage',
-           '--disable-gpu','--no-first-run','--no-zygote','--single-process'],
-  });
+  const BROWSER_RESTART_EVERY = 15; // restart Chromium every N players to avoid memory bloat
 
+  function launchBrowser() {
+    return puppeteer.launch({
+      headless: 'new',
+      args: [
+        '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage',
+        '--disable-gpu', '--no-first-run', '--no-zygote',
+        '--disable-background-networking', '--disable-extensions',
+        '--memory-pressure-off',
+        '--js-flags=--max-old-space-size=512',  // cap JS heap at 512MB
+      ],
+    });
+  }
+
+  let browser = await launchBrowser();
   const counts = {};
   sites.forEach(s => counts[s] = { ok: 0, cached: 0, skip: 0 });
 
   for (let i = 0; i < players.length; i++) {
+    // Restart browser periodically to release memory
+    if (i > 0 && i % BROWSER_RESTART_EVERY === 0) {
+      console.log(`\n🔄 Restarting browser (memory management, player ${i+1})...`);
+      await browser.close().catch(() => {});
+      await delay(2000);
+      browser = await launchBrowser();
+    }
+
     const p = players[i];
     process.stdout.write(`\n▶ [${i+1}/${players.length}] ${p.name}\n`);
 
     for (const site of sites) {
       let status;
-      if (site === 'espn')  status = await scrapeEspn(browser, p);
-      if (site === 'yahoo') status = await scrapeYahoo(browser, p);
-      if (site === 'nba')   status = await scrapeNba(browser, p);
+      try {
+        if (site === 'espn')  status = await scrapeEspn(browser, p);
+        if (site === 'yahoo') status = await scrapeYahoo(browser, p);
+        if (site === 'nba')   status = await scrapeNba(browser, p);
+      } catch (e) {
+        status = `fatal(${e.message.slice(0,30)})`;
+      }
 
       const ok = /^(ok|screenshot|api-ok|pptr-ok|cdn-ok)/.test(status);
       process.stdout.write(`  ${ok ? '✓' : status === 'cached' ? '○' : '─'} ${site.padEnd(6)}: ${status}\n`);
-      if (ok)                    counts[site].ok++;
-      else if (status==='cached') counts[site].cached++;
-      else                        counts[site].skip++;
+      if (ok)                     counts[site].ok++;
+      else if (status === 'cached') counts[site].cached++;
+      else                          counts[site].skip++;
 
-      await delay(600);
+      await delay(500);
     }
-    if (i < players.length - 1) await delay(800);
+    if (i < players.length - 1) await delay(600);
   }
 
-  await browser.close();
+  await browser.close().catch(() => {});
 
   console.log('\n── Results ─────────────────────────────────────────────────');
   for (const [site, c] of Object.entries(counts)) {
