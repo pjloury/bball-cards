@@ -14,26 +14,34 @@ if (!SESSION_ID) {
 const playerCache = {};
 
 // ── IndexedDB for photo blobs ────────────────────────────────────────────────
+// v2 schema: keyPath 'key' where key = `${type}_${nbaId}` (e.g. "action_2544")
+// This lets us store action shots and headshots separately per player.
 let photoDB = null;
 
 function openPhotoDB() {
   return new Promise((resolve, reject) => {
     if (photoDB) return resolve(photoDB);
-    const req = indexedDB.open('hoops-photo-cache', 1);
+    const req = indexedDB.open('hoops-photo-cache', 2); // v2: typed keys
     req.onupgradeneeded = e => {
-      e.target.result.createObjectStore(PHOTO_STORE, { keyPath: 'nbaId' });
+      const db = e.target.result;
+      // v1 used keyPath:'nbaId' — delete and recreate with keyPath:'key'
+      if (db.objectStoreNames.contains(PHOTO_STORE)) {
+        db.deleteObjectStore(PHOTO_STORE);
+      }
+      db.createObjectStore(PHOTO_STORE, { keyPath: 'key' });
     };
     req.onsuccess  = e => { photoDB = e.target.result; resolve(photoDB); };
     req.onerror    = e => reject(e.target.error);
   });
 }
 
-async function getPhotoBlobUrl(nbaId) {
+/** key = `action_${nbaId}` or `headshot_${nbaId}` */
+async function getPhotoBlobUrl(key) {
   try {
-    const db   = await openPhotoDB();
-    const tx   = db.transaction(PHOTO_STORE, 'readonly');
-    const row  = await new Promise((res, rej) => {
-      const r = tx.objectStore(PHOTO_STORE).get(nbaId);
+    const db  = await openPhotoDB();
+    const tx  = db.transaction(PHOTO_STORE, 'readonly');
+    const row = await new Promise((res, rej) => {
+      const r = tx.objectStore(PHOTO_STORE).get(key);
       r.onsuccess = () => res(r.result);
       r.onerror   = () => rej(r.error);
     });
@@ -42,11 +50,11 @@ async function getPhotoBlobUrl(nbaId) {
   return null;
 }
 
-async function savePhotoBlob(nbaId, blob) {
+async function savePhotoBlob(key, blob) {
   try {
     const db = await openPhotoDB();
     const tx = db.transaction(PHOTO_STORE, 'readwrite');
-    tx.objectStore(PHOTO_STORE).put({ nbaId, blob });
+    tx.objectStore(PHOTO_STORE).put({ key, blob });
     await new Promise((res, rej) => { tx.oncomplete = res; tx.onerror = rej; });
   } catch (e) { console.warn('Photo save failed:', e); }
 }
@@ -54,56 +62,75 @@ async function savePhotoBlob(nbaId, blob) {
 /**
  * Fetch a player's photo — priority chain:
  *  1. IndexedDB blob cache (instant, offline)
- *  2. /api/photos/:nbaId   (server-side blob store — best quality, server-cached)
- *  3. NBA CDN direct       (always available, headshot only)
+ *  2. /api/photos/:nbaId?type=<type>  (server blob store, type-filtered)
+ *  3. NBA CDN headshot fallback
  *
- * On first fetch the blob is persisted to IndexedDB so every subsequent
- * call is instant with no network request at all.
+ * type = 'action'   → best action/editorial shot (for card front)
+ * type = 'headshot' → best portrait headshot (for card back)
  */
-async function ensurePhotoBlob(nbaId) {
-  // 1 — IndexedDB hit
-  const cached = await getPhotoBlobUrl(nbaId);
+async function ensurePhotoBlob(nbaId, type = 'action') {
+  const cacheKey = `${type}_${nbaId}`;
+
+  // 1 — IndexedDB hit (instant)
+  const cached = await getPhotoBlobUrl(cacheKey);
   if (cached) return cached;
 
-  // 2 — Server blob store (populated by npm run fetch-photos)
+  // 2 — Server blob store
   try {
-    const serverRes = await fetch(`/api/photos/${nbaId}`);
+    const serverRes = await fetch(`/api/photos/${nbaId}?type=${type}`);
     if (serverRes.ok) {
       const blob = await serverRes.blob();
       if (blob.size > 2000) {
-        await savePhotoBlob(nbaId, blob);
+        await savePhotoBlob(cacheKey, blob);
         return URL.createObjectURL(blob);
       }
     }
   } catch {}
 
-  // 3 — NBA CDN direct fallback
+  // 3 — NBA CDN fallback (headshot only, always available)
   const cdnUrl = `https://cdn.nba.com/headshots/nba/latest/1040x760/${nbaId}.png`;
-  try {
-    const res = await fetch(cdnUrl);
-    if (res.ok) {
-      const blob = await res.blob();
-      if (blob.size > 2000) {
-        await savePhotoBlob(nbaId, blob);
-        return URL.createObjectURL(blob);
+  if (type === 'headshot') {
+    try {
+      const res = await fetch(cdnUrl);
+      if (res.ok) {
+        const blob = await res.blob();
+        if (blob.size > 2000) {
+          await savePhotoBlob(cacheKey, blob);
+          return URL.createObjectURL(blob);
+        }
       }
-    }
-  } catch {}
+    } catch {}
+  }
 
-  return cdnUrl; // last resort: network URL (may break offline)
+  return cdnUrl;
 }
 
-/** Pre-fetch and cache photos for an array of players in the background. */
+/** Pre-fetch and cache both action + headshot for an array of players. */
 async function prefetchPhotos(players) {
   for (const p of players) {
     const nbaId = p.nba_id || p.nbaId;
     if (!nbaId) continue;
-    const cached = await getPhotoBlobUrl(nbaId);
-    if (!cached) {
-      await ensurePhotoBlob(nbaId);
-      await new Promise(r => setTimeout(r, 50)); // tiny gap to not saturate
-    }
+    // Prefetch action shot if not cached
+    if (!await getPhotoBlobUrl(`action_${nbaId}`))   await ensurePhotoBlob(nbaId, 'action');
+    // Prefetch headshot if not cached
+    if (!await getPhotoBlobUrl(`headshot_${nbaId}`)) await ensurePhotoBlob(nbaId, 'headshot');
+    await new Promise(r => setTimeout(r, 80));
   }
+}
+
+/** Background prefetch of ALL 100 players — called once on startup with a delay. */
+async function prefetchAllPlayerPhotos() {
+  try {
+    const players = await apiFetch('/api/players');
+    for (const p of players) {
+      const nbaId = p.nba_id;
+      if (!nbaId) continue;
+      if (!await getPhotoBlobUrl(`action_${nbaId}`))   await ensurePhotoBlob(nbaId, 'action');
+      if (!await getPhotoBlobUrl(`headshot_${nbaId}`)) await ensurePhotoBlob(nbaId, 'headshot');
+      await new Promise(r => setTimeout(r, 120)); // gentle pacing
+    }
+    console.log('✅ All player photos pre-cached');
+  } catch (e) { console.log('Prefetch skipped:', e.message); }
 }
 
 // ── Routing ──────────────────────────────────────────────────────────────────
@@ -227,14 +254,21 @@ async function initHome() {
 
 // ── Photo blob hydration ──────────────────────────────────────────────────────
 /**
- * After a card element is in the DOM, replace its <img> src with the cached
- * blob URL (or fetch+cache it if not yet stored).
+ * After a card element is in the DOM, hydrate all img[data-nba-id] with their
+ * appropriate cached blobs. Checks data-photo-type ("action" or "headshot")
+ * on each img — action shots for card fronts, headshots for card backs.
  */
 async function hydrateCardPhoto(cardEl, nbaId) {
   if (!nbaId) return;
-  const blobUrl = await ensurePhotoBlob(nbaId);
+  // Fetch both types (from cache if available, else server)
+  const [actionUrl, headshotUrl] = await Promise.all([
+    ensurePhotoBlob(nbaId, 'action'),
+    ensurePhotoBlob(nbaId, 'headshot'),
+  ]);
   cardEl.querySelectorAll('img[data-nba-id]').forEach(img => {
-    if (parseInt(img.dataset.nbaId) === nbaId) img.src = blobUrl;
+    if (parseInt(img.dataset.nbaId) !== nbaId) return;
+    const type = img.dataset.photoType || 'action';
+    img.src = type === 'headshot' ? headshotUrl : actionUrl;
   });
 }
 
@@ -330,11 +364,16 @@ async function openCardModal(card) {
   // Single card-3d with BOTH faces — the correct flip structure
   cardEl.innerHTML = buildCardFrontHTML(fullCard, 'full') + buildCardBackHTML(fullCard);
 
-  // Hydrate photo blobs in the modal
+  // Hydrate photo blobs in the modal — action for front, headshot for back
   const nbaId = fullCard.nba_id || fullCard.nbaId;
   if (nbaId) {
-    ensurePhotoBlob(nbaId).then(url => {
-      cardEl.querySelectorAll('img[data-nba-id]').forEach(img => { img.src = url; });
+    ensurePhotoBlob(nbaId, 'action').then(url => {
+      cardEl.querySelectorAll('img[data-nba-id][data-photo-type="action"]')
+            .forEach(img => { img.src = url; });
+    });
+    ensurePhotoBlob(nbaId, 'headshot').then(url => {
+      cardEl.querySelectorAll('img[data-nba-id][data-photo-type="headshot"]')
+            .forEach(img => { img.src = url; });
     });
   }
 
@@ -487,9 +526,14 @@ window.addEventListener('DOMContentLoaded', () => {
   updateBadge();
   initHome();
 
-  // Silently pre-cache photos for cards already in collection
+  // Phase 1: immediately pre-cache photos for cards already in collection
   const coll = getLocalCollection();
   if (coll.length) {
-    setTimeout(() => prefetchPhotos(coll), 2000);
+    setTimeout(() => prefetchPhotos(coll), 1500);
   }
+
+  // Phase 2: background prefetch ALL 100 players so library is instant
+  // Runs after collection prefetch finishes, staggered to avoid bandwidth spike
+  const phase2Delay = Math.max(3000, coll.length * 200);
+  setTimeout(() => prefetchAllPlayerPhotos(), phase2Delay);
 });

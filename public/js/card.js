@@ -56,11 +56,12 @@ function buildCardFrontHTML(player, size = 'default') {
         <!-- Set name badge -->
         <div class="card-set-badge">2025–26 HOOPS ELITE · ${RARITY_LABELS[rarity]}</div>
 
-        <!-- Player photo -->
+        <!-- Player photo (action shot preferred for card front) -->
         <div class="card-player-photo">
           <img
             src="${photoUrl(nbaId)}"
             data-nba-id="${nbaId}"
+            data-photo-type="action"
             alt="${name}"
             onerror="this.style.opacity='0.3'; this.src='/img/player-silhouette.png'"
             crossorigin="anonymous"
@@ -117,8 +118,8 @@ function buildCardBackHTML(player) {
         <!-- Player header -->
         <div class="card-back-top">
           <div class="card-back-headshot">
-            <img src="${photoUrl(nbaId)}" data-nba-id="${nbaId}" alt="${player.name}"
-              onerror="this.style.opacity='0.3'" crossorigin="anonymous" />
+            <img src="${photoUrl(nbaId)}" data-nba-id="${nbaId}" data-photo-type="headshot"
+              alt="${player.name}" onerror="this.style.opacity='0.3'" crossorigin="anonymous" />
           </div>
           <div class="card-back-name-block">
             <div class="card-back-team">${player.team || ''} · #${player.jersey}</div>

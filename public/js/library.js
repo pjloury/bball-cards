@@ -84,14 +84,14 @@ function renderLibrary() {
   // Keep track of the filtered order for modal navigation
   window._filteredCards = cards;
 
-  // Hydrate photos in small batches so we don't slam the server
+  // Hydrate action shots for library cards (front-only view)
   (async () => {
     for (const card of cards) {
       const nbaId = card.nba_id || card.nbaId;
       if (!nbaId) continue;
       const els = grid.querySelectorAll(`img[data-nba-id="${nbaId}"]`);
       if (!els.length) continue;
-      const blobUrl = await ensurePhotoBlob(nbaId);
+      const blobUrl = await ensurePhotoBlob(nbaId, 'action');
       els.forEach(img => { img.src = blobUrl; });
       await new Promise(r => setTimeout(r, 20)); // yield to keep UI smooth
     }

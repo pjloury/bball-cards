@@ -158,23 +158,35 @@ app.get('/api/photos/status', (req, res) => {
   });
 });
 
-// ── GET /api/photos/:nbaId  — serve best cached photo blob ──────────────────
-// Priority order: nba-hires > nba-legacy > nba-stats-profile > espn-headshot
-//                 > espn-action > wiki-image > nba-small > nba-draft
-// Priority: Bing action > Flickr game photos > HoopsHype promo >
-//           NBA official headshot > ESPN > Wikipedia > extras
-const PHOTO_PRIORITY = [
+// ── Photo priority lists ──────────────────────────────────────────────────────
+// Action shots (card FRONT): in-game, promotional, editorial — NO headshots
+const ACTION_PRIORITY = [
   'bing-action-1', 'bing-action-2', 'bing-action-3',
   'flickr-1', 'flickr-2', 'flickr-general',
+  'nba-page-action',            // puppeteer-scraped NBA.com hero shot
   'hoopshype',
   'nba-page-og',
-  'nba-hires', 'nba-legacy',
-  'espn-action', 'espn-headshot',
+  'espn-action',
   'wikimedia-commons', 'wiki-image',
   'bing-action-4', 'bing-action-5',
-  'nba-fantasy', 'nba-stats-profile', 'nba-small', 'nba-draft',
 ];
 
+// Headshots (card BACK thumbnail): official portrait photos
+const HEADSHOT_PRIORITY = [
+  'nba-hires', 'nba-legacy',
+  'espn-headshot',
+  'nba-fantasy', 'nba-stats-profile',
+  'nba-draft', 'nba-small',
+];
+
+// Full list — action first, then headshots as fallback
+const PHOTO_PRIORITY = [...ACTION_PRIORITY, ...HEADSHOT_PRIORITY];
+
+// ── GET /api/photos/:nbaId  — serve best cached photo blob ──────────────────
+// ?type=action   → best action shot (for card front)
+// ?type=headshot → best headshot (for card back)
+// ?source=NAME   → specific source by name
+// (no param)     → best available overall (action preferred)
 app.get('/api/photos/:nbaId', (req, res) => {
   const db = getDb();
   // Check if photos table exists yet
@@ -183,7 +195,7 @@ app.get('/api/photos/:nbaId', (req, res) => {
   ).get();
   if (!tableExists) return res.status(404).json({ error: 'No photo cache yet — run npm run fetch-photos' });
 
-  // Get all photos for this player, ordered by quality
+  // Get all photos for this player
   const photos = db.prepare(
     'SELECT source, data, mime_type, quality FROM player_photos WHERE nba_id=? ORDER BY quality DESC'
   ).all(req.params.nbaId);
@@ -203,11 +215,25 @@ app.get('/api/photos/:nbaId', (req, res) => {
     // Requested source not available — fall through to best available
   }
 
-  // Pick highest quality source using priority list
+  // Choose priority list based on ?type param
+  const reqType = req.query.type; // 'action' | 'headshot' | undefined
+  let priority;
+  if (reqType === 'action')   priority = ACTION_PRIORITY;
+  else if (reqType === 'headshot') priority = HEADSHOT_PRIORITY;
+  else priority = PHOTO_PRIORITY;
+
+  // Pick best available source from priority list; fall back to first result
   let best = photos[0];
-  for (const src of PHOTO_PRIORITY) {
+  for (const src of priority) {
     const match = photos.find(p => p.source === src);
     if (match) { best = match; break; }
+  }
+  // If requested 'action' but only headshots exist, fall back gracefully
+  if (reqType === 'action' && !ACTION_PRIORITY.includes(best.source)) {
+    for (const src of HEADSHOT_PRIORITY) {
+      const match = photos.find(p => p.source === src);
+      if (match) { best = match; break; }
+    }
   }
 
   res.set('Content-Type', best.mime_type || 'image/png');
