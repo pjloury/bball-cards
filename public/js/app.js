@@ -413,12 +413,16 @@ function renderPhotoSourcePicker(sources) {
   if (!sources.length) { picker.innerHTML = ''; return; }
   picker.innerHTML = `
     <span class="photo-picker-label">PHOTO:</span>
-    ${sources.map((s, i) => `
-      <button class="photo-src-btn ${i === _modalSourceIdx ? 'active' : ''}"
-              onclick="switchPhotoSource(${i})"
-              title="${SOURCE_LABELS[s.source] || s.source}">
-        ${SOURCE_LABELS[s.source] || s.source}
-      </button>`).join('')}
+    ${sources.map((s, i) => {
+      const label = SOURCE_LABELS[s.source] || s.source;
+      const isRec = s.recommended_action;
+      const star  = isRec ? '⭐ ' : '';
+      return `<button class="photo-src-btn ${i === _modalSourceIdx ? 'active' : ''} ${isRec ? 'recommended' : ''}"
+                      onclick="switchPhotoSource(${i})"
+                      title="${isRec ? 'Recommended action shot — ' : ''}${label}">
+                ${star}${label}
+              </button>`;
+    }).join('')}
   `;
 }
 

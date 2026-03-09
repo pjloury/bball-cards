@@ -656,6 +656,8 @@ body {
   border-color: var(--accent);
   color: #000;
 }
+.photo-src-btn.recommended { border-color: #ffd700; }
+.photo-src-btn.recommended.active { background: #ffd700; border-color: #ffd700; color: #000; }
 
 /* ── Library title row (title + export/import) ────────────────────────────── */
 .library-title-row {

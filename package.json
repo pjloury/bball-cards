@@ -18,7 +18,9 @@
     "fetch-puppeteer": "node db/fetch-puppeteer.js",
     "fetch-puppeteer:refresh": "node db/fetch-puppeteer.js --refresh",
     "prune-photos": "node db/prune-photos.js",
-    "prune-photos:dry": "node db/prune-photos.js --dry-run"
+    "prune-photos:dry": "node db/prune-photos.js --dry-run",
+    "recommend-photos": "node db/recommend-photos.js",
+    "recommend-photos:print": "node db/recommend-photos.js --print"
   },
   "dependencies": {
     "better-sqlite3": "^9.4.3",

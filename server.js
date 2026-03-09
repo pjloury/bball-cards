@@ -217,12 +217,35 @@ app.get('/api/photos/:nbaId', (req, res) => {
     // Requested source not available — fall through to best available
   }
 
-  // Choose priority list based on ?type param
+  // Check player_photo_prefs for a curated recommendation first
   const reqType = req.query.type; // 'action' | 'headshot' | undefined
+  const prefTableExists = db.prepare(
+    "SELECT name FROM sqlite_master WHERE type='table' AND name='player_photo_prefs'"
+  ).get();
+  if (prefTableExists && (reqType === 'action' || reqType === 'headshot' || !reqType)) {
+    const pref = db.prepare(
+      'SELECT action_source, headshot_source FROM player_photo_prefs WHERE nba_id=?'
+    ).get(req.params.nbaId);
+    if (pref) {
+      const prefSource = reqType === 'headshot' ? pref.headshot_source : pref.action_source;
+      if (prefSource) {
+        const prefMatch = photos.find(p => p.source === prefSource);
+        if (prefMatch) {
+          res.set('Content-Type', prefMatch.mime_type || 'image/png');
+          res.set('Cache-Control', 'public, max-age=86400');
+          res.set('X-Photo-Source', prefMatch.source);
+          res.set('X-Photo-Recommended', '1');
+          return res.send(prefMatch.data);
+        }
+      }
+    }
+  }
+
+  // Fall back to priority-list selection
   let priority;
-  if (reqType === 'action')   priority = ACTION_PRIORITY;
+  if (reqType === 'action')        priority = ACTION_PRIORITY;
   else if (reqType === 'headshot') priority = HEADSHOT_PRIORITY;
-  else priority = PHOTO_PRIORITY;
+  else                             priority = PHOTO_PRIORITY;
 
   // Pick best available source from priority list; fall back to first result
   let best = photos[0];
@@ -254,7 +277,35 @@ app.get('/api/photos/:nbaId/all', (req, res) => {
   const rows = db.prepare(
     'SELECT source, mime_type, file_size, quality, fetched_at FROM player_photos WHERE nba_id=? ORDER BY quality DESC'
   ).all(req.params.nbaId);
+  // Annotate with recommendation status if prefs table exists
+  const prefTableExists = db.prepare(
+    "SELECT name FROM sqlite_master WHERE type='table' AND name='player_photo_prefs'"
+  ).get();
+  if (prefTableExists) {
+    const pref = db.prepare(
+      'SELECT action_source, headshot_source FROM player_photo_prefs WHERE nba_id=?'
+    ).get(req.params.nbaId);
+    if (pref) {
+      rows.forEach(r => {
+        r.recommended_action   = r.source === pref.action_source;
+        r.recommended_headshot = r.source === pref.headshot_source;
+      });
+    }
+  }
   res.json(rows);
+});
+
+// ── GET /api/photos/:nbaId/recommended  — which sources are recommended ──────
+app.get('/api/photos/:nbaId/recommended', (req, res) => {
+  const db = getDb();
+  const prefTableExists = db.prepare(
+    "SELECT name FROM sqlite_master WHERE type='table' AND name='player_photo_prefs'"
+  ).get();
+  if (!prefTableExists) return res.json({ action_source: null, headshot_source: null });
+  const pref = db.prepare(
+    'SELECT action_source, headshot_source, updated_at FROM player_photo_prefs WHERE nba_id=?'
+  ).get(req.params.nbaId);
+  res.json(pref || { action_source: null, headshot_source: null });
 });
 
 // ── GET /api/photos/:nbaId?source=NAME  — serve a specific source blob ──────
