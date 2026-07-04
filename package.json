@@ -1,34 +1,15 @@
 {
-  "name": "hoops-cards",
-  "version": "1.0.0",
-  "description": "NBA Basketball Card Pack Collector",
-  "main": "server.js",
+  "name": "hoops-elite",
+  "version": "2.0.0",
+  "description": "Free NBA Top Shot — a daily card-collecting game. Static SPA + baked ESPN data.",
+  "type": "commonjs",
   "scripts": {
-    "start": "node server.js",
-    "seed": "node db/seed.js",
-    "fetch-photos": "node db/fetch-photos.js",
-    "fetch-photos:refresh": "node db/fetch-photos.js --refresh",
-    "fetch-bing": "node db/fetch-bing-photos.js",
-    "fetch-bing:refresh": "node db/fetch-bing-photos.js --refresh",
-    "fetch-extra": "node db/fetch-extra-photos.js",
-    "fetch-extra:refresh": "node db/fetch-extra-photos.js --refresh",
-    "fetch-all": "node db/fetch-photos.js && node db/fetch-extra-photos.js",
-    "fetch-google": "node db/fetch-google-photos.js",
-    "fetch-google:refresh": "node db/fetch-google-photos.js --refresh",
-    "fetch-scrape": "node db/fetch-scrape.js",
-    "fetch-scrape:espn": "node db/fetch-scrape.js --site=espn",
-    "fetch-scrape:yahoo": "node db/fetch-scrape.js --site=yahoo",
-    "fetch-scrape:refresh": "node db/fetch-scrape.js --refresh",
-    "fetch-puppeteer": "node db/fetch-puppeteer.js",
-    "fetch-puppeteer:refresh": "node db/fetch-puppeteer.js --refresh",
-    "prune-photos": "node db/prune-photos.js",
-    "prune-photos:dry": "node db/prune-photos.js --dry-run",
-    "recommend-photos": "node db/recommend-photos.js",
-    "recommend-photos:print": "node db/recommend-photos.js --print"
+    "start": "node scripts/dev-server.js",
+    "dev": "node scripts/dev-server.js",
+    "build:data": "node scripts/build-data.js",
+    "build:photos": "node scripts/fetch-photos.js",
+    "build:photos:refresh": "node scripts/fetch-photos.js --refresh",
+    "build": "node scripts/build-data.js && node scripts/fetch-photos.js"
   },
-  "dependencies": {
-    "better-sqlite3": "^9.4.3",
-    "express": "^4.18.2",
-    "puppeteer": "^24.38.0"
-  }
+  "license": "MIT"
 }

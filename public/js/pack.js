@@ -1,256 +1,160 @@
-/* ── Pack Opening Logic ────────────────────────────────────────────────────── */
+/* ── pack.js — daily pack open + one-by-one reveal ──────────────────────── */
 
-let packCards   = [];   // the 5 card objects fetched from API
-let revealIndex = 0;    // which card we're on (0–4)
+const PACK_SIZE = 5;
+let packCards = [];       // the 5 cards this pack
+let revealIdx = 0;        // how many revealed
 
-// ── Init pack view ────────────────────────────────────────────────────────────
-async function initPack() {
-  // Reset state
-  packCards   = [];
-  revealIndex = 0;
-
-  // Show correct stage
-  if (canOpenPackToday()) {
-    showPackStage('sealed');
-  } else {
-    showPackStage('wait');
-    startWaitTimer();
-  }
-}
-
-function showPackStage(name) {
-  ['sealed','wait','reveal'].forEach(s => {
-    const el = document.getElementById('stage-' + s);
-    if (el) el.classList.toggle('hidden', s !== name);
-  });
-}
-
-// ── Tear open animation ────────────────────────────────────────────────────────
-async function tearOpenPack() {
-  if (!canOpenPackToday()) {
-    showPackStage('wait');
-    startWaitTimer();
-    return;
-  }
-
-  const btn = document.getElementById('tear-open-btn');
-  btn.disabled = true;
-  btn.textContent = 'Opening...';
-
-  // Animate pack flying away
-  const wrapper = document.getElementById('pack-wrapper');
-  wrapper.classList.add('pack-tear-out');
-
-  // Fetch cards from API simultaneously
-  let cards;
-  try {
-    const data = await fetch('/api/pack/open', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sessionId: SESSION_ID }),
-    }).then(r => {
-      if (r.status === 429) {
-        // Already opened today — race condition
-        showPackStage('wait');
-        startWaitTimer();
-        throw new Error('already opened');
-      }
-      if (!r.ok) throw new Error('Server error');
-      return r.json();
+/* Roll a fresh pack of 5 unique players with per-card rarity + serial. */
+function rollPack() {
+  const pool = [...DATA.players];
+  const cards = [];
+  for (let i = 0; i < PACK_SIZE; i++) {
+    const player = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+    const rarity = rollRarity();
+    cards.push({
+      uid: uid(), playerId: player.id, nbaId: player.nbaId,
+      rarity, serial: rollSerial(rarity), edition: RARITY[rarity].edition,
+      obtainedAt: new Date().toISOString(),
+      // denormalized player fields for rendering
+      ...player,
     });
-    cards = data.cards;
-  } catch (err) {
-    if (err.message === 'already opened') return;
-    showToast('⚠️ Could not connect to server. Check that the app is running.');
-    btn.disabled = false;
-    btn.textContent = 'TEAR OPEN PACK';
-    wrapper.classList.remove('pack-tear-out');
-    return;
   }
-
-  packCards = cards;
-
-  // Record pack opened
-  setLastPackDate();
-  incPacksOpened();
-  updateBadge();
-
-  // Wait for pack animation
-  await delay(600);
-
-  // Switch to reveal stage
-  showPackStage('reveal');
-  initRevealStage();
+  // Sort so the best card is revealed LAST (build suspense)
+  cards.sort((a, b) => (RARITY[a.rarity].order - RARITY[b.rarity].order) || (b.serial - a.serial));
+  return cards;
 }
 
-// ── Reveal stage setup ────────────────────────────────────────────────────────
-function initRevealStage() {
-  revealIndex = 0;
+/* Entry point when Pack view is shown. */
+function initPackView() {
+  showStage(Store.canOpenToday() ? 'sealed' : 'wait');
+  if (!Store.canOpenToday()) startWaitTimer();
+  renderPackOdds();
+}
 
-  // Build progress dots
-  const dotsEl = document.getElementById('reveal-dots');
-  dotsEl.innerHTML = '';
-  packCards.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'reveal-dot pending';
-    dot.id = `dot-${i}`;
-    dotsEl.appendChild(dot);
-  });
+function showStage(name) {
+  for (const s of ['sealed', 'wait', 'reveal']) {
+    document.getElementById(`stage-${s}`).classList.toggle('hidden', s !== name);
+  }
+}
 
-  // Clear tray
+function renderPackOdds() {
+  const el = document.getElementById('pack-odds');
+  if (!el) return;
+  el.innerHTML = RARITIES.slice().reverse().map(r =>
+    `<div class="odds-row"><span class="odds-dot rarity-dot-${r.key}"></span>
+       <span class="odds-label">${r.label}</span>
+       <span class="odds-pct">${r.weight}% · /${r.edition.toLocaleString()}</span></div>`).join('');
+}
+
+/* Tear the pack open → go to reveal stage. */
+function tearOpenPack() {
+  if (!Store.canOpenToday()) { showStage('wait'); startWaitTimer(); return; }
+  const wrap = document.getElementById('pack-wrapper');
+  wrap.classList.add('tearing');
+  packCards = rollPack();
+  revealIdx = 0;
+  setTimeout(() => {
+    showStage('reveal');
+    setupReveal();
+  }, 850);
+}
+
+function setupReveal() {
+  const dots = document.getElementById('reveal-dots');
+  dots.innerHTML = packCards.map((_, i) => `<span class="rdot" data-i="${i}"></span>`).join('');
   document.getElementById('revealed-tray').innerHTML = '';
   document.getElementById('reveal-actions').style.display = 'none';
-
-  // Show the first unrevealed card
-  showNextUnrevealedCard();
-}
-
-function showNextUnrevealedCard() {
+  document.getElementById('reveal-hint').textContent = 'Tap the pack to reveal your first card';
   const slot = document.getElementById('unrevealed-slot');
-  const card = document.getElementById('unrevealed-card');
-
-  if (revealIndex >= packCards.length) {
-    // All revealed
-    slot.style.display = 'none';
-    document.getElementById('reveal-hint').textContent = 'All cards revealed! Add them to your collection.';
-    document.getElementById('reveal-actions').style.display = 'flex';
-    return;
-  }
-
-  slot.style.display = 'flex';
-  card.classList.remove('flip-away', 'slide-in');
-  void card.offsetWidth; // force reflow
-  card.classList.add('slide-in');
-
-  document.getElementById('reveal-hint').textContent =
-    `Card ${revealIndex + 1} of ${packCards.length} — Click to reveal!`;
-
-  // Update dots
-  packCards.forEach((_, i) => {
-    const dot = document.getElementById(`dot-${i}`);
-    if (!dot) return;
-    dot.className = 'reveal-dot';
-    if (i < revealIndex)  dot.classList.add('revealed');
-    else if (i === revealIndex) dot.classList.add('pending');
-  });
+  slot.style.display = '';
+  slot.classList.remove('gone');
 }
 
-// ── Reveal a single card ──────────────────────────────────────────────────────
-async function revealCurrentCard() {
-  if (revealIndex >= packCards.length) return;
+/* Reveal the next card in the pack. */
+function revealCurrentCard() {
+  if (revealIdx >= packCards.length) return;
+  const card = packCards[revealIdx];
 
-  const cardData = packCards[revealIndex];
-  const unrevealedCard = document.getElementById('unrevealed-card');
+  // Flash effect scaled to rarity
+  const flash = document.getElementById('reveal-flash');
+  flash.className = `reveal-flash flash-${card.rarity} show`;
+  setTimeout(() => flash.classList.remove('show'), 700);
 
-  // Animate the back face flipping away
-  unrevealedCard.classList.add('flip-away');
+  // Big center reveal
+  const stage = document.getElementById('reveal-center');
+  stage.innerHTML = `<div class="card-outer full reveal-pop rarity-${card.rarity}"><div class="card-3d">${buildCardFrontHTML(card)}</div></div>`;
+  if (card.rarity === 'gold' || card.rarity === 'prismatic') spawnSparkles(stage);
 
-  // Sparkle at card center
-  const rect = unrevealedCard.getBoundingClientRect();
-  const cx   = rect.left + rect.width  / 2;
-  const cy   = rect.top  + rect.height / 2;
-  sparkle(cx, cy, cardData.rarity);
-
-  await delay(300);
-
-  // Show full revealed card in an overlay momentarily, then move to tray
-  showRevealedCardAnimation(cardData, cx, cy);
-
-  // Mark dot as revealed
-  const dot = document.getElementById(`dot-${revealIndex}`);
-  if (dot) { dot.className = 'reveal-dot revealed'; }
-
-  revealIndex++;
-  await delay(700);
-  showNextUnrevealedCard();
-}
-
-async function showRevealedCardAnimation(card, cx, cy) {
-  // Create a temporary full-size card in the center for the "wow" moment
-  const overlay = document.createElement('div');
-  overlay.style.cssText = `
-    position:fixed;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:1500;
-    pointer-events:none;
-  `;
-  overlay.innerHTML = `
-    <div class="card-outer rarity-${card.rarity}"
-         style="width:220px;height:308px;
-                animation:tray-pop 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
-                filter:drop-shadow(0 20px 60px rgba(0,0,0,0.8))">
-      ${buildCardFrontHTML(card, 'default')}
-    </div>
-  `;
-  document.body.appendChild(overlay);
-
-  // Rarity announcement
-  const rarityText = { common:'', silver:'🥈 SILVER CHROME!', gold:'🥇 GOLD!', prismatic:'✨ PRISMATIC! ✨' };
-  if (rarityText[card.rarity]) showToast(rarityText[card.rarity], 2500);
-
-  await delay(1200);
-  overlay.remove();
-
-  // Add to the tray
+  // Add mini to tray
   const tray = document.getElementById('revealed-tray');
-  const miniCard = buildMiniRevealCard(card);
-  miniCard.classList.add('revealed-mini');
-  miniCard.onclick = () => openCardModal(card);
-  tray.appendChild(miniCard);
+  const mini = document.createElement('div');
+  mini.className = `card-outer mini rarity-${card.rarity}`;
+  mini.innerHTML = `<div class="card-3d">${buildCardFrontHTML(card, 'mini')}</div>`;
+  mini.onclick = () => openCardModal(card, packCards);
+  tray.appendChild(mini);
+
+  // Mark dot
+  const dot = document.querySelector(`.rdot[data-i="${revealIdx}"]`);
+  if (dot) dot.className = `rdot filled rarity-dot-${card.rarity}`;
+
+  revealIdx++;
+
+  if (revealIdx >= packCards.length) {
+    document.getElementById('unrevealed-slot').classList.add('gone');
+    document.getElementById('reveal-hint').textContent = `You pulled ${packCards.length} cards!`;
+    const best = packCards.reduce((a, b) => cardBetter(a, b));
+    if (best.rarity === 'gold' || best.rarity === 'prismatic')
+      document.getElementById('reveal-hint').textContent = `🔥 ${RARITY_LABELS[best.rarity]} ${best.name} pulled!`;
+    document.getElementById('reveal-actions').style.display = 'flex';
+  } else {
+    document.getElementById('reveal-hint').textContent = `${packCards.length - revealIdx} card${packCards.length - revealIdx > 1 ? 's' : ''} left — tap to reveal`;
+  }
 }
 
-// ── Add entire pack to collection ──────────────────────────────────────────────
-async function addPackToCollection() {
-  const btn = document.querySelector('#reveal-actions .btn-primary');
-  btn.disabled = true;
-  btn.textContent = 'Adding...';
+function spawnSparkles(container) {
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('span');
+    s.className = 'sparkle';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = Math.random() * 0.4 + 's';
+    container.appendChild(s);
+    setTimeout(() => s.remove(), 1400);
+  }
+}
 
-  // Save to localStorage
-  addToLocalCollection(packCards.map(c => ({
-    id:           c.id,
-    nba_id:       c.nba_id || c.nbaId,
-    name:         c.name,
-    team:         c.team,
-    team_short:   c.team_short,
-    team_primary: c.team_primary,
-    team_secondary: c.team_secondary,
-    jersey:       c.jersey,
-    position:     c.position,
-    card_number:  c.card_number,
-    rarity:       c.rarity,
+/* Reveal all remaining at once. */
+function revealAll() { while (revealIdx < packCards.length) revealCurrentCard(); }
+
+/* Commit the pack to the collection. */
+function addPackToCollection() {
+  Store.addCards(packCards.map(c => ({
+    uid: c.uid, playerId: c.playerId, rarity: c.rarity, serial: c.serial,
+    edition: c.edition, obtainedAt: c.obtainedAt,
   })));
-
-  // Also sync to server (best-effort)
-  try {
-    await fetch('/api/collection/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        sessionId: SESSION_ID,
-        cards: packCards.map(c => ({ playerId: c.id, rarity: c.rarity })),
-      }),
-    });
-  } catch { /* offline — localStorage already has it */ }
-
-  updateBadge();
-  showToast(`✅ ${packCards.length} cards added to your collection!`);
-
-  await delay(600);
-  showView('library');
+  Store.recordPackOpened();
+  toast(`Added ${packCards.length} cards to your collection!`);
+  showView('collection');
 }
 
-// ── Wait timer ────────────────────────────────────────────────────────────────
+/* Countdown to next pack. */
+let waitTimer = null;
 function startWaitTimer() {
-  const el = document.getElementById('wait-timer');
-  if (!el) return;
-  const tick = () => { el.textContent = formatCountdown(msUntilMidnight()); };
+  clearInterval(waitTimer);
+  const tick = () => {
+    const el = document.getElementById('wait-timer');
+    if (!el) return clearInterval(waitTimer);
+    const ms = Store.nextPackTime() - new Date();
+    if (ms <= 0) { clearInterval(waitTimer); initPackView(); return; }
+    el.textContent = fmtCountdown(ms);
+  };
   tick();
-  if (window._waitTimer) clearInterval(window._waitTimer);
-  window._waitTimer = setInterval(tick, 1000);
+  waitTimer = setInterval(tick, 1000);
 }
-
-// ── Utility ───────────────────────────────────────────────────────────────────
-function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+function fmtCountdown(ms) {
+  const s = Math.floor(ms / 1000);
+  const h = String(Math.floor(s / 3600)).padStart(2, '0');
+  const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+  const sec = String(s % 60).padStart(2, '0');
+  return `${h}:${m}:${sec}`;
+}

@@ -1,11 +1,6 @@
 node_modules/
 
-# SQLite database — regenerate with: npm run seed
-db/*.db
-db/*.db-shm
-db/*.db-wal
-
-# Environment / secrets (for future API keys)
+# Environment / secrets
 .env
 .env.local
 
@@ -15,3 +10,6 @@ db/*.db-wal
 # Logs
 *.log
 npm-debug.log*
+
+# NOTE: public/data/players.json and public/img/players/* are baked static
+# assets and ARE committed — the app is fully static and needs no build to run.
