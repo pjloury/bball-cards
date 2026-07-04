@@ -65,14 +65,28 @@ from **ESPN's open web API** (reachable, 20+ seasons) and photos from the **NBA
 CDN** (consistent transparent-bg cutouts — ideal for the chrome composite) with a
 Wikipedia editorial shot as an action extra. See `SPEC.md` for the full rationale.
 
-## Regenerating data / photos
+## Photos: cutouts + action shots
+
+Two front treatments, chosen per player at render time:
+
+- **Moment card** (preferred): a full-bleed real **action photo** with a
+  team-color scrim. Sourced in layers — **SerpAPI / Google Images** (best
+  quality, needs `SERP_API_KEY` in `.env`) overriding **Wikimedia Commons**
+  (free, CC-licensed, kept as fallback). Attribution shows on the card detail.
+- **Cutout card** (fallback): the NBA CDN transparent-bg cutout over the team
+  gradient, used when no good action shot exists.
 
 ```bash
 npm run build:data            # refresh players.json from ESPN
-npm run build:photos          # download any missing photos
-npm run build:photos:refresh  # re-download all photos
-npm run build                 # data + photos
+npm run build:photos          # NBA cutouts + wiki hero (front fallback)
+npm run build:action          # action shots from Wikimedia Commons (free)
+npm run build:action:serp     # action shots from SerpAPI (needs .env key)
 ```
+
+`fetch-serp.js` is quota-aware (one search/player, `--max` ceiling, resumes on
+re-run) and downscales images to web size via macOS `sips`. Note: Google-Images
+results are third-party/copyrighted — fine for a personal project, not a clean
+commercial web license; the Wikimedia CC layer is the licensable fallback.
 
 ## Optional: cross-device sync (Firebase)
 

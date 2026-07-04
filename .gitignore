@@ -13,3 +13,4 @@ npm-debug.log*
 
 # NOTE: public/data/players.json and public/img/players/* are baked static
 # assets and ARE committed — the app is fully static and needs no build to run.
+.vercel

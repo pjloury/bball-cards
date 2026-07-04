@@ -128,9 +128,20 @@ function renderModal() {
   perspective.className = 'card-3d' + (modalFlipped ? ' flipped' : '');
   perspective.innerHTML = buildCardFrontHTML(c) + buildCardBackHTML(c);
 
-  // Hero panel
+  // Hero panel — prefer the real action shot, then wiki hero, then cutout
   const hero = document.getElementById('modal-hero');
-  hero.style.backgroundImage = `url(${photoHero(c.nbaId)}), url(${photoFront(c.nbaId)})`;
+  const heroSrc = c.action ? photoAction(c.nbaId) : photoHero(c.nbaId);
+  hero.style.backgroundImage = `url(${heroSrc}), url(${photoFront(c.nbaId)})`;
+  const cred = document.getElementById('modal-hero-credit');
+  if (cred) {
+    if (c.action) {
+      const a = c.action;
+      cred.innerHTML = a.source === 'google'
+        ? `📷 ${a.source_name || 'via web image search'}`
+        : `📷 ${a.artist || 'Wikimedia'}${a.license ? ' · ' + a.license : ''} · Wikimedia Commons`;
+      cred.style.display = '';
+    } else cred.style.display = 'none';
+  }
   document.getElementById('modal-hero-name').textContent = c.name;
   document.getElementById('modal-hero-meta').textContent = `${c.team} · #${c.jersey} · ${c.position}`;
   const av = c.careerAverages || {};

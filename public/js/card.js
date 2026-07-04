@@ -32,20 +32,30 @@ function buildCardFrontHTML(c, size = 'default') {
   const cardNum = String(c.id).padStart(3, '0');
   const name = c.name || '';
   const serial = serialText(c);
+  const isMoment = !!c.action;   // real action photo available → full-bleed "moment" front
+
+  // Photo layer: full-bleed action shot, else the transparent cutout.
+  const photoLayer = isMoment
+    ? `<div class="card-action-photo">
+         <img src="${photoAction(c.nbaId)}" alt="${name}" loading="lazy"
+              onerror="this.closest('.card-face-front').classList.remove('moment');this.remove()" />
+       </div>
+       <div class="card-moment-scrim"></div>`
+    : `<div class="card-player-photo">
+         <img src="${photoFront(c.nbaId)}" alt="${name}" loading="lazy"
+              onerror="this.onerror=null;this.src='/img/player-silhouette.svg';this.style.opacity='0.4'" />
+       </div>`;
 
   return `
-    <div class="card-face card-face-front rarity-${rarity}">
+    <div class="card-face card-face-front rarity-${rarity}${isMoment ? ' moment' : ''}">
       <div class="card-front-inner" style="background:${teamGradient(primary, secondary)}">
         <div class="card-chrome-border"></div>
         <div class="card-design-layer"></div>
+        ${photoLayer}
         <div class="card-accent-bar" style="background:${secondary}"></div>
         <div class="card-corner-tl"></div>
         <div class="card-corner-tr"></div>
         <div class="card-set-badge">2025–26 HOOPS ELITE · ${RARITY_LABELS[rarity]}</div>
-        <div class="card-player-photo">
-          <img src="${photoFront(c.nbaId)}" alt="${name}" loading="lazy"
-               onerror="this.onerror=null;this.src='/img/player-silhouette.svg';this.style.opacity='0.4'" />
-        </div>
         <div class="card-jersey-num">#${jersey}</div>
         ${serial ? `<div class="card-serial-badge rarity-${rarity}">${serial}</div>` : ''}
         <div class="card-info-bar">

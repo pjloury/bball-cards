@@ -9,6 +9,8 @@
     "build:data": "node scripts/build-data.js",
     "build:photos": "node scripts/fetch-photos.js",
     "build:photos:refresh": "node scripts/fetch-photos.js --refresh",
+    "build:action": "node scripts/fetch-action.js",
+    "build:action:serp": "node scripts/fetch-serp.js",
     "build": "node scripts/build-data.js && node scripts/fetch-photos.js"
   },
   "license": "MIT"

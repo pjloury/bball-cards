@@ -20,11 +20,14 @@ const DATA = {
 
   async load() {
     if (this.loaded) return;
-    const res = await fetch('/data/players.json');
+    const [res, credits] = await Promise.all([
+      fetch('/data/players.json'),
+      fetch('/data/photo-credits.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    ]);
     const json = await res.json();
     this.players = json.players;
     this.season = json.season;
-    for (const p of this.players) this.byId[p.id] = p;
+    for (const p of this.players) { p.action = credits[p.nbaId] || null; this.byId[p.id] = p; }
     // Build team index
     const t = {};
     for (const p of this.players) {
@@ -50,8 +53,9 @@ function rollSerial(rarityKey) {
 }
 
 /* Photo paths (baked static assets). */
-const photoFront = nbaId => `/img/players/${nbaId}.png`;
-const photoHero  = nbaId => `/img/players/${nbaId}-hero.jpg`;
+const photoFront  = nbaId => `/img/players/${nbaId}.png`;
+const photoHero   = nbaId => `/img/players/${nbaId}-hero.jpg`;
+const photoAction = nbaId => `/img/players/${nbaId}-action.jpg`;
 
 /* Rarity comparison for "best card" surfacing (higher = rarer, lower serial wins ties). */
 function cardBetter(a, b) {
