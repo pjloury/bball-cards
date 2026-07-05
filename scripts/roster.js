@@ -463,7 +463,7 @@ const PLAYER_LIST = [
   },
   {
     "id": 52,
-    "nbaId": 1628973,
+    "nbaId": 1628969,
     "name": "Mikal Bridges",
     "team": "New York Knicks",
     "teamShort": "NYK",
@@ -661,7 +661,7 @@ const PLAYER_LIST = [
   },
   {
     "id": 74,
-    "nbaId": 1631105,
+    "nbaId": 1630578,
     "name": "Alperen Sengun",
     "team": "Houston Rockets",
     "teamShort": "HOU",
@@ -901,6 +901,456 @@ const PLAYER_LIST = [
     "teamShort": "WAS",
     "jersey": 5,
     "position": "PG"
+  },
+  {
+    "id": 101,
+    "nbaId": 1628973,
+    "name": "Jalen Brunson",
+    "team": "New York Knicks",
+    "teamShort": "NYK",
+    "jersey": 0,
+    "position": "PG"
+  },
+  {
+    "id": 102,
+    "nbaId": 202681,
+    "name": "Kyrie Irving",
+    "team": "Dallas Mavericks",
+    "teamShort": "DAL",
+    "jersey": 0,
+    "position": "PG"
+  },
+  {
+    "id": 103,
+    "nbaId": 1627750,
+    "name": "Jamal Murray",
+    "team": "Denver Nuggets",
+    "teamShort": "DEN",
+    "jersey": 0,
+    "position": "PG"
+  },
+  {
+    "id": 104,
+    "nbaId": 203932,
+    "name": "Aaron Gordon",
+    "team": "Denver Nuggets",
+    "teamShort": "DEN",
+    "jersey": 0,
+    "position": "PF"
+  },
+  {
+    "id": 105,
+    "nbaId": 1629008,
+    "name": "Michael Porter Jr.",
+    "team": "Denver Nuggets",
+    "teamShort": "DEN",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 106,
+    "nbaId": 201935,
+    "name": "James Harden",
+    "team": "Los Angeles Clippers",
+    "teamShort": "LAC",
+    "jersey": 0,
+    "position": "PG"
+  },
+  {
+    "id": 107,
+    "nbaId": 1626181,
+    "name": "Norman Powell",
+    "team": "Los Angeles Clippers",
+    "teamShort": "LAC",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 108,
+    "nbaId": 1627826,
+    "name": "Ivica Zubac",
+    "team": "Los Angeles Clippers",
+    "teamShort": "LAC",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 109,
+    "nbaId": 1629060,
+    "name": "Rui Hachimura",
+    "team": "Los Angeles Lakers",
+    "teamShort": "LAL",
+    "jersey": 0,
+    "position": "PF"
+  },
+  {
+    "id": 110,
+    "nbaId": 1629028,
+    "name": "Deandre Ayton",
+    "team": "Portland Trail Blazers",
+    "teamShort": "POR",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 111,
+    "nbaId": 1631101,
+    "name": "Shaedon Sharpe",
+    "team": "Portland Trail Blazers",
+    "teamShort": "POR",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 112,
+    "nbaId": 1630166,
+    "name": "Deni Avdija",
+    "team": "Portland Trail Blazers",
+    "teamShort": "POR",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 113,
+    "nbaId": 1628374,
+    "name": "Lauri Markkanen",
+    "team": "Utah Jazz",
+    "teamShort": "UTA",
+    "jersey": 0,
+    "position": "PF"
+  },
+  {
+    "id": 114,
+    "nbaId": 1631117,
+    "name": "Walker Kessler",
+    "team": "Utah Jazz",
+    "teamShort": "UTA",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 115,
+    "nbaId": 1629012,
+    "name": "Collin Sexton",
+    "team": "Utah Jazz",
+    "teamShort": "UTA",
+    "jersey": 0,
+    "position": "PG"
+  },
+  {
+    "id": 116,
+    "nbaId": 1628370,
+    "name": "Malik Monk",
+    "team": "Sacramento Kings",
+    "teamShort": "SAC",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 117,
+    "nbaId": 1631099,
+    "name": "Keegan Murray",
+    "team": "Sacramento Kings",
+    "teamShort": "SAC",
+    "jersey": 0,
+    "position": "PF"
+  },
+  {
+    "id": 118,
+    "nbaId": 1630530,
+    "name": "Trey Murphy III",
+    "team": "New Orleans Pelicans",
+    "teamShort": "NOP",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 119,
+    "nbaId": 1630529,
+    "name": "Herbert Jones",
+    "team": "New Orleans Pelicans",
+    "teamShort": "NOP",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 120,
+    "nbaId": 203468,
+    "name": "CJ McCollum",
+    "team": "New Orleans Pelicans",
+    "teamShort": "NOP",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 121,
+    "nbaId": 1631105,
+    "name": "Jalen Duren",
+    "team": "Detroit Pistons",
+    "teamShort": "DET",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 122,
+    "nbaId": 1631093,
+    "name": "Jaden Ivey",
+    "team": "Detroit Pistons",
+    "teamShort": "DET",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 123,
+    "nbaId": 1641709,
+    "name": "Ausar Thompson",
+    "team": "Detroit Pistons",
+    "teamShort": "DET",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 124,
+    "nbaId": 1631097,
+    "name": "Bennedict Mathurin",
+    "team": "Indiana Pacers",
+    "teamShort": "IND",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 125,
+    "nbaId": 1629614,
+    "name": "Andrew Nembhard",
+    "team": "Indiana Pacers",
+    "teamShort": "IND",
+    "jersey": 0,
+    "position": "PG"
+  },
+  {
+    "id": 126,
+    "nbaId": 1630174,
+    "name": "Aaron Nesmith",
+    "team": "Indiana Pacers",
+    "teamShort": "IND",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 127,
+    "nbaId": 1630552,
+    "name": "Jalen Johnson",
+    "team": "Atlanta Hawks",
+    "teamShort": "ATL",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 128,
+    "nbaId": 1630168,
+    "name": "Onyeka Okongwu",
+    "team": "Atlanta Hawks",
+    "teamShort": "ATL",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 129,
+    "nbaId": 1630183,
+    "name": "Jaden McDaniels",
+    "team": "Minnesota Timberwolves",
+    "teamShort": "MIN",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 130,
+    "nbaId": 201144,
+    "name": "Mike Conley",
+    "team": "Minnesota Timberwolves",
+    "teamShort": "MIN",
+    "jersey": 0,
+    "position": "PG"
+  },
+  {
+    "id": 131,
+    "nbaId": 1627741,
+    "name": "Buddy Hield",
+    "team": "Golden State Warriors",
+    "teamShort": "GSW",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 132,
+    "nbaId": 1641764,
+    "name": "Brandin Podziemski",
+    "team": "Golden State Warriors",
+    "teamShort": "GSW",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 133,
+    "nbaId": 1628415,
+    "name": "Dillon Brooks",
+    "team": "Houston Rockets",
+    "teamShort": "HOU",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 134,
+    "nbaId": 1631106,
+    "name": "Tari Eason",
+    "team": "Houston Rockets",
+    "teamShort": "HOU",
+    "jersey": 0,
+    "position": "PF"
+  },
+  {
+    "id": 135,
+    "nbaId": 203500,
+    "name": "Steven Adams",
+    "team": "Houston Rockets",
+    "teamShort": "HOU",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 136,
+    "nbaId": 1629631,
+    "name": "De'Andre Hunter",
+    "team": "Cleveland Cavaliers",
+    "teamShort": "CLE",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 137,
+    "nbaId": 1629622,
+    "name": "Max Strus",
+    "team": "Cleveland Cavaliers",
+    "teamShort": "CLE",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 138,
+    "nbaId": 1627751,
+    "name": "Jakob Poeltl",
+    "team": "Toronto Raptors",
+    "teamShort": "TOR",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 139,
+    "nbaId": 1641711,
+    "name": "Gradey Dick",
+    "team": "Toronto Raptors",
+    "teamShort": "TOR",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 140,
+    "nbaId": 9000140,
+    "name": "Brandon Miller",
+    "team": "Charlotte Hornets",
+    "teamShort": "CHA",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 141,
+    "nbaId": 1642258,
+    "name": "Zaccharie Risacher",
+    "team": "Atlanta Hawks",
+    "teamShort": "ATL",
+    "jersey": 0,
+    "position": "SF"
+  },
+  {
+    "id": 142,
+    "nbaId": 1631128,
+    "name": "Christian Braun",
+    "team": "Denver Nuggets",
+    "teamShort": "DEN",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 143,
+    "nbaId": 1630591,
+    "name": "Jalen Suggs",
+    "team": "Orlando Magic",
+    "teamShort": "ORL",
+    "jersey": 0,
+    "position": "PG"
+  },
+  {
+    "id": 144,
+    "nbaId": 1628371,
+    "name": "Jonathan Isaac",
+    "team": "Orlando Magic",
+    "teamShort": "ORL",
+    "jersey": 0,
+    "position": "PF"
+  },
+  {
+    "id": 145,
+    "nbaId": 203484,
+    "name": "Kentavious Caldwell-Pope",
+    "team": "Orlando Magic",
+    "teamShort": "ORL",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 146,
+    "nbaId": 1629023,
+    "name": "P.J. Washington",
+    "team": "Dallas Mavericks",
+    "teamShort": "DAL",
+    "jersey": 0,
+    "position": "PF"
+  },
+  {
+    "id": 147,
+    "nbaId": 1629655,
+    "name": "Daniel Gafford",
+    "team": "Dallas Mavericks",
+    "teamShort": "DAL",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 148,
+    "nbaId": 1641726,
+    "name": "Dereck Lively II",
+    "team": "Dallas Mavericks",
+    "teamShort": "DAL",
+    "jersey": 0,
+    "position": "C"
+  },
+  {
+    "id": 149,
+    "nbaId": 1629638,
+    "name": "Nickeil Alexander-Walker",
+    "team": "Minnesota Timberwolves",
+    "teamShort": "MIN",
+    "jersey": 0,
+    "position": "SG"
+  },
+  {
+    "id": 150,
+    "nbaId": 1641744,
+    "name": "Zach Edey",
+    "team": "Memphis Grizzlies",
+    "teamShort": "MEM",
+    "jersey": 0,
+    "position": "C"
   }
 ];
 

@@ -55,9 +55,29 @@ async function resolveEspnId(name, team) {
   // Prefer exact name match, then a candidate whose subtitle mentions the team.
   const norm = s => s.toLowerCase().replace(/[^a-z]/g, '');
   const exact = cands.find(c => norm(c.name) === norm(name));
-  if (exact) return exact.id;
+  if (exact) return exact;
   const teamMatch = cands.find(c => team && c.sub && norm(c.sub).includes(norm(team.split(' ').pop())));
-  return (teamMatch || cands[0]).id;
+  return teamMatch || cands[0];
+}
+
+// ESPN subtitle (full team name) → NBA tricode, so we can use each player's
+// CURRENT team (colors + label) from ESPN rather than a possibly-stale roster.
+const TEAM_BY_NAME = {
+  'atlanta hawks': 'ATL', 'boston celtics': 'BOS', 'brooklyn nets': 'BKN',
+  'charlotte hornets': 'CHA', 'chicago bulls': 'CHI', 'cleveland cavaliers': 'CLE',
+  'dallas mavericks': 'DAL', 'denver nuggets': 'DEN', 'detroit pistons': 'DET',
+  'golden state warriors': 'GSW', 'houston rockets': 'HOU', 'indiana pacers': 'IND',
+  'la clippers': 'LAC', 'los angeles clippers': 'LAC', 'los angeles lakers': 'LAL',
+  'memphis grizzlies': 'MEM', 'miami heat': 'MIA', 'milwaukee bucks': 'MIL',
+  'minnesota timberwolves': 'MIN', 'new orleans pelicans': 'NOP', 'new york knicks': 'NYK',
+  'oklahoma city thunder': 'OKC', 'orlando magic': 'ORL', 'philadelphia 76ers': 'PHI',
+  'phoenix suns': 'PHX', 'portland trail blazers': 'POR', 'sacramento kings': 'SAC',
+  'san antonio spurs': 'SAS', 'toronto raptors': 'TOR', 'utah jazz': 'UTA',
+  'washington wizards': 'WAS',
+};
+function teamShortFromName(sub) {
+  if (!sub) return null;
+  return TEAM_BY_NAME[sub.trim().toLowerCase()] || null;
 }
 
 // ── Parse ESPN bio, merging the web-v3 athlete and the core-API athlete ──────
@@ -190,7 +210,8 @@ async function main() {
   const players = [];
   for (const p of roster) {
     process.stdout.write(`  [${String(p.id).padStart(3)}] ${p.name.padEnd(26)} `);
-    const espnId = await resolveEspnId(p.name, p.team);
+    const cand = await resolveEspnId(p.name, p.team);
+    const espnId = cand && cand.id;
     let bio = {}, career = [], accolades = [];
     if (espnId) {
       const [aData, cData, sData, bData] = await Promise.all([
@@ -204,12 +225,16 @@ async function main() {
       accolades = parseAwards(bData);
     }
     const fb = BIO_FALLBACK[p.nbaId] || {};
-    const colors = TEAM_COLORS[p.teamShort] || { primary: '#1a1a40', secondary: '#f7a900' };
+    // Prefer ESPN's current team (from the search subtitle) over the roster's.
+    const espnShort = cand && teamShortFromName(cand.sub);
+    const teamShort = espnShort || p.teamShort;
+    const team = espnShort ? cand.sub.trim() : p.team;
+    const colors = TEAM_COLORS[teamShort] || { primary: '#1a1a40', secondary: '#f7a900' };
     const avg = careerAverages(career);
     const rec = {
       id: p.id, nbaId: p.nbaId, espnId: espnId || null,
       name: p.name, firstName: p.name.split(' ')[0], lastName: p.name.split(' ').slice(1).join(' '),
-      team: p.team, teamShort: p.teamShort,
+      team, teamShort,
       teamPrimary: colors.primary, teamSecondary: colors.secondary,
       jersey: bio.jersey != null ? bio.jersey : p.jersey,
       position: p.position,

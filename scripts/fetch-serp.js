@@ -121,7 +121,9 @@ async function main() {
     searches++;
     let results = [];
     const QSUFFIX = argVal('qsuffix') || 'basketball';
-    try { results = await serpImages(key, `${p.name} ${p.teamShort} ${QSUFFIX}`); }
+    // Quote the name so Google returns THIS player, not a teammate (wrong-player
+    // results were common for less-famous names on unquoted queries).
+    try { results = await serpImages(key, `"${p.name}" ${p.teamShort} ${QSUFFIX}`); }
     catch (e) { console.log('serp-err: ' + e.message); await delay(500); continue; }
 
     const ranked = results.map(r => ({ r, s: scoreImg(r, p.name) })).filter(x => x.s > 0).sort((a, b) => b.s - a.s);
