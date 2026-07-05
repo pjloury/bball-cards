@@ -130,7 +130,7 @@ const PLAYER_LIST = [
   },
   {
     "id": 15,
-    "nbaId": 1629011,
+    "nbaId": 1629630,
     "name": "Ja Morant",
     "team": "Memphis Grizzlies",
     "teamShort": "MEM",
@@ -1351,6 +1351,686 @@ const PLAYER_LIST = [
     "teamShort": "MEM",
     "jersey": 0,
     "position": "C"
+  },
+  {
+    "id": 151,
+    "nbaId": 1642843,
+    "name": "Cooper Flagg",
+    "team": "Dallas Mavericks",
+    "teamShort": "DAL",
+    "jersey": 0,
+    "position": "SF",
+    "legend": false
+  },
+  {
+    "id": 152,
+    "nbaId": 1642844,
+    "name": "Dylan Harper",
+    "team": "San Antonio Spurs",
+    "teamShort": "SAS",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 153,
+    "nbaId": 1642845,
+    "name": "VJ Edgecombe",
+    "team": "Philadelphia 76ers",
+    "teamShort": "PHI",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 154,
+    "nbaId": 1642846,
+    "name": "Ace Bailey",
+    "team": "Utah Jazz",
+    "teamShort": "UTA",
+    "jersey": 0,
+    "position": "SF",
+    "legend": false
+  },
+  {
+    "id": 155,
+    "nbaId": 1642851,
+    "name": "Kon Knueppel",
+    "team": "Charlotte Hornets",
+    "teamShort": "CHA",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 156,
+    "nbaId": 1642848,
+    "name": "Tre Johnson",
+    "team": "Washington Wizards",
+    "teamShort": "WAS",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 157,
+    "nbaId": 1642264,
+    "name": "Stephon Castle",
+    "team": "San Antonio Spurs",
+    "teamShort": "SAS",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 158,
+    "nbaId": 1642263,
+    "name": "Reed Sheppard",
+    "team": "Houston Rockets",
+    "teamShort": "HOU",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 159,
+    "nbaId": 1642259,
+    "name": "Alexandre Sarr",
+    "team": "Washington Wizards",
+    "teamShort": "WAS",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 160,
+    "nbaId": 1642272,
+    "name": "Jared McCain",
+    "team": "Philadelphia 76ers",
+    "teamShort": "PHI",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 161,
+    "nbaId": 1642270,
+    "name": "Donovan Clingan",
+    "team": "Portland Trail Blazers",
+    "teamShort": "POR",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 162,
+    "nbaId": 1641824,
+    "name": "Matas Buzelis",
+    "team": "Chicago Bulls",
+    "teamShort": "CHI",
+    "jersey": 0,
+    "position": "SF",
+    "legend": false
+  },
+  {
+    "id": 163,
+    "nbaId": 1642267,
+    "name": "Carlton Carrington",
+    "team": "Washington Wizards",
+    "teamShort": "WAS",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 164,
+    "nbaId": 1642274,
+    "name": "Yves Missi",
+    "team": "New Orleans Pelicans",
+    "teamShort": "NOP",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 165,
+    "nbaId": 1642261,
+    "name": "Dalton Knecht",
+    "team": "Los Angeles Lakers",
+    "teamShort": "LAL",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 166,
+    "nbaId": 1641731,
+    "name": "Bilal Coulibaly",
+    "team": "Washington Wizards",
+    "teamShort": "WAS",
+    "jersey": 0,
+    "position": "SF",
+    "legend": false
+  },
+  {
+    "id": 167,
+    "nbaId": 1642377,
+    "name": "Jaylen Wells",
+    "team": "Memphis Grizzlies",
+    "teamShort": "MEM",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 168,
+    "nbaId": 1630700,
+    "name": "Dyson Daniels",
+    "team": "Atlanta Hawks",
+    "teamShort": "ATL",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 169,
+    "nbaId": 1641739,
+    "name": "Toumani Camara",
+    "team": "Portland Trail Blazers",
+    "teamShort": "POR",
+    "jersey": 0,
+    "position": "PF",
+    "legend": false
+  },
+  {
+    "id": 170,
+    "nbaId": 1630560,
+    "name": "Cam Thomas",
+    "team": "Brooklyn Nets",
+    "teamShort": "BKN",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 171,
+    "nbaId": 1630202,
+    "name": "Payton Pritchard",
+    "team": "Boston Celtics",
+    "teamShort": "BOS",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 172,
+    "nbaId": 1629656,
+    "name": "Quentin Grimes",
+    "team": "Philadelphia 76ers",
+    "teamShort": "PHI",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 173,
+    "nbaId": 1629661,
+    "name": "Cameron Johnson",
+    "team": "Denver Nuggets",
+    "teamShort": "DEN",
+    "jersey": 0,
+    "position": "SF",
+    "legend": false
+  },
+  {
+    "id": 174,
+    "nbaId": 203992,
+    "name": "Bogdan Bogdanovic",
+    "team": "Los Angeles Clippers",
+    "teamShort": "LAC",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 175,
+    "nbaId": 1627736,
+    "name": "Malik Beasley",
+    "team": "Detroit Pistons",
+    "teamShort": "DET",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 176,
+    "nbaId": 1630182,
+    "name": "Josh Green",
+    "team": "Charlotte Hornets",
+    "teamShort": "CHA",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 177,
+    "nbaId": 1628392,
+    "name": "Isaiah Hartenstein",
+    "team": "Oklahoma City Thunder",
+    "teamShort": "OKC",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 178,
+    "nbaId": 202685,
+    "name": "Jonas Valanciunas",
+    "team": "Denver Nuggets",
+    "teamShort": "DEN",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 179,
+    "nbaId": 203991,
+    "name": "Clint Capela",
+    "team": "Houston Rockets",
+    "teamShort": "HOU",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 180,
+    "nbaId": 1626171,
+    "name": "Bobby Portis",
+    "team": "Milwaukee Bucks",
+    "teamShort": "MIL",
+    "jersey": 0,
+    "position": "PF",
+    "legend": false
+  },
+  {
+    "id": 181,
+    "nbaId": 1629011,
+    "name": "Mitchell Robinson",
+    "team": "New York Knicks",
+    "teamShort": "NYK",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 182,
+    "nbaId": 1630208,
+    "name": "Nick Richards",
+    "team": "Phoenix Suns",
+    "teamShort": "PHX",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 183,
+    "nbaId": 1629048,
+    "name": "Goga Bitadze",
+    "team": "Orlando Magic",
+    "teamShort": "ORL",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 184,
+    "nbaId": 1629057,
+    "name": "Robert Williams III",
+    "team": "Portland Trail Blazers",
+    "teamShort": "POR",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 185,
+    "nbaId": 203083,
+    "name": "Andre Drummond",
+    "team": "Philadelphia 76ers",
+    "teamShort": "PHI",
+    "jersey": 0,
+    "position": "C",
+    "legend": false
+  },
+  {
+    "id": 186,
+    "nbaId": 203471,
+    "name": "Dennis Schroder",
+    "team": "Sacramento Kings",
+    "teamShort": "SAC",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 187,
+    "nbaId": 1628971,
+    "name": "Bruce Brown",
+    "team": "Denver Nuggets",
+    "teamShort": "DEN",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 188,
+    "nbaId": 203501,
+    "name": "Tim Hardaway Jr.",
+    "team": "Denver Nuggets",
+    "teamShort": "DEN",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 189,
+    "nbaId": 1627747,
+    "name": "Caris LeVert",
+    "team": "Detroit Pistons",
+    "teamShort": "DET",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 190,
+    "nbaId": 1626162,
+    "name": "Kelly Oubre Jr.",
+    "team": "Philadelphia 76ers",
+    "teamShort": "PHI",
+    "jersey": 0,
+    "position": "SF",
+    "legend": false
+  },
+  {
+    "id": 191,
+    "nbaId": 203903,
+    "name": "Jordan Clarkson",
+    "team": "New York Knicks",
+    "teamShort": "NYK",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 192,
+    "nbaId": 1628960,
+    "name": "Grayson Allen",
+    "team": "Phoenix Suns",
+    "teamShort": "PHX",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 193,
+    "nbaId": 1627780,
+    "name": "Gary Payton II",
+    "team": "Golden State Warriors",
+    "teamShort": "GSW",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 194,
+    "nbaId": 1630167,
+    "name": "Obi Toppin",
+    "team": "Indiana Pacers",
+    "teamShort": "IND",
+    "jersey": 0,
+    "position": "PF",
+    "legend": false
+  },
+  {
+    "id": 195,
+    "nbaId": 204456,
+    "name": "T.J. McConnell",
+    "team": "Indiana Pacers",
+    "teamShort": "IND",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 196,
+    "nbaId": 1630598,
+    "name": "Aaron Wiggins",
+    "team": "Oklahoma City Thunder",
+    "teamShort": "OKC",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 197,
+    "nbaId": 1641717,
+    "name": "Cason Wallace",
+    "team": "Oklahoma City Thunder",
+    "teamShort": "OKC",
+    "jersey": 0,
+    "position": "PG",
+    "legend": false
+  },
+  {
+    "id": 198,
+    "nbaId": 1630198,
+    "name": "Isaiah Joe",
+    "team": "Oklahoma City Thunder",
+    "teamShort": "OKC",
+    "jersey": 0,
+    "position": "SG",
+    "legend": false
+  },
+  {
+    "id": 199,
+    "nbaId": 1630573,
+    "name": "Sam Hauser",
+    "team": "Boston Celtics",
+    "teamShort": "BOS",
+    "jersey": 0,
+    "position": "SF",
+    "legend": false
+  },
+  {
+    "id": 200,
+    "nbaId": 1630173,
+    "name": "Precious Achiuwa",
+    "team": "New York Knicks",
+    "teamShort": "NYK",
+    "jersey": 0,
+    "position": "PF",
+    "legend": false
+  },
+  {
+    "id": 201,
+    "nbaId": 977,
+    "name": "Kobe Bryant",
+    "team": "Los Angeles Lakers",
+    "teamShort": "LAL",
+    "jersey": 0,
+    "position": "SG",
+    "legend": true
+  },
+  {
+    "id": 202,
+    "nbaId": 406,
+    "name": "Shaquille O'Neal",
+    "team": "Los Angeles Lakers",
+    "teamShort": "LAL",
+    "jersey": 0,
+    "position": "C",
+    "legend": true
+  },
+  {
+    "id": 203,
+    "nbaId": 1495,
+    "name": "Tim Duncan",
+    "team": "San Antonio Spurs",
+    "teamShort": "SAS",
+    "jersey": 0,
+    "position": "PF",
+    "legend": true
+  },
+  {
+    "id": 204,
+    "nbaId": 1717,
+    "name": "Dirk Nowitzki",
+    "team": "Dallas Mavericks",
+    "teamShort": "DAL",
+    "jersey": 0,
+    "position": "PF",
+    "legend": true
+  },
+  {
+    "id": 205,
+    "nbaId": 947,
+    "name": "Allen Iverson",
+    "team": "Philadelphia 76ers",
+    "teamShort": "PHI",
+    "jersey": 0,
+    "position": "PG",
+    "legend": true
+  },
+  {
+    "id": 206,
+    "nbaId": 708,
+    "name": "Kevin Garnett",
+    "team": "Minnesota Timberwolves",
+    "teamShort": "MIN",
+    "jersey": 0,
+    "position": "PF",
+    "legend": true
+  },
+  {
+    "id": 207,
+    "nbaId": 2548,
+    "name": "Dwyane Wade",
+    "team": "Miami Heat",
+    "teamShort": "MIA",
+    "jersey": 0,
+    "position": "SG",
+    "legend": true
+  },
+  {
+    "id": 208,
+    "nbaId": 959,
+    "name": "Steve Nash",
+    "team": "Phoenix Suns",
+    "teamShort": "PHX",
+    "jersey": 0,
+    "position": "PG",
+    "legend": true
+  },
+  {
+    "id": 209,
+    "nbaId": 1713,
+    "name": "Vince Carter",
+    "team": "Toronto Raptors",
+    "teamShort": "TOR",
+    "jersey": 0,
+    "position": "SG",
+    "legend": true
+  },
+  {
+    "id": 210,
+    "nbaId": 951,
+    "name": "Ray Allen",
+    "team": "Boston Celtics",
+    "teamShort": "BOS",
+    "jersey": 0,
+    "position": "SG",
+    "legend": true
+  },
+  {
+    "id": 211,
+    "nbaId": 1718,
+    "name": "Paul Pierce",
+    "team": "Boston Celtics",
+    "teamShort": "BOS",
+    "jersey": 0,
+    "position": "SF",
+    "legend": true
+  },
+  {
+    "id": 212,
+    "nbaId": 1503,
+    "name": "Tracy McGrady",
+    "team": "Orlando Magic",
+    "teamShort": "ORL",
+    "jersey": 0,
+    "position": "SF",
+    "legend": true
+  },
+  {
+    "id": 213,
+    "nbaId": 2730,
+    "name": "Dwight Howard",
+    "team": "Orlando Magic",
+    "teamShort": "ORL",
+    "jersey": 0,
+    "position": "C",
+    "legend": true
+  },
+  {
+    "id": 214,
+    "nbaId": 2546,
+    "name": "Carmelo Anthony",
+    "team": "New York Knicks",
+    "teamShort": "NYK",
+    "jersey": 0,
+    "position": "SF",
+    "legend": true
+  },
+  {
+    "id": 215,
+    "nbaId": 2547,
+    "name": "Chris Bosh",
+    "team": "Miami Heat",
+    "teamShort": "MIA",
+    "jersey": 0,
+    "position": "PF",
+    "legend": true
+  },
+  {
+    "id": 216,
+    "nbaId": 201933,
+    "name": "Blake Griffin",
+    "team": "Los Angeles Clippers",
+    "teamShort": "LAC",
+    "jersey": 0,
+    "position": "PF",
+    "legend": true
+  },
+  {
+    "id": 217,
+    "nbaId": 200765,
+    "name": "Rajon Rondo",
+    "team": "Boston Celtics",
+    "teamShort": "BOS",
+    "jersey": 0,
+    "position": "PG",
+    "legend": true
+  },
+  {
+    "id": 218,
+    "nbaId": 2397,
+    "name": "Yao Ming",
+    "team": "Houston Rockets",
+    "teamShort": "HOU",
+    "jersey": 0,
+    "position": "C",
+    "legend": true
   }
 ];
 
