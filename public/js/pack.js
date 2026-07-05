@@ -26,13 +26,14 @@ function rollPack() {
 
 /* Entry point when Pack view is shown. */
 function initPackView() {
-  showStage(Store.canOpenToday() ? 'sealed' : 'wait');
-  if (!Store.canOpenToday()) startWaitTimer();
+  if (Store.needsAuthToOpen()) { showStage('signin'); return; }
+  if (!Store.canOpenToday()) { showStage('wait'); startWaitTimer(); return; }
+  showStage('sealed');
   renderPackOdds();
 }
 
 function showStage(name) {
-  for (const s of ['sealed', 'wait', 'reveal']) {
+  for (const s of ['sealed', 'wait', 'reveal', 'signin']) {
     document.getElementById(`stage-${s}`).classList.toggle('hidden', s !== name);
   }
 }
@@ -48,6 +49,7 @@ function renderPackOdds() {
 
 /* Tear the pack open → go to reveal stage. */
 function tearOpenPack() {
+  if (Store.needsAuthToOpen()) { showStage('signin'); return; }
   if (!Store.canOpenToday()) { showStage('wait'); startWaitTimer(); return; }
   const wrap = document.getElementById('pack-wrapper');
   wrap.classList.add('tearing');

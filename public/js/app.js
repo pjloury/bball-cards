@@ -21,12 +21,18 @@ function renderHome() {
   document.getElementById('stat-streak').textContent = Store.state.streak;
 
   // Pack status
-  const canOpen = Store.canOpenToday();
   const statusText = document.getElementById('pack-status-text');
   const btn = document.getElementById('hero-open-btn');
   const timer = document.getElementById('hero-timer');
-  if (canOpen) {
+  if (Store.needsAuthToOpen()) {
+    statusText.textContent = 'Sign in to open a new pack daily and sync your collection.';
+    btn.textContent = 'SIGN IN WITH GOOGLE';
+    btn.onclick = () => HoopsAuth.signIn();
+    btn.classList.remove('hidden'); timer.classList.add('hidden');
+  } else if (Store.canOpenToday()) {
     statusText.textContent = "Today's pack is ready to open!";
+    btn.textContent = "OPEN TODAY'S PACK";
+    btn.onclick = () => showView('pack');
     btn.classList.remove('hidden'); timer.classList.add('hidden');
   } else {
     statusText.textContent = 'Come back tomorrow for your next pack.';

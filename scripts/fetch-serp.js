@@ -70,6 +70,8 @@ function scoreImg(r, name) {
   if (/(poster|canvas|framed|wall art|print\b|painting|illustration|cartoon|vector|clip art|drawing|svg|mural|jersey|sneaker|shoe|funko|figure|tattoo|logo|silhouette)/.test(t)) return -1;
   // Magazine covers, graphics, trading cards, autographs → have text/branding, look bad on a card
   if (/(\bslam\b|magazine|\bcover\b|wallpaper|autograph|certified|authentic|trading card|rookie card|\bcard\b|graphic|\bedit\b|\bmeme\b|infographic|breakdown|preview|rising stars|all-star selection|\bselection\b|presented by|at&t|starting five|player of the (week|month))/.test(t)) return -1;
+  // Not in-game action (no jersey / no ball): practice, warmups, media, celebrations, college, arrivals
+  if (/(practice|warm[- ]?up|warmup|shootaround|training camp|media day|pregame|pre-game|tunnel|arrives|arrival|fit\b|hoodie|reacts|reaction|celebrat|press conf|podium|interview|introduc|ceremony|ncaa|college|university|high school)/.test(t)) return -1;
   let s = 0;
   const ar = w / h;
   if (ar >= 0.6 && ar <= 0.82) s += 4;           // ideal portrait
@@ -118,7 +120,8 @@ async function main() {
     process.stdout.write(`  ${p.name.padEnd(26)} `);
     searches++;
     let results = [];
-    try { results = await serpImages(key, `${p.name} ${p.teamShort} basketball`); }
+    const QSUFFIX = argVal('qsuffix') || 'basketball';
+    try { results = await serpImages(key, `${p.name} ${p.teamShort} ${QSUFFIX}`); }
     catch (e) { console.log('serp-err: ' + e.message); await delay(500); continue; }
 
     const ranked = results.map(r => ({ r, s: scoreImg(r, p.name) })).filter(x => x.s > 0).sort((a, b) => b.s - a.s);

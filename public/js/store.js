@@ -15,6 +15,8 @@ const Store = {
     showcase: [],        // array of card uids (max 3)
   },
   remote: null,          // set by firebase.js when signed in
+  signedIn: false,       // set by firebase.js on auth state change
+  authAvailable: false,  // true once firebase.js loads with a valid config
 
   load() {
     try {
@@ -62,6 +64,12 @@ const Store = {
   // ── Daily pack gate ──────────────────────────────────────────────────────
   todayStr() { return new Date().toLocaleDateString('en-CA'); }, // YYYY-MM-DD local
   canOpenToday() { return this.state.lastPackDate !== this.todayStr(); },
+
+  // Guests get one free pack; opening more requires signing in. When auth isn't
+  // configured at all, this never gates (local-only mode stays fully open).
+  needsAuthToOpen() {
+    return this.authAvailable && !this.signedIn && this.state.packsOpened >= 1;
+  },
   nextPackTime() { const d = new Date(); d.setHours(24, 0, 0, 0); return d; },
 
   recordPackOpened() {

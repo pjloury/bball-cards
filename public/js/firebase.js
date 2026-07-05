@@ -34,6 +34,7 @@ window.HoopsAuth = {
       this.auth = authMod.getAuth(app);
       this.db = fsMod.getFirestore(app);
       this._authMod = authMod; this._fsMod = fsMod;
+      Store.authAvailable = true;   // enables the "one free pack then sign in" gate
 
       authMod.onAuthStateChanged(this.auth, user => {
         if (user) this._onSignIn(user); else this._onSignOut();
@@ -69,6 +70,7 @@ window.HoopsAuth = {
 
   async _onSignIn(user) {
     this.uid = user.uid;
+    Store.signedIn = true;
     this.renderSignedIn(user);
     const { doc, getDoc, setDoc, onSnapshot } = this._fsMod;
     const ref = doc(this.db, 'users', user.uid);
@@ -100,7 +102,10 @@ window.HoopsAuth = {
 
   _onSignOut() {
     Store.remote = null;
+    Store.signedIn = false;
+    this.uid = null;
     if (this._unsub) { this._unsub(); this._unsub = null; }
     this.renderSignedOut();
+    window.dispatchEvent(new CustomEvent('store:changed'));
   },
 };
