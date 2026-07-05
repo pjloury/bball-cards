@@ -1,12 +1,17 @@
 /* ── app.js — router, home, boot ─────────────────────────────────────────── */
 
 let currentView = 'home';
+const VIEWS = ['home', 'pack', 'collection'];
 
 function showView(name) {
+  if (!VIEWS.includes(name)) name = 'home';
   currentView = name;
   document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === `view-${name}`));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.id === `nav-${name}`));
   window.scrollTo(0, 0);
+  // Keep the URL hash in sync so a refresh restores this view (replaceState
+  // doesn't fire hashchange, so no render loop).
+  if (location.hash.slice(1) !== name) history.replaceState(null, '', '#' + name);
   if (name === 'home') renderHome();
   else if (name === 'pack') initPackView();
   else if (name === 'collection') renderCollection();
@@ -103,7 +108,12 @@ async function boot() {
   refreshNavBadge();
   window.addEventListener('store:changed', () => { refreshNavBadge(); if (currentView === 'home') renderHome(); if (currentView === 'collection') renderCollection(); });
   if (window.HoopsAuth) HoopsAuth.init();  // optional Firestore layer
-  showView('home');
+  // Back/forward + manual hash edits navigate between views.
+  window.addEventListener('hashchange', () => {
+    const n = location.hash.slice(1) || 'home';
+    if (n !== currentView) showView(n);
+  });
+  showView(location.hash.slice(1) || 'home');   // restore view on refresh/deep-link
 }
 
 document.addEventListener('DOMContentLoaded', boot);
