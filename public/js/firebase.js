@@ -47,7 +47,7 @@ window.HoopsAuth = {
 
   renderSignedOut() {
     const slot = document.getElementById('auth-slot');
-    if (slot) slot.innerHTML = `<button class="auth-btn" onclick="HoopsAuth.signIn()">Sign in with Google</button>`;
+    if (slot) slot.innerHTML = `<button class="auth-btn" onclick="HoopsAuth.signIn()">Sign in<span class="hide-narrow"> with Google</span></button>`;
   },
   renderSignedIn(user) {
     const slot = document.getElementById('auth-slot');

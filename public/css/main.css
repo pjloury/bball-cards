@@ -842,3 +842,21 @@ body {
 
 .signin-note { color: var(--accent) !important; font-size: 14px !important; margin: 4px 0 24px !important; }
 #stage-signin .btn-secondary { margin-top: 14px; }
+
+/* ── Mobile nav: keep everything (incl. Sign in) visible, no overflow ─────── */
+@media (max-width: 640px) {
+  #nav { padding: 0 10px; gap: 6px; }
+  .nav-logo-icon { font-size: 20px; }
+  .nav-logo-text { display: none; }              /* icon only — saves width */
+  .nav-links { gap: 4px; align-items: center; }
+  .nav-btn { padding: 7px 8px; font-size: 12px; letter-spacing: 0.5px; gap: 3px; }
+  .badge { font-size: 10px; min-width: 16px; padding: 1px 4px; }
+  .auth-slot { margin-left: 4px; }
+  .auth-btn { padding: 7px 9px; font-size: 12px; }
+  .auth-user { font-size: 12px; gap: 5px; }
+  .auth-user img { width: 22px; height: 22px; }
+  .hide-narrow { display: none; }                 /* "Sign in" instead of "Sign in with Google" */
+}
+@media (max-width: 380px) {
+  .nav-btn { padding: 6px 6px; font-size: 11px; letter-spacing: 0; }
+}
