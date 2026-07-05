@@ -5,11 +5,18 @@ let packCards = [];       // the 5 cards this pack
 let revealIdx = 0;        // how many revealed
 
 /* Roll a fresh pack of 5 unique players with per-card rarity + serial. */
+function weightedPick(pool) {
+  const w = pool.map(p => (p.legend ? LEGEND_PULL_WEIGHT : 1));
+  let r = Math.random() * w.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < pool.length; i++) if ((r -= w[i]) < 0) return i;
+  return pool.length - 1;
+}
+
 function rollPack() {
   const pool = [...DATA.players];
   const cards = [];
   for (let i = 0; i < PACK_SIZE; i++) {
-    const player = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+    const player = pool.splice(weightedPick(pool), 1)[0];
     const rarity = rollRarity();
     cards.push({
       uid: uid(), playerId: player.id, nbaId: player.nbaId,
@@ -44,21 +51,26 @@ function renderPackOdds() {
   el.innerHTML = RARITIES.slice().reverse().map(r =>
     `<div class="odds-row"><span class="odds-dot rarity-dot-${r.key}"></span>
        <span class="odds-label">${r.label}</span>
-       <span class="odds-pct">${r.weight}% · /${r.edition.toLocaleString()}</span></div>`).join('');
+       <span class="odds-pct">${r.weight}% · /${r.edition.toLocaleString()}</span></div>`).join('') +
+    `<div class="odds-row odds-legend"><span class="odds-dot">👑</span>
+       <span class="odds-label">LEGEND</span><span class="odds-pct">rare chase pull</span></div>`;
 }
 
 /* Tear the pack open → go to reveal stage. */
-function tearOpenPack() {
+async function tearOpenPack() {
   if (Store.needsAuthToOpen()) { showStage('signin'); return; }
   if (!Store.canOpenToday()) { showStage('wait'); startWaitTimer(); return; }
   const wrap = document.getElementById('pack-wrapper');
   wrap.classList.add('tearing');
   packCards = rollPack();
   revealIdx = 0;
-  setTimeout(() => {
-    showStage('reveal');
-    setupReveal();
-  }, 850);
+  // When signed in, allocate globally-unique serials before reveal (runs during
+  // the tear animation). Guests/offline keep provisional local serials.
+  const minting = (Store.signedIn && window.HoopsAuth && HoopsAuth.mintPack)
+    ? HoopsAuth.mintPack(packCards).catch(() => {}) : Promise.resolve();
+  await Promise.all([minting, new Promise(r => setTimeout(r, 850))]);
+  showStage('reveal');
+  setupReveal();
 }
 
 function setupReveal() {

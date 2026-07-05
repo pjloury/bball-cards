@@ -57,6 +57,62 @@ window.HoopsAuth = {
       <button class="auth-btn" onclick="HoopsAuth.signOut()">Sign out</button></span>`;
   },
 
+  /* ── Global mint: allocate a globally-unique serial for one (player,rarity) ──
+     Atomic Firestore transaction bumps counters/{player}_{rarity} and writes a
+     mints/{...}_{serial} ownership record. Guarantees each serial is owned by
+     exactly one user. On a sold-out edition, downgrades rarity to one with room.
+  */
+  async _mintOne(playerId, rarity) {
+    const { doc, runTransaction } = this._fsMod;
+    const order = ['common', 'silver', 'gold', 'prismatic'];
+    let tier = rarity;
+    for (let attempt = 0; attempt < 5; attempt++) {
+      const edition = RARITY[tier].edition;
+      const key = `${playerId}_${tier}`;
+      try {
+        const serial = await runTransaction(this.db, async tx => {
+          const cRef = doc(this.db, 'counters', key);
+          const snap = await tx.get(cRef);
+          const minted = snap.exists() ? (snap.data().minted || 0) : 0;
+          if (minted >= edition) throw new Error('SOLD_OUT');
+          const s = minted + 1;
+          tx.set(cRef, { minted: s }, { merge: true });
+          tx.set(doc(this.db, 'mints', `${key}_${s}`), { owner: this.uid, playerId, rarity: tier, serial: s, at: Date.now() });
+          return s;
+        });
+        return { rarity: tier, serial, edition };
+      } catch (e) {
+        if (String(e).includes('SOLD_OUT')) { tier = order[Math.max(0, order.indexOf(tier) - 1)]; continue; }
+        throw e;
+      }
+    }
+    return null;
+  },
+
+  /* Mint an array of rolled cards → each gets a real global serial + owner. */
+  async mintPack(cards) {
+    if (!this.uid || !this.db) return cards;
+    await Promise.all(cards.map(async c => {
+      try {
+        const m = await this._mintOne(c.playerId, c.rarity);
+        if (m) { c.rarity = m.rarity; c.serial = m.serial; c.edition = m.edition; c.minted = true; }
+      } catch { /* leave local serial on failure */ }
+    }));
+    return cards;
+  },
+
+  /* Convert any un-minted (guest/legacy) collection cards into real global mints. */
+  async _remintGuestCards() {
+    const pending = Store.state.collection.filter(c => !c.minted);
+    if (!pending.length) return;
+    for (const c of pending) {
+      try { const m = await this._mintOne(c.playerId, c.rarity); if (m) { c.rarity = m.rarity; c.serial = m.serial; c.edition = m.edition; c.minted = true; } }
+      catch { /* skip */ }
+    }
+    Store._save();
+    window.dispatchEvent(new CustomEvent('store:changed'));
+  },
+
   async signIn() {
     const provider = new this._authMod.GoogleAuthProvider();
     try { await this._authMod.signInWithPopup(this.auth, provider); }
@@ -92,6 +148,7 @@ window.HoopsAuth = {
     } catch {}
     Store.remote.push(Store.state);            // ensure cloud has the merged union
     toast(`Synced as ${(user.displayName || 'you').split(' ')[0]}`);
+    await this._remintGuestCards();            // give guest/legacy pulls real global serials
 
     // Live updates from other devices.
     this._unsub = onSnapshot(ref, snap => {

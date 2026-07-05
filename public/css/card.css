@@ -616,3 +616,15 @@
 .card-face-front.moment .card-player-name { text-shadow: 0 2px 10px rgba(0,0,0,0.95); }
 .card-face-front.moment .card-set-badge,
 .card-face-front.moment .card-jersey-num { text-shadow: 0 1px 6px rgba(0,0,0,0.9); }
+
+/* ── Legend chase badge ─────────────────────────────────────────────────── */
+.card-legend-badge {
+  position: absolute; top: 26px; left: 50%; transform: translateX(-50%);
+  z-index: 9; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; font-weight: 900; letter-spacing: 2px; white-space: nowrap;
+  padding: 2px 10px; border-radius: 20px; color: #3a2c00;
+  background: linear-gradient(135deg, #ffe08a, #d4af37 45%, #ffe08a);
+  box-shadow: 0 2px 10px rgba(212,175,55,0.6), inset 0 1px 0 rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+#modal-card .card-legend-badge { font-size: 13px; top: 34px; padding: 3px 14px; }

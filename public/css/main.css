@@ -860,3 +860,11 @@ body {
 @media (max-width: 380px) {
   .nav-btn { padding: 6px 6px; font-size: 11px; letter-spacing: 0; }
 }
+
+/* Legends progress + odds */
+.legend-progress { margin-top: 12px; font-size: 14px; color: var(--text-muted); }
+.legend-progress strong { color: #ffd700; font-family: 'Bebas Neue', cursive; font-size: 18px; }
+.progress-bar.mini { height: 6px; margin-top: 5px; }
+.legend-fill { background: linear-gradient(90deg, #d4af37, #ffe08a) !important; }
+.odds-legend { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 6px; }
+.odds-legend .odds-label { color: #ffd700; }

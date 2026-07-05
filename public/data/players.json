@@ -414,7 +414,8 @@
         "ftPct": 73.7,
         "gp": 1622,
         "seasons": 23
-      }
+      },
+      "legend": false
     },
     {
       "id": 2,
@@ -731,7 +732,8 @@
         "ftPct": 91,
         "gp": 1069,
         "seasons": 17
-      }
+      },
+      "legend": false
     },
     {
       "id": 3,
@@ -1096,7 +1098,8 @@
         "ftPct": 88.1,
         "gp": 1248,
         "seasons": 20
-      }
+      },
+      "legend": false
     },
     {
       "id": 4,
@@ -1349,7 +1352,8 @@
         "ftPct": 69.8,
         "gp": 895,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 5,
@@ -1563,7 +1567,8 @@
         "ftPct": 82.5,
         "gp": 810,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 6,
@@ -1765,7 +1770,8 @@
         "ftPct": 75.6,
         "gp": 564,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 7,
@@ -1968,7 +1974,8 @@
         "ftPct": 82.6,
         "gp": 490,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 8,
@@ -2155,7 +2162,8 @@
         "ftPct": 83.9,
         "gp": 601,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 9,
@@ -2407,7 +2415,8 @@
         "ftPct": 89.5,
         "gp": 900,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 10,
@@ -2578,7 +2587,8 @@
         "ftPct": 85.1,
         "gp": 530,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 11,
@@ -2878,7 +2888,8 @@
         "ftPct": 78.7,
         "gp": 858,
         "seasons": 16
-      }
+      },
+      "legend": false
     },
     {
       "id": 12,
@@ -3095,7 +3106,8 @@
         "ftPct": 87,
         "gp": 737,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 13,
@@ -3232,7 +3244,8 @@
         "ftPct": 79.8,
         "gp": 442,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 14,
@@ -3324,7 +3337,8 @@
         "ftPct": 81.7,
         "gp": 181,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 15,
@@ -3478,7 +3492,8 @@
         "ftPct": 77.5,
         "gp": 327,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 16,
@@ -3678,7 +3693,8 @@
         "ftPct": 86.8,
         "gp": 513,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 17,
@@ -3895,7 +3911,8 @@
         "ftPct": 84,
         "gp": 720,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 18,
@@ -4029,7 +4046,8 @@
         "ftPct": 69.5,
         "gp": 276,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 19,
@@ -4231,7 +4249,8 @@
         "ftPct": 72.4,
         "gp": 674,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 20,
@@ -4416,7 +4435,8 @@
         "ftPct": 75.6,
         "gp": 640,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 21,
@@ -4651,7 +4671,8 @@
         "ftPct": 73.6,
         "gp": 771,
         "seasons": 12
-      }
+      },
+      "legend": false
     },
     {
       "id": 22,
@@ -4867,7 +4888,8 @@
         "ftPct": 75.5,
         "gp": 665,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 23,
@@ -5019,7 +5041,8 @@
         "ftPct": 85.2,
         "gp": 410,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 24,
@@ -5204,7 +5227,8 @@
         "ftPct": 84.2,
         "gp": 609,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 25,
@@ -5473,7 +5497,8 @@
         "ftPct": 85,
         "gp": 798,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 26,
@@ -5655,7 +5680,8 @@
         "ftPct": 86.5,
         "gp": 472,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 27,
@@ -5777,7 +5803,8 @@
         "ftPct": 67.6,
         "gp": 334,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 28,
@@ -5898,7 +5925,8 @@
         "ftPct": 84.3,
         "gp": 272,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 29,
@@ -6019,7 +6047,8 @@
         "ftPct": 77.2,
         "gp": 356,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 30,
@@ -6121,7 +6150,8 @@
         "ftPct": 80.9,
         "gp": 248,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 31,
@@ -6257,7 +6287,8 @@
         "ftPct": 85.1,
         "gp": 303,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 32,
@@ -6361,7 +6392,8 @@
         "ftPct": 74.2,
         "gp": 270,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 33,
@@ -6479,7 +6511,8 @@
         "ftPct": 85.2,
         "gp": 325,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 34,
@@ -6679,7 +6712,8 @@
         "ftPct": 77.9,
         "gp": 572,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 35,
@@ -6863,7 +6897,8 @@
         "ftPct": 78.3,
         "gp": 517,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 36,
@@ -7079,7 +7114,8 @@
         "ftPct": 74,
         "gp": 609,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 37,
@@ -7313,7 +7349,8 @@
         "ftPct": 75.5,
         "gp": 789,
         "seasons": 12
-      }
+      },
+      "legend": false
     },
     {
       "id": 38,
@@ -7527,7 +7564,8 @@
         "ftPct": 76.5,
         "gp": 713,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 39,
@@ -7741,7 +7779,8 @@
         "ftPct": 71.4,
         "gp": 687,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 40,
@@ -7993,7 +8032,8 @@
         "ftPct": 62.5,
         "gp": 905,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 41,
@@ -8306,7 +8346,8 @@
         "ftPct": 79.6,
         "gp": 1090,
         "seasons": 17
-      }
+      },
+      "legend": false
     },
     {
       "id": 42,
@@ -8440,7 +8481,8 @@
         "ftPct": 88.1,
         "gp": 395,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 43,
@@ -8642,7 +8684,8 @@
         "ftPct": 79.2,
         "gp": 503,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 44,
@@ -8904,7 +8947,8 @@
         "ftPct": 83.3,
         "gp": 767,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 45,
@@ -9246,7 +9290,8 @@
         "ftPct": 77.4,
         "gp": 1170,
         "seasons": 19
-      }
+      },
+      "legend": false
     },
     {
       "id": 46,
@@ -9546,7 +9591,8 @@
         "ftPct": 84.5,
         "gp": 945,
         "seasons": 16
-      }
+      },
+      "legend": false
     },
     {
       "id": 47,
@@ -9814,7 +9860,8 @@
         "ftPct": 71.8,
         "gp": 949,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 48,
@@ -10063,7 +10110,8 @@
         "ftPct": 85.5,
         "gp": 934,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 49,
@@ -10359,7 +10407,8 @@
         "ftPct": 72.2,
         "gp": 948,
         "seasons": 16
-      }
+      },
+      "legend": false
     },
     {
       "id": 50,
@@ -10509,7 +10558,8 @@
         "ftPct": 87.5,
         "gp": 394,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 51,
@@ -10691,7 +10741,8 @@
         "ftPct": 70.3,
         "gp": 502,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 52,
@@ -10891,7 +10942,8 @@
         "ftPct": 84.1,
         "gp": 721,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 53,
@@ -11041,7 +11093,8 @@
         "ftPct": 81.9,
         "gp": 501,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 54,
@@ -11159,7 +11212,8 @@
         "ftPct": 76.1,
         "gp": 334,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 55,
@@ -11325,7 +11379,8 @@
         "ftPct": 85.3,
         "gp": 462,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 56,
@@ -11507,7 +11562,8 @@
         "ftPct": 85.3,
         "gp": 522,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 57,
@@ -11657,7 +11713,8 @@
         "ftPct": 87.4,
         "gp": 451,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 58,
@@ -11743,7 +11800,8 @@
         "ftPct": 80.1,
         "gp": 158,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 59,
@@ -11861,7 +11919,8 @@
         "ftPct": 86.1,
         "gp": 331,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 60,
@@ -12125,7 +12184,8 @@
         "ftPct": 81.1,
         "gp": 807,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 61,
@@ -12387,7 +12447,8 @@
         "ftPct": 83.3,
         "gp": 616,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 62,
@@ -12604,7 +12665,8 @@
         "ftPct": 85.5,
         "gp": 646,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 63,
@@ -12756,7 +12818,8 @@
         "ftPct": 73,
         "gp": 483,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 64,
@@ -13085,7 +13148,8 @@
         "ftPct": 79.9,
         "gp": 1180,
         "seasons": 18
-      }
+      },
+      "legend": false
     },
     {
       "id": 65,
@@ -13411,7 +13475,8 @@
         "ftPct": 87.3,
         "gp": 939,
         "seasons": 18
-      }
+      },
+      "legend": false
     },
     {
       "id": 66,
@@ -13792,7 +13857,8 @@
         "ftPct": 86.9,
         "gp": 1370,
         "seasons": 21
-      }
+      },
+      "legend": false
     },
     {
       "id": 67,
@@ -14006,7 +14072,8 @@
         "ftPct": 71,
         "gp": 675,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 68,
@@ -14204,7 +14271,8 @@
         "ftPct": 86.4,
         "gp": 499,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 69,
@@ -14354,7 +14422,8 @@
         "ftPct": 84.1,
         "gp": 299,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 70,
@@ -14504,7 +14573,8 @@
         "ftPct": 55.1,
         "gp": 380,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 71,
@@ -14766,7 +14836,8 @@
         "ftPct": 72.3,
         "gp": 856,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 72,
@@ -14916,7 +14987,8 @@
         "ftPct": 69.8,
         "gp": 330,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 73,
@@ -15018,7 +15090,8 @@
         "ftPct": 79.7,
         "gp": 289,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 74,
@@ -15136,7 +15209,8 @@
         "ftPct": 70.1,
         "gp": 358,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 75,
@@ -15254,7 +15328,8 @@
         "ftPct": 79.5,
         "gp": 339,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 76,
@@ -15342,7 +15417,8 @@
         "ftPct": 72,
         "gp": 210,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 77,
@@ -15431,7 +15507,8 @@
         "ftPct": 78.6,
         "gp": 183,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 78,
@@ -15583,7 +15660,8 @@
         "ftPct": 77.7,
         "gp": 432,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 79,
@@ -15717,7 +15795,8 @@
         "ftPct": 72.8,
         "gp": 272,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 80,
@@ -15851,7 +15930,8 @@
         "ftPct": 81.4,
         "gp": 370,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 81,
@@ -16049,7 +16129,8 @@
         "ftPct": 77,
         "gp": 540,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 82,
@@ -16295,7 +16376,8 @@
         "ftPct": 74.7,
         "gp": 726,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 83,
@@ -16643,7 +16725,8 @@
         "ftPct": 83.8,
         "gp": 1027,
         "seasons": 19
-      }
+      },
+      "legend": false
     },
     {
       "id": 84,
@@ -16956,7 +17039,8 @@
         "ftPct": 83.9,
         "gp": 1264,
         "seasons": 17
-      }
+      },
+      "legend": false
     },
     {
       "id": 85,
@@ -17362,7 +17446,8 @@
         "ftPct": 83.8,
         "gp": 1326,
         "seasons": 23
-      }
+      },
+      "legend": false
     },
     {
       "id": 86,
@@ -17707,7 +17792,8 @@
         "ftPct": 78.1,
         "gp": 1183,
         "seasons": 19
-      }
+      },
+      "legend": false
     },
     {
       "id": 87,
@@ -17972,7 +18058,8 @@
         "ftPct": 77.5,
         "gp": 731,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 88,
@@ -18282,7 +18369,8 @@
         "ftPct": 79.8,
         "gp": 829,
         "seasons": 17
-      }
+      },
+      "legend": false
     },
     {
       "id": 89,
@@ -18512,7 +18600,8 @@
         "ftPct": 82.4,
         "gp": 726,
         "seasons": 12
-      }
+      },
+      "legend": false
     },
     {
       "id": 90,
@@ -18694,7 +18783,8 @@
         "ftPct": 85.3,
         "gp": 550,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 91,
@@ -18831,7 +18921,8 @@
         "ftPct": 87,
         "gp": 388,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 92,
@@ -19063,7 +19154,8 @@
         "ftPct": 72.4,
         "gp": 727,
         "seasons": 12
-      }
+      },
+      "legend": false
     },
     {
       "id": 93,
@@ -19089,7 +19181,8 @@
       "bio": "Scottie Pippen Jr. is a PG for the Memphis Grizzlies.",
       "accolades": [],
       "careerStats": [],
-      "careerAverages": {}
+      "careerAverages": {},
+      "legend": false
     },
     {
       "id": 94,
@@ -19255,7 +19348,8 @@
         "ftPct": 83.5,
         "gp": 408,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 95,
@@ -19453,7 +19547,8 @@
         "ftPct": 73.9,
         "gp": 515,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 96,
@@ -19587,7 +19682,8 @@
         "ftPct": 82.2,
         "gp": 355,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 97,
@@ -19785,7 +19881,8 @@
         "ftPct": 79.9,
         "gp": 538,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 98,
@@ -19919,7 +20016,8 @@
         "ftPct": 76.3,
         "gp": 348,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 99,
@@ -20053,7 +20151,8 @@
         "ftPct": 73.5,
         "gp": 365,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 100,
@@ -20315,7 +20414,8 @@
         "ftPct": 81.8,
         "gp": 816,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 101,
@@ -20486,7 +20586,8 @@
         "ftPct": 81.4,
         "gp": 561,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 102,
@@ -20785,7 +20886,8 @@
         "ftPct": 88.9,
         "gp": 839,
         "seasons": 16
-      }
+      },
+      "legend": false
     },
     {
       "id": 103,
@@ -20969,7 +21071,8 @@
         "ftPct": 87.3,
         "gp": 611,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 104,
@@ -21231,7 +21334,8 @@
         "ftPct": 69.8,
         "gp": 806,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 105,
@@ -21381,7 +21485,8 @@
         "ftPct": 80.7,
         "gp": 397,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 106,
@@ -21792,7 +21897,8 @@
         "ftPct": 86.2,
         "gp": 1400,
         "seasons": 23
-      }
+      },
+      "legend": false
     },
     {
       "id": 107,
@@ -22070,7 +22176,8 @@
         "ftPct": 82.6,
         "gp": 789,
         "seasons": 15
-      }
+      },
+      "legend": false
     },
     {
       "id": 108,
@@ -22334,7 +22441,8 @@
         "ftPct": 73.3,
         "gp": 739,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 109,
@@ -22516,7 +22624,8 @@
         "ftPct": 74.6,
         "gp": 468,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 110,
@@ -22682,7 +22791,8 @@
         "ftPct": 73.9,
         "gp": 470,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 111,
@@ -22784,7 +22894,8 @@
         "ftPct": 76.6,
         "gp": 234,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 112,
@@ -22918,7 +23029,8 @@
         "ftPct": 74.7,
         "gp": 425,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 113,
@@ -23102,7 +23214,8 @@
         "ftPct": 86.4,
         "gp": 492,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 114,
@@ -23204,7 +23317,8 @@
         "ftPct": 54.9,
         "gp": 201,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 115,
@@ -23402,7 +23516,8 @@
         "ftPct": 84.4,
         "gp": 543,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 116,
@@ -23584,7 +23699,8 @@
         "ftPct": 84.8,
         "gp": 585,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 117,
@@ -23686,7 +23802,8 @@
         "ftPct": 80.6,
         "gp": 256,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 118,
@@ -23804,7 +23921,8 @@
         "ftPct": 87.7,
         "gp": 317,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 119,
@@ -23924,7 +24042,8 @@
         "ftPct": 82.3,
         "gp": 296,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 120,
@@ -24236,7 +24355,8 @@
         "ftPct": 77.9,
         "gp": 1001,
         "seasons": 17
-      }
+      },
+      "legend": false
     },
     {
       "id": 121,
@@ -24338,7 +24458,8 @@
         "ftPct": 70.1,
         "gp": 276,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 122,
@@ -24472,7 +24593,8 @@
         "ftPct": 76.3,
         "gp": 255,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 123,
@@ -24560,7 +24682,8 @@
         "ftPct": 60.1,
         "gp": 195,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 124,
@@ -24694,7 +24817,8 @@
         "ftPct": 84.2,
         "gp": 317,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 125,
@@ -24796,7 +24920,8 @@
         "ftPct": 80.2,
         "gp": 265,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 126,
@@ -24930,7 +25055,8 @@
         "ftPct": 82.3,
         "gp": 333,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 127,
@@ -25050,7 +25176,8 @@
         "ftPct": 71.9,
         "gp": 256,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 128,
@@ -25184,7 +25311,8 @@
         "ftPct": 74.7,
         "gp": 381,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 129,
@@ -25320,7 +25448,8 @@
         "ftPct": 75.6,
         "gp": 439,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 130,
@@ -25696,7 +25825,8 @@
         "ftPct": 82.9,
         "gp": 1293,
         "seasons": 21
-      }
+      },
+      "legend": false
     },
     {
       "id": 131,
@@ -26022,7 +26152,8 @@
         "ftPct": 85.6,
         "gp": 1063,
         "seasons": 18
-      }
+      },
+      "legend": false
     },
     {
       "id": 132,
@@ -26108,7 +26239,8 @@
         "ftPct": 73,
         "gp": 220,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 133,
@@ -26292,7 +26424,8 @@
         "ftPct": 80.5,
         "gp": 548,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 134,
@@ -26394,7 +26527,8 @@
         "ftPct": 74.9,
         "gp": 221,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 135,
@@ -26624,7 +26758,8 @@
         "ftPct": 53.3,
         "gp": 796,
         "seasons": 12
-      }
+      },
+      "legend": false
     },
     {
       "id": 136,
@@ -26838,7 +26973,8 @@
         "ftPct": 82.8,
         "gp": 481,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 137,
@@ -26988,7 +27124,8 @@
         "ftPct": 80.4,
         "gp": 321,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 138,
@@ -27218,7 +27355,8 @@
         "ftPct": 55.7,
         "gp": 713,
         "seasons": 12
-      }
+      },
+      "legend": false
     },
     {
       "id": 139,
@@ -27304,7 +27442,8 @@
         "ftPct": 86.6,
         "gp": 190,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 140,
@@ -27390,7 +27529,8 @@
         "ftPct": 85.8,
         "gp": 166,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 141,
@@ -27460,7 +27600,8 @@
         "ftPct": 67.9,
         "gp": 142,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 142,
@@ -27562,7 +27703,8 @@
         "ftPct": 72.7,
         "gp": 281,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 143,
@@ -27682,7 +27824,8 @@
         "ftPct": 79,
         "gp": 268,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 144,
@@ -27832,7 +27975,8 @@
         "ftPct": 71.9,
         "gp": 328,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 145,
@@ -28078,7 +28222,8 @@
         "ftPct": 82.7,
         "gp": 963,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 146,
@@ -28260,7 +28405,8 @@
         "ftPct": 70.1,
         "gp": 519,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 147,
@@ -28474,7 +28620,8 @@
         "ftPct": 66.7,
         "gp": 561,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 148,
@@ -28560,7 +28707,8 @@
         "ftPct": 57.3,
         "gp": 98,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 149,
@@ -28776,7 +28924,8 @@
         "ftPct": 75.8,
         "gp": 583,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 150,
@@ -28846,7 +28995,8 @@
         "ftPct": 71.9,
         "gp": 77,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 151,
@@ -28902,7 +29052,8 @@
         "ftPct": 82.7,
         "gp": 70,
         "seasons": 1
-      }
+      },
+      "legend": false
     },
     {
       "id": 152,
@@ -28956,7 +29107,8 @@
         "ftPct": 75.6,
         "gp": 69,
         "seasons": 1
-      }
+      },
+      "legend": false
     },
     {
       "id": 153,
@@ -29010,7 +29162,8 @@
         "ftPct": 81.8,
         "gp": 75,
         "seasons": 1
-      }
+      },
+      "legend": false
     },
     {
       "id": 154,
@@ -29064,7 +29217,8 @@
         "ftPct": 75,
         "gp": 72,
         "seasons": 1
-      }
+      },
+      "legend": false
     },
     {
       "id": 155,
@@ -29118,7 +29272,8 @@
         "ftPct": 86.3,
         "gp": 81,
         "seasons": 1
-      }
+      },
+      "legend": false
     },
     {
       "id": 156,
@@ -29172,7 +29327,8 @@
         "ftPct": 87.4,
         "gp": 60,
         "seasons": 1
-      }
+      },
+      "legend": false
     },
     {
       "id": 157,
@@ -29244,7 +29400,8 @@
         "ftPct": 72.9,
         "gp": 149,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 158,
@@ -29314,7 +29471,8 @@
         "ftPct": 80.6,
         "gp": 134,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 159,
@@ -29384,7 +29542,8 @@
         "ftPct": 68.4,
         "gp": 115,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 160,
@@ -29486,7 +29645,8 @@
         "ftPct": 86.7,
         "gp": 157,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 161,
@@ -29556,7 +29716,8 @@
         "ftPct": 64.1,
         "gp": 144,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 162,
@@ -29626,7 +29787,8 @@
         "ftPct": 80.1,
         "gp": 157,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 163,
@@ -29652,7 +29814,8 @@
       "bio": "Carlton Carrington is a PG for the Washington Wizards.",
       "accolades": [],
       "careerStats": [],
-      "careerAverages": {}
+      "careerAverages": {},
+      "legend": false
     },
     {
       "id": 164,
@@ -29722,7 +29885,8 @@
         "ftPct": 59.3,
         "gp": 139,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 165,
@@ -29792,7 +29956,8 @@
         "ftPct": 74.8,
         "gp": 132,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 166,
@@ -29878,7 +30043,8 @@
         "ftPct": 73,
         "gp": 178,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 167,
@@ -29948,7 +30114,8 @@
         "ftPct": 80.4,
         "gp": 148,
         "seasons": 2
-      }
+      },
+      "legend": false
     },
     {
       "id": 168,
@@ -30054,7 +30221,8 @@
         "ftPct": 62.3,
         "gp": 272,
         "seasons": 4
-      }
+      },
+      "legend": false
     },
     {
       "id": 169,
@@ -30142,7 +30310,8 @@
         "ftPct": 72.8,
         "gp": 230,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 170,
@@ -30292,7 +30461,8 @@
         "ftPct": 84.1,
         "gp": 299,
         "seasons": 7
-      }
+      },
+      "legend": false
     },
     {
       "id": 171,
@@ -30428,7 +30598,8 @@
         "ftPct": 87.1,
         "gp": 426,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 172,
@@ -30610,7 +30781,8 @@
         "ftPct": 76.7,
         "gp": 444,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 173,
@@ -30792,7 +30964,8 @@
         "ftPct": 84,
         "gp": 436,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 174,
@@ -31006,7 +31179,8 @@
         "ftPct": 84.9,
         "gp": 580,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 175,
@@ -31252,7 +31426,8 @@
         "ftPct": 77.2,
         "gp": 714,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 176,
@@ -31386,7 +31561,8 @@
         "ftPct": 71.3,
         "gp": 349,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 177,
@@ -31584,7 +31760,8 @@
         "ftPct": 67.6,
         "gp": 472,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 178,
@@ -31910,7 +32087,8 @@
         "ftPct": 80.1,
         "gp": 1132,
         "seasons": 18
-      }
+      },
+      "legend": false
     },
     {
       "id": 179,
@@ -32140,7 +32318,8 @@
         "ftPct": 54.1,
         "gp": 739,
         "seasons": 12
-      }
+      },
+      "legend": false
     },
     {
       "id": 180,
@@ -32386,7 +32565,8 @@
         "ftPct": 75.6,
         "gp": 771,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 181,
@@ -32552,7 +32732,8 @@
         "ftPct": 50.8,
         "gp": 397,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 182,
@@ -32750,7 +32931,8 @@
         "ftPct": 71.5,
         "gp": 410,
         "seasons": 10
-      }
+      },
+      "legend": false
     },
     {
       "id": 183,
@@ -32932,7 +33114,8 @@
         "ftPct": 66.3,
         "gp": 421,
         "seasons": 9
-      }
+      },
+      "legend": false
     },
     {
       "id": 184,
@@ -33100,7 +33283,8 @@
         "ftPct": 65.6,
         "gp": 294,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 185,
@@ -33460,7 +33644,8 @@
         "ftPct": 51.3,
         "gp": 1143,
         "seasons": 20
-      }
+      },
+      "legend": false
     },
     {
       "id": 186,
@@ -33850,7 +34035,8 @@
         "ftPct": 82.9,
         "gp": 1201,
         "seasons": 22
-      }
+      },
+      "legend": false
     },
     {
       "id": 187,
@@ -34080,7 +34266,8 @@
         "ftPct": 77.5,
         "gp": 647,
         "seasons": 12
-      }
+      },
+      "legend": false
     },
     {
       "id": 188,
@@ -34358,7 +34545,8 @@
         "ftPct": 81.8,
         "gp": 958,
         "seasons": 15
-      }
+      },
+      "legend": false
     },
     {
       "id": 189,
@@ -34652,7 +34840,8 @@
         "ftPct": 73.3,
         "gp": 753,
         "seasons": 16
-      }
+      },
+      "legend": false
     },
     {
       "id": 190,
@@ -34898,7 +35087,8 @@
         "ftPct": 74.5,
         "gp": 774,
         "seasons": 13
-      }
+      },
+      "legend": false
     },
     {
       "id": 191,
@@ -35194,7 +35384,8 @@
         "ftPct": 82.7,
         "gp": 977,
         "seasons": 16
-      }
+      },
+      "legend": false
     },
     {
       "id": 192,
@@ -35360,7 +35551,8 @@
         "ftPct": 85.7,
         "gp": 454,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 193,
@@ -35622,7 +35814,8 @@
         "ftPct": 62.6,
         "gp": 388,
         "seasons": 14
-      }
+      },
+      "legend": false
     },
     {
       "id": 194,
@@ -35756,7 +35949,8 @@
         "ftPct": 77.9,
         "gp": 386,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 195,
@@ -35970,7 +36164,8 @@
         "ftPct": 77.8,
         "gp": 762,
         "seasons": 11
-      }
+      },
+      "legend": false
     },
     {
       "id": 196,
@@ -36088,7 +36283,8 @@
         "ftPct": 78.8,
         "gp": 339,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 197,
@@ -36176,7 +36372,8 @@
         "ftPct": 80.1,
         "gp": 227,
         "seasons": 3
-      }
+      },
+      "legend": false
     },
     {
       "id": 198,
@@ -36310,7 +36507,8 @@
         "ftPct": 85.1,
         "gp": 392,
         "seasons": 6
-      }
+      },
+      "legend": false
     },
     {
       "id": 199,
@@ -36428,7 +36626,8 @@
         "ftPct": 79.2,
         "gp": 334,
         "seasons": 5
-      }
+      },
+      "legend": false
     },
     {
       "id": 200,
@@ -36594,7 +36793,8 @@
         "ftPct": 59.7,
         "gp": 467,
         "seasons": 8
-      }
+      },
+      "legend": false
     },
     {
       "id": 201,
@@ -36959,7 +37159,8 @@
         "ftPct": 83.5,
         "gp": 1346,
         "seasons": 20
-      }
+      },
+      "legend": true
     },
     {
       "id": 202,
@@ -37340,7 +37541,8 @@
         "ftPct": 52.5,
         "gp": 1268,
         "seasons": 21
-      }
+      },
+      "legend": true
     },
     {
       "id": 203,
@@ -37689,7 +37891,8 @@
         "ftPct": 70.1,
         "gp": 1392,
         "seasons": 19
-      }
+      },
+      "legend": true
     },
     {
       "id": 204,
@@ -38069,7 +38272,8 @@
         "ftPct": 87.4,
         "gp": 1522,
         "seasons": 21
-      }
+      },
+      "legend": true
     },
     {
       "id": 205,
@@ -38434,7 +38638,8 @@
         "ftPct": 77.8,
         "gp": 1064,
         "seasons": 20
-      }
+      },
+      "legend": true
     },
     {
       "id": 206,
@@ -38847,7 +39052,8 @@
         "ftPct": 78.7,
         "gp": 1509,
         "seasons": 23
-      }
+      },
+      "legend": true
     },
     {
       "id": 207,
@@ -39173,7 +39379,8 @@
         "ftPct": 75.7,
         "gp": 1121,
         "seasons": 18
-      }
+      },
+      "legend": true
     },
     {
       "id": 208,
@@ -39504,7 +39711,8 @@
         "ftPct": 89.8,
         "gp": 1217,
         "seasons": 18
-      }
+      },
+      "legend": true
     },
     {
       "id": 209,
@@ -39962,7 +40170,8 @@
         "ftPct": 79.1,
         "gp": 1691,
         "seasons": 26
-      }
+      },
+      "legend": true
     },
     {
       "id": 210,
@@ -40323,7 +40532,8 @@
         "ftPct": 89.5,
         "gp": 1376,
         "seasons": 20
-      }
+      },
+      "legend": true
     },
     {
       "id": 211,
@@ -40669,7 +40879,8 @@
         "ftPct": 80.8,
         "gp": 1343,
         "seasons": 19
-      }
+      },
+      "legend": true
     },
     {
       "id": 212,
@@ -40984,7 +41195,8 @@
         "ftPct": 73.5,
         "gp": 968,
         "seasons": 17
-      }
+      },
+      "legend": true
     },
     {
       "id": 213,
@@ -41317,7 +41529,8 @@
         "ftPct": 57,
         "gp": 1242,
         "seasons": 18
-      }
+      },
+      "legend": true
     },
     {
       "id": 214,
@@ -41694,7 +41907,8 @@
         "ftPct": 81.7,
         "gp": 1337,
         "seasons": 21
-      }
+      },
+      "legend": true
     },
     {
       "id": 215,
@@ -41942,7 +42156,8 @@
         "ftPct": 79.5,
         "gp": 893,
         "seasons": 13
-      }
+      },
+      "legend": true
     },
     {
       "id": 216,
@@ -42256,7 +42471,8 @@
         "ftPct": 70.8,
         "gp": 869,
         "seasons": 17
-      }
+      },
+      "legend": true
     },
     {
       "id": 217,
@@ -42650,7 +42866,8 @@
         "ftPct": 60.8,
         "gp": 1109,
         "seasons": 22
-      }
+      },
+      "legend": true
     },
     {
       "id": 218,
@@ -42819,7 +43036,8 @@
         "ftPct": 83,
         "gp": 486,
         "seasons": 8
-      }
+      },
+      "legend": true
     }
   ]
 }

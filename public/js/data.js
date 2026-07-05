@@ -10,6 +10,10 @@ const RARITIES = [
   { key: 'prismatic', label: 'PRISMATIC',     weight: 3,  edition: 25,   order: 3 },
 ];
 const RARITY = Object.fromEntries(RARITIES.map(r => [r.key, r]));
+
+// Legends are a rare "chase tier" — each is this fraction as likely to be
+// pulled as a regular player (≈1 legend every ~12 packs).
+const LEGEND_PULL_WEIGHT = 0.15;
 const RARITY_LABELS = Object.fromEntries(RARITIES.map(r => [r.key, r.label]));
 
 const DATA = {

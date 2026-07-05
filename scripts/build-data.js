@@ -232,7 +232,7 @@ async function main() {
     const colors = TEAM_COLORS[teamShort] || { primary: '#1a1a40', secondary: '#f7a900' };
     const avg = careerAverages(career);
     const rec = {
-      id: p.id, nbaId: p.nbaId, espnId: espnId || null,
+      id: p.id, nbaId: p.nbaId, espnId: espnId || null, legend: p.legend || false,
       name: p.name, firstName: p.name.split(' ')[0], lastName: p.name.split(' ').slice(1).join(' '),
       team, teamShort,
       teamPrimary: colors.primary, teamSecondary: colors.secondary,

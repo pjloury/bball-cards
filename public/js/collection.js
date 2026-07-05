@@ -1,6 +1,6 @@
 /* ── collection.js — library grid, filters, set completion, detail modal ── */
 
-const filters = { search: '', rarity: '', position: '', team: '', show: 'owned', sort: 'recent' };
+const filters = { search: '', rarity: '', position: '', team: '', set: '', show: 'owned', sort: 'recent' };
 
 function initCollectionFilters() {
   const bind = (id, key, ev = 'change') => {
@@ -9,7 +9,7 @@ function initCollectionFilters() {
   };
   bind('f-search', 'search', 'input');
   bind('f-rarity', 'rarity'); bind('f-position', 'position');
-  bind('f-team', 'team'); bind('f-sort', 'sort');
+  bind('f-team', 'team'); bind('f-set', 'set'); bind('f-sort', 'sort');
   document.querySelectorAll('.owned-toggle button').forEach(b =>
     b.addEventListener('click', () => {
       document.querySelectorAll('.owned-toggle button').forEach(x => x.classList.remove('active'));
@@ -39,6 +39,8 @@ function buildDisplayList() {
   if (filters.rarity) list = list.filter(x => x.owned && x.rarity === filters.rarity);
   if (filters.position) list = list.filter(x => x.position === filters.position);
   if (filters.team) list = list.filter(x => x.teamShort === filters.team);
+  if (filters.set === 'legend') list = list.filter(x => x.legend);
+  else if (filters.set === 'current') list = list.filter(x => !x.legend);
 
   const cmp = {
     recent: (a, b) => (b.obtainedAt || '').localeCompare(a.obtainedAt || ''),
@@ -96,18 +98,25 @@ function renderSetProgress() {
   const pct = Math.round((owned / total) * 100);
   const el = document.getElementById('set-progress');
   if (!el) return;
-  // per-team completion
   const ownedIds = Store.ownedPlayerIds();
+  // Team sets = current (non-legend) players only, so eras don't mix.
   const teamBits = DATA.teams.map(t => {
-    const players = DATA.players.filter(p => p.teamShort === t.short);
+    const players = DATA.players.filter(p => p.teamShort === t.short && !p.legend);
+    if (!players.length) return '';
     const have = players.filter(p => ownedIds.has(p.id)).length;
     const done = have === players.length;
     return `<span class="team-chip ${done ? 'done' : ''}" title="${t.name}: ${have}/${players.length}"
       style="--pc:${t.primary}">${t.short} ${have}/${players.length}</span>`;
   }).join('');
+  // Legends chase progress
+  const legends = DATA.players.filter(p => p.legend);
+  const legHave = legends.filter(p => ownedIds.has(p.id)).length;
+  const legPct = legends.length ? Math.round((legHave / legends.length) * 100) : 0;
   el.innerHTML = `
     <div class="progress-head"><strong>${owned}</strong> / ${total} players collected <span class="progress-pct">${pct}%</span></div>
     <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="legend-progress">👑 Legends <strong>${legHave}</strong> / ${legends.length}
+      <div class="progress-bar mini"><div class="progress-fill legend-fill" style="width:${legPct}%"></div></div></div>
     <details class="team-sets"><summary>Team sets</summary><div class="team-chips">${teamBits}</div></details>`;
 }
 

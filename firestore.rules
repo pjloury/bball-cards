@@ -1,9 +1,22 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Each user can read/write only their own collection document.
+    // Each user reads/writes only their own collection document.
     match /users/{uid} {
       allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    // Per-edition mint counters (next serial). Any signed-in user may bump them;
+    // uniqueness is ultimately enforced by the immutable mints ledger below.
+    match /counters/{key} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    // Ownership ledger: one doc per minted instance (player_rarity_serial).
+    // Create-once and immutable — a serial can never be reassigned or stolen.
+    match /mints/{id} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.owner == request.auth.uid;
+      allow update, delete: if false;
     }
   }
 }

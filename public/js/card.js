@@ -56,6 +56,7 @@ function buildCardFrontHTML(c, size = 'default') {
         <div class="card-corner-tl"></div>
         <div class="card-corner-tr"></div>
         <div class="card-set-badge">2025–26 HOOPS ELITE · ${RARITY_LABELS[rarity]}</div>
+        ${c.legend ? '<div class="card-legend-badge">👑 LEGEND</div>' : ''}
         <div class="card-jersey-num">#${jersey}</div>
         ${serial ? `<div class="card-serial-badge rarity-${rarity}">${serial}</div>` : ''}
         <div class="card-info-bar">
