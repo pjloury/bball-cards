@@ -733,7 +733,17 @@
         "gp": 1069,
         "seasons": 17
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2015-16",
+          "stat": "ppg"
+        },
+        {
+          "season": "2020-21",
+          "stat": "ppg"
+        }
+      ]
     },
     {
       "id": 3,
@@ -1099,7 +1109,25 @@
         "gp": 1248,
         "seasons": 20
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2009-10",
+          "stat": "ppg"
+        },
+        {
+          "season": "2010-11",
+          "stat": "ppg"
+        },
+        {
+          "season": "2011-12",
+          "stat": "ppg"
+        },
+        {
+          "season": "2013-14",
+          "stat": "ppg"
+        }
+      ]
     },
     {
       "id": 4,
@@ -1108,10 +1136,10 @@
       "name": "Giannis Antetokounmpo",
       "firstName": "Giannis",
       "lastName": "Antetokounmpo",
-      "team": "Milwaukee Bucks",
-      "teamShort": "MIL",
-      "teamPrimary": "#00471B",
-      "teamSecondary": "#EEE1C6",
+      "team": "Miami Heat",
+      "teamShort": "MIA",
+      "teamPrimary": "#98002E",
+      "teamSecondary": "#F9A01B",
       "jersey": 34,
       "position": "PF",
       "height": "6'11\"",
@@ -1771,7 +1799,13 @@
         "gp": 564,
         "seasons": 10
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2023-24",
+          "stat": "ppg"
+        }
+      ]
     },
     {
       "id": 7,
@@ -1975,7 +2009,17 @@
         "gp": 490,
         "seasons": 10
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2021-22",
+          "stat": "ppg"
+        },
+        {
+          "season": "2022-23",
+          "stat": "ppg"
+        }
+      ]
     },
     {
       "id": 8,
@@ -2172,10 +2216,10 @@
       "name": "Damian Lillard",
       "firstName": "Damian",
       "lastName": "Lillard",
-      "team": "Milwaukee Bucks",
-      "teamShort": "MIL",
-      "teamPrimary": "#00471B",
-      "teamSecondary": "#EEE1C6",
+      "team": "Portland Trail Blazers",
+      "teamShort": "POR",
+      "teamPrimary": "#E03A3E",
+      "teamSecondary": "#000000",
       "jersey": 0,
       "position": "PG",
       "height": "6'2\"",
@@ -2588,7 +2632,13 @@
         "gp": 530,
         "seasons": 8
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2024-25",
+          "stat": "ppg"
+        }
+      ]
     },
     {
       "id": 11,
@@ -2597,10 +2647,10 @@
       "name": "Anthony Davis",
       "firstName": "Anthony",
       "lastName": "Davis",
-      "team": "Dallas Mavericks",
-      "teamShort": "DAL",
-      "teamPrimary": "#00538C",
-      "teamSecondary": "#002B5E",
+      "team": "Washington Wizards",
+      "teamShort": "WAS",
+      "teamPrimary": "#002B5C",
+      "teamSecondary": "#E31837",
       "jersey": 23,
       "position": "C",
       "height": "6'10\"",
@@ -2889,7 +2939,17 @@
         "gp": 858,
         "seasons": 16
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2014-15",
+          "stat": "bpg"
+        },
+        {
+          "season": "2017-18",
+          "stat": "bpg"
+        }
+      ]
     },
     {
       "id": 12,
@@ -3338,7 +3398,13 @@
         "gp": 181,
         "seasons": 3
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2024-25",
+          "stat": "bpg"
+        }
+      ]
     },
     {
       "id": 15,
@@ -3347,10 +3413,10 @@
       "name": "Ja Morant",
       "firstName": "Ja",
       "lastName": "Morant",
-      "team": "Memphis Grizzlies",
-      "teamShort": "MEM",
-      "teamPrimary": "#12173F",
-      "teamSecondary": "#5D76A9",
+      "team": "Portland Trail Blazers",
+      "teamShort": "POR",
+      "teamPrimary": "#E03A3E",
+      "teamSecondary": "#000000",
       "jersey": 1,
       "position": "PG",
       "height": "6'2\"",
@@ -3361,7 +3427,7 @@
       "college": "Murray State",
       "draft": "2019 · Rd 1, Pick 2",
       "experience": 6,
-      "bio": "Ja Morant is a PG for the Memphis Grizzlies. Over 7 seasons he has averaged 22.4 points, 4.6 rebounds, and 7.4 assists per game.",
+      "bio": "Ja Morant is a PG for the Portland Trail Blazers. Over 7 seasons he has averaged 22.4 points, 4.6 rebounds, and 7.4 assists per game.",
       "accolades": [
         "Rookie of the Year",
         "All-NBA 2nd Team",
@@ -3502,10 +3568,10 @@
       "name": "Trae Young",
       "firstName": "Trae",
       "lastName": "Young",
-      "team": "Atlanta Hawks",
-      "teamShort": "ATL",
-      "teamPrimary": "#E03A3E",
-      "teamSecondary": "#C1D32F",
+      "team": "Washington Wizards",
+      "teamShort": "WAS",
+      "teamPrimary": "#002B5C",
+      "teamSecondary": "#E31837",
       "jersey": 3,
       "position": "PG",
       "height": "6'2\"",
@@ -3694,7 +3760,13 @@
         "gp": 513,
         "seasons": 10
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2021-22",
+          "stat": "apg"
+        }
+      ]
     },
     {
       "id": 17,
@@ -4056,10 +4128,10 @@
       "name": "Jaylen Brown",
       "firstName": "Jaylen",
       "lastName": "Brown",
-      "team": "Boston Celtics",
-      "teamShort": "BOS",
-      "teamPrimary": "#007A33",
-      "teamSecondary": "#BA9653",
+      "team": "Philadelphia 76ers",
+      "teamShort": "PHI",
+      "teamPrimary": "#006BB6",
+      "teamSecondary": "#ED174C",
       "jersey": 7,
       "position": "SG",
       "height": "6'6\"",
@@ -4695,7 +4767,7 @@
       "college": "Kentucky",
       "draft": "2017 · Rd 1, Pick 5",
       "experience": 8,
-      "bio": "De'Aaron Fox is a PG for the Sacramento Kings. Over 11 seasons he has averaged 21.4 points, 4 rebounds, and 6.2 assists per game.",
+      "bio": "De'Aaron Fox is a PG for the San Antonio Spurs. Over 11 seasons he has averaged 21.4 points, 4 rebounds, and 6.2 assists per game.",
       "accolades": [
         "All-NBA 3rd Team"
       ],
@@ -5042,7 +5114,13 @@
         "gp": 410,
         "seasons": 7
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2023-24",
+          "stat": "apg"
+        }
+      ]
     },
     {
       "id": 24,
@@ -5237,10 +5315,10 @@
       "name": "Kawhi Leonard",
       "firstName": "Kawhi",
       "lastName": "Leonard",
-      "team": "Los Angeles Clippers",
-      "teamShort": "LAC",
-      "teamPrimary": "#C8102E",
-      "teamSecondary": "#1D428A",
+      "team": "Toronto Raptors",
+      "teamShort": "TOR",
+      "teamPrimary": "#CE1141",
+      "teamSecondary": "#000000",
       "jersey": 2,
       "position": "SF",
       "height": "6'6\"",
@@ -5251,7 +5329,7 @@
       "college": "San Diego State",
       "draft": "2011 · Rd 1, Pick 15",
       "experience": 14,
-      "bio": "Kawhi Leonard is a SF for the Los Angeles Clippers. Over 14 seasons he has averaged 20.7 points, 6.4 rebounds, and 3.1 assists per game.",
+      "bio": "Kawhi Leonard is a SF for the Toronto Raptors. Over 14 seasons he has averaged 20.7 points, 6.4 rebounds, and 3.1 assists per game.",
       "accolades": [
         "2× Finals MVP",
         "All-Star MVP",
@@ -5507,10 +5585,10 @@
       "name": "Darius Garland",
       "firstName": "Darius",
       "lastName": "Garland",
-      "team": "Cleveland Cavaliers",
-      "teamShort": "CLE",
-      "teamPrimary": "#860038",
-      "teamSecondary": "#FDBB30",
+      "team": "LA Clippers",
+      "teamShort": "LAC",
+      "teamPrimary": "#C8102E",
+      "teamSecondary": "#1D428A",
       "jersey": 10,
       "position": "PG",
       "height": "6'1\"",
@@ -5521,7 +5599,7 @@
       "college": "Vanderbilt",
       "draft": "2019 · Rd 1, Pick 5",
       "experience": 6,
-      "bio": "Darius Garland is a PG for the Cleveland Cavaliers. Over 9 seasons he has averaged 18.8 points, 2.6 rebounds, and 6.7 assists per game.",
+      "bio": "Darius Garland is a PG for the LA Clippers. Over 9 seasons he has averaged 18.8 points, 2.6 rebounds, and 6.7 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -6160,10 +6238,10 @@
       "name": "LaMelo Ball",
       "firstName": "LaMelo",
       "lastName": "Ball",
-      "team": "Charlotte Hornets",
-      "teamShort": "CHA",
-      "teamPrimary": "#1D1160",
-      "teamSecondary": "#00788C",
+      "team": "Minnesota Timberwolves",
+      "teamShort": "MIN",
+      "teamPrimary": "#0C2340",
+      "teamSecondary": "#236192",
       "jersey": 1,
       "position": "PG",
       "height": "6'7\"",
@@ -6174,7 +6252,7 @@
       "college": "",
       "draft": "2020 · Rd 1, Pick 3",
       "experience": 5,
-      "bio": "LaMelo Ball is a PG for the Charlotte Hornets. Over 6 seasons he has averaged 20.8 points, 5.7 rebounds, and 7.3 assists per game.",
+      "bio": "LaMelo Ball is a PG for the Minnesota Timberwolves. Over 6 seasons he has averaged 20.8 points, 5.7 rebounds, and 7.3 assists per game.",
       "accolades": [
         "Rookie of the Year"
       ],
@@ -6521,10 +6599,10 @@
       "name": "Brandon Ingram",
       "firstName": "Brandon",
       "lastName": "Ingram",
-      "team": "Toronto Raptors",
-      "teamShort": "TOR",
-      "teamPrimary": "#CE1141",
-      "teamSecondary": "#000000",
+      "team": "LA Clippers",
+      "teamShort": "LAC",
+      "teamPrimary": "#C8102E",
+      "teamSecondary": "#1D428A",
       "jersey": 3,
       "position": "SF",
       "height": "6'8\"",
@@ -6535,7 +6613,7 @@
       "college": "Duke",
       "draft": "2016 · Rd 1, Pick 2",
       "experience": 9,
-      "bio": "Brandon Ingram is a SF for the New Orleans Pelicans. Over 10 seasons he has averaged 19.8 points, 5.2 rebounds, and 4.2 assists per game.",
+      "bio": "Brandon Ingram is a SF for the LA Clippers. Over 10 seasons he has averaged 19.8 points, 5.2 rebounds, and 4.2 assists per game.",
       "accolades": [
         "Most Improved Player"
       ],
@@ -6736,7 +6814,7 @@
       "college": "Washington",
       "draft": "2016 · Rd 1, Pick 29",
       "experience": 9,
-      "bio": "Dejounte Murray is a PG for the Atlanta Hawks. Over 9 seasons he has averaged 15.6 points, 5.8 rebounds, and 5.4 assists per game.",
+      "bio": "Dejounte Murray is a PG for the New Orleans Pelicans. Over 9 seasons he has averaged 15.6 points, 5.8 rebounds, and 5.4 assists per game.",
       "accolades": [
         "All-Defensive 2nd Team"
       ],
@@ -7124,10 +7202,10 @@
       "name": "Julius Randle",
       "firstName": "Julius",
       "lastName": "Randle",
-      "team": "Minnesota Timberwolves",
-      "teamShort": "MIN",
-      "teamPrimary": "#0C2340",
-      "teamSecondary": "#236192",
+      "team": "Brooklyn Nets",
+      "teamShort": "BKN",
+      "teamPrimary": "#000000",
+      "teamSecondary": "#AAAAAA",
       "jersey": 30,
       "position": "PF",
       "height": "6'9\"",
@@ -7138,7 +7216,7 @@
       "college": "Kentucky",
       "draft": "2014 · Rd 1, Pick 7",
       "experience": 11,
-      "bio": "Julius Randle is a PF for the New York Knicks. Over 12 seasons he has averaged 19.2 points, 8.9 rebounds, and 3.9 assists per game.",
+      "bio": "Julius Randle is a PF for the Brooklyn Nets. Over 12 seasons he has averaged 19.2 points, 8.9 rebounds, and 3.9 assists per game.",
       "accolades": [
         "All-NBA 3rd Team",
         "All-NBA 2nd Team",
@@ -7373,7 +7451,7 @@
       "college": "Texas",
       "draft": "2015 · Rd 1, Pick 11",
       "experience": 10,
-      "bio": "Myles Turner is a C for the Indiana Pacers. Over 11 seasons he has averaged 13.9 points, 6.6 rebounds, and 1.3 assists per game.",
+      "bio": "Myles Turner is a C for the Milwaukee Bucks. Over 11 seasons he has averaged 13.9 points, 6.6 rebounds, and 1.3 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -7565,7 +7643,13 @@
         "gp": 713,
         "seasons": 11
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2020-21",
+          "stat": "bpg"
+        }
+      ]
     },
     {
       "id": 39,
@@ -8056,7 +8140,7 @@
       "college": "UCLA",
       "draft": "2009 · Rd 1, Pick 17",
       "experience": 16,
-      "bio": "Jrue Holiday is a PG for the Boston Celtics. Over 17 seasons he has averaged 15.9 points, 4.2 rebounds, and 6.2 assists per game.",
+      "bio": "Jrue Holiday is a PG for the Portland Trail Blazers. Over 17 seasons he has averaged 15.9 points, 4.2 rebounds, and 6.2 assists per game.",
       "accolades": [
         "3× All-Defensive 2nd Team",
         "3× All-Defensive 1st Team"
@@ -8370,7 +8454,7 @@
       "college": "TCU",
       "draft": "2020 · Rd 1, Pick 30",
       "experience": 5,
-      "bio": "Desmond Bane is a SG for the Memphis Grizzlies. Over 6 seasons he has averaged 18.3 points, 4.5 rebounds, and 3.8 assists per game.",
+      "bio": "Desmond Bane is a SG for the Orlando Magic. Over 6 seasons he has averaged 18.3 points, 4.5 rebounds, and 3.8 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -8491,10 +8575,10 @@
       "name": "Jaren Jackson Jr.",
       "firstName": "Jaren",
       "lastName": "Jackson Jr.",
-      "team": "Memphis Grizzlies",
-      "teamShort": "MEM",
-      "teamPrimary": "#12173F",
-      "teamSecondary": "#5D76A9",
+      "team": "Utah Jazz",
+      "teamShort": "UTA",
+      "teamPrimary": "#002B5C",
+      "teamSecondary": "#00471B",
       "jersey": 20,
       "position": "PF",
       "height": "6'10\"",
@@ -8505,7 +8589,7 @@
       "college": "Michigan State",
       "draft": "2018 · Rd 1, Pick 4",
       "experience": 7,
-      "bio": "Jaren Jackson Jr. is a PF for the Memphis Grizzlies. Over 10 seasons he has averaged 18.7 points, 5.6 rebounds, and 1.6 assists per game.",
+      "bio": "Jaren Jackson Jr. is a PF for the Utah Jazz. Over 10 seasons he has averaged 18.7 points, 5.6 rebounds, and 1.6 assists per game.",
       "accolades": [
         "Defensive Player of the Year",
         "All-Defensive 2nd Team",
@@ -8685,7 +8769,13 @@
         "gp": 503,
         "seasons": 10
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2022-23",
+          "stat": "bpg"
+        }
+      ]
     },
     {
       "id": 44,
@@ -8708,7 +8798,7 @@
       "college": "UCLA",
       "draft": "2014 · Rd 1, Pick 13",
       "experience": 11,
-      "bio": "Zach LaVine is a SG for the Chicago Bulls. Over 14 seasons he has averaged 20.9 points, 4 rebounds, and 3.9 assists per game.",
+      "bio": "Zach LaVine is a SG for the Sacramento Kings. Over 14 seasons he has averaged 20.9 points, 4 rebounds, and 3.9 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -8957,10 +9047,10 @@
       "name": "Nikola Vucevic",
       "firstName": "Nikola",
       "lastName": "Vucevic",
-      "team": "Chicago Bulls",
-      "teamShort": "CHI",
-      "teamPrimary": "#CE1141",
-      "teamSecondary": "#000000",
+      "team": "Orlando Magic",
+      "teamShort": "ORL",
+      "teamPrimary": "#0077C0",
+      "teamSecondary": "#C4CED4",
       "jersey": 9,
       "position": "C",
       "height": "6'9\"",
@@ -8971,7 +9061,7 @@
       "college": "USC",
       "draft": "2011 · Rd 1, Pick 16",
       "experience": 15,
-      "bio": "Nikola Vucevic is a C for the Chicago Bulls. Over 19 seasons he has averaged 17.3 points, 10.3 rebounds, and 3 assists per game.",
+      "bio": "Nikola Vucevic is a C for the Orlando Magic. Over 19 seasons he has averaged 17.3 points, 10.3 rebounds, and 3 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -9300,10 +9390,10 @@
       "name": "Paul George",
       "firstName": "Paul",
       "lastName": "George",
-      "team": "Philadelphia 76ers",
-      "teamShort": "PHI",
-      "teamPrimary": "#006BB6",
-      "teamSecondary": "#ED174C",
+      "team": "Boston Celtics",
+      "teamShort": "BOS",
+      "teamPrimary": "#007A33",
+      "teamSecondary": "#BA9653",
       "jersey": 8,
       "position": "SF",
       "height": "6'8\"",
@@ -9314,7 +9404,7 @@
       "college": "Fresno State",
       "draft": "2010 · Rd 1, Pick 10",
       "experience": 15,
-      "bio": "Paul George is a SF for the Philadelphia 76ers. Over 16 seasons he has averaged 20.5 points, 6.2 rebounds, and 3.7 assists per game.",
+      "bio": "Paul George is a SF for the Boston Celtics. Over 16 seasons he has averaged 20.5 points, 6.2 rebounds, and 3.7 assists per game.",
       "accolades": [
         "5× All-NBA 3rd Team",
         "All-NBA 1st Team",
@@ -10134,7 +10224,7 @@
       "college": "Kansas",
       "draft": "2014 · Rd 1, Pick 1",
       "experience": 11,
-      "bio": "Andrew Wiggins is a SF for the Golden State Warriors. Over 16 seasons he has averaged 18.4 points, 4.5 rebounds, and 2.4 assists per game.",
+      "bio": "Andrew Wiggins is a SF for the Miami Heat. Over 16 seasons he has averaged 18.4 points, 4.5 rebounds, and 2.4 assists per game.",
       "accolades": [
         "Rookie of the Year"
       ],
@@ -10417,10 +10507,10 @@
       "name": "Tyler Herro",
       "firstName": "Tyler",
       "lastName": "Herro",
-      "team": "Miami Heat",
-      "teamShort": "MIA",
-      "teamPrimary": "#98002E",
-      "teamSecondary": "#F9A01B",
+      "team": "Milwaukee Bucks",
+      "teamShort": "MIL",
+      "teamPrimary": "#00471B",
+      "teamSecondary": "#EEE1C6",
       "jersey": 14,
       "position": "SG",
       "height": "6'5\"",
@@ -10431,7 +10521,7 @@
       "college": "Kentucky",
       "draft": "2019 · Rd 1, Pick 13",
       "experience": 6,
-      "bio": "Tyler Herro is a SG for the Miami Heat. Over 7 seasons he has averaged 19.4 points, 5 rebounds, and 4.1 assists per game.",
+      "bio": "Tyler Herro is a SG for the Milwaukee Bucks. Over 7 seasons he has averaged 19.4 points, 5 rebounds, and 4.1 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -10952,10 +11042,10 @@
       "name": "Miles Bridges",
       "firstName": "Miles",
       "lastName": "Bridges",
-      "team": "Charlotte Hornets",
-      "teamShort": "CHA",
+      "team": "Phoenix Suns",
+      "teamShort": "PHX",
       "teamPrimary": "#1D1160",
-      "teamSecondary": "#00788C",
+      "teamSecondary": "#E56020",
       "jersey": 0,
       "position": "SF",
       "height": "6'7\"",
@@ -10966,7 +11056,7 @@
       "college": "Michigan State",
       "draft": "2018 · Rd 1, Pick 12",
       "experience": 8,
-      "bio": "Miles Bridges is a SF for the Charlotte Hornets. Over 7 seasons he has averaged 15.9 points, 6.1 rebounds, and 2.8 assists per game.",
+      "bio": "Miles Bridges is a SF for the Phoenix Suns. Over 7 seasons he has averaged 15.9 points, 6.1 rebounds, and 2.8 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -11389,10 +11479,10 @@
       "name": "Coby White",
       "firstName": "Coby",
       "lastName": "White",
-      "team": "Chicago Bulls",
-      "teamShort": "CHI",
-      "teamPrimary": "#CE1141",
-      "teamSecondary": "#000000",
+      "team": "Charlotte Hornets",
+      "teamShort": "CHA",
+      "teamPrimary": "#1D1160",
+      "teamSecondary": "#00788C",
       "jersey": 3,
       "position": "PG",
       "height": "6'4\"",
@@ -11403,7 +11493,7 @@
       "college": "North Carolina",
       "draft": "2019 · Rd 1, Pick 7",
       "experience": 6,
-      "bio": "Coby White is a PG for the Chicago Bulls. Over 9 seasons he has averaged 15.6 points, 3.6 rebounds, and 3.9 assists per game.",
+      "bio": "Coby White is a PG for the Charlotte Hornets. Over 9 seasons he has averaged 15.6 points, 3.6 rebounds, and 3.9 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -11586,7 +11676,7 @@
       "college": "Michigan",
       "draft": "2019 · Rd 1, Pick 28",
       "experience": 6,
-      "bio": "Jordan Poole is a SG for the Washington Wizards. Over 7 seasons he has averaged 16.6 points, 2.6 rebounds, and 3.7 assists per game.",
+      "bio": "Jordan Poole is a SG for the New Orleans Pelicans. Over 7 seasons he has averaged 16.6 points, 2.6 rebounds, and 3.7 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -11943,7 +12033,7 @@
       "college": "Florida",
       "draft": "2012 · Rd 1, Pick 3",
       "experience": 13,
-      "bio": "Bradley Beal is a SG for the Phoenix Suns. Over 14 seasons he has averaged 21.4 points, 4 rebounds, and 4.3 assists per game.",
+      "bio": "Bradley Beal is a SG for the LA Clippers. Over 14 seasons he has averaged 21.4 points, 4 rebounds, and 4.3 assists per game.",
       "accolades": [
         "All-NBA 3rd Team"
       ],
@@ -12194,10 +12284,10 @@
       "name": "Kristaps Porzingis",
       "firstName": "Kristaps",
       "lastName": "Porzingis",
-      "team": "Boston Celtics",
-      "teamShort": "BOS",
-      "teamPrimary": "#007A33",
-      "teamSecondary": "#BA9653",
+      "team": "Golden State Warriors",
+      "teamShort": "GSW",
+      "teamPrimary": "#1D428A",
+      "teamSecondary": "#FFC72C",
       "jersey": 7,
       "position": "C",
       "height": "7'2\"",
@@ -12208,7 +12298,7 @@
       "college": "",
       "draft": "2015 · Rd 1, Pick 4",
       "experience": 10,
-      "bio": "Kristaps Porzingis is a C for the Boston Celtics. Over 14 seasons he has averaged 19.4 points, 7.5 rebounds, and 1.9 assists per game.",
+      "bio": "Kristaps Porzingis is a C for the Golden State Warriors. Over 14 seasons he has averaged 19.4 points, 7.5 rebounds, and 1.9 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -12675,10 +12765,10 @@
       "name": "Naz Reid",
       "firstName": "Naz",
       "lastName": "Reid",
-      "team": "Minnesota Timberwolves",
-      "teamShort": "MIN",
-      "teamPrimary": "#0C2340",
-      "teamSecondary": "#236192",
+      "team": "Charlotte Hornets",
+      "teamShort": "CHA",
+      "teamPrimary": "#1D1160",
+      "teamSecondary": "#00788C",
       "jersey": 11,
       "position": "C",
       "height": "6'9\"",
@@ -12689,7 +12779,7 @@
       "college": "LSU",
       "draft": "Undrafted",
       "experience": 6,
-      "bio": "Naz Reid is a C for the Minnesota Timberwolves. Over 7 seasons he has averaged 11.9 points, 5.1 rebounds, and 1.5 assists per game.",
+      "bio": "Naz Reid is a C for the Charlotte Hornets. Over 7 seasons he has averaged 11.9 points, 5.1 rebounds, and 1.5 assists per game.",
       "accolades": [
         "Sixth Man of the Year"
       ],
@@ -12842,7 +12932,7 @@
       "college": "Stanford",
       "draft": "2008 · Rd 1, Pick 10",
       "experience": 17,
-      "bio": "Brook Lopez is a C for the Milwaukee Bucks. Over 18 seasons he has averaged 15.4 points, 5.9 rebounds, and 1.4 assists per game.",
+      "bio": "Brook Lopez is a C for the LA Clippers. Over 18 seasons he has averaged 15.4 points, 5.9 rebounds, and 1.4 assists per game.",
       "accolades": [
         "All-Defensive 1st Team",
         "All-Defensive 2nd Team"
@@ -13158,10 +13248,10 @@
       "name": "Khris Middleton",
       "firstName": "Khris",
       "lastName": "Middleton",
-      "team": "Milwaukee Bucks",
-      "teamShort": "MIL",
-      "teamPrimary": "#00471B",
-      "teamSecondary": "#EEE1C6",
+      "team": "Dallas Mavericks",
+      "teamShort": "DAL",
+      "teamPrimary": "#00538C",
+      "teamSecondary": "#002B5E",
       "jersey": 20,
       "position": "SF",
       "height": "6'7\"",
@@ -13172,7 +13262,7 @@
       "college": "Texas A&M",
       "draft": "2012 · Rd 2, Pick 39",
       "experience": 13,
-      "bio": "Khris Middleton is a SF for the Milwaukee Bucks. Over 18 seasons he has averaged 15.6 points, 4.6 rebounds, and 3.8 assists per game.",
+      "bio": "Khris Middleton is a SF for the Dallas Mavericks. Over 18 seasons he has averaged 15.6 points, 4.6 rebounds, and 3.8 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -13485,10 +13575,10 @@
       "name": "Chris Paul",
       "firstName": "Chris",
       "lastName": "Paul",
-      "team": "LA Clippers",
-      "teamShort": "LAC",
-      "teamPrimary": "#C8102E",
-      "teamSecondary": "#1D428A",
+      "team": "Toronto Raptors",
+      "teamShort": "TOR",
+      "teamPrimary": "#CE1141",
+      "teamSecondary": "#000000",
       "jersey": 3,
       "position": "PG",
       "height": "6'0\"",
@@ -13499,7 +13589,7 @@
       "college": "Wake Forest",
       "draft": "2005 · Rd 1, Pick 4",
       "experience": 20,
-      "bio": "Chris Paul is a PG for the Golden State Warriors. Over 21 seasons he has averaged 16.8 points, 4.4 rebounds, and 9.2 assists per game.",
+      "bio": "Chris Paul is a PG for the Toronto Raptors. Over 21 seasons he has averaged 16.8 points, 4.4 rebounds, and 9.2 assists per game.",
       "accolades": [
         "All-Star MVP",
         "Rookie of the Year",
@@ -13858,7 +13948,41 @@
         "gp": 1370,
         "seasons": 21
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2007-08",
+          "stat": "apg"
+        },
+        {
+          "season": "2008-09",
+          "stat": "apg"
+        },
+        {
+          "season": "2013-14",
+          "stat": "apg"
+        },
+        {
+          "season": "2014-15",
+          "stat": "apg"
+        },
+        {
+          "season": "2007-08",
+          "stat": "spg"
+        },
+        {
+          "season": "2008-09",
+          "stat": "spg"
+        },
+        {
+          "season": "2012-13",
+          "stat": "spg"
+        },
+        {
+          "season": "2013-14",
+          "stat": "spg"
+        }
+      ]
     },
     {
       "id": 67,
@@ -13881,7 +14005,7 @@
       "college": "Utah",
       "draft": "2017 · Rd 1, Pick 27",
       "experience": 8,
-      "bio": "Kyle Kuzma is a PF for the Washington Wizards. Over 11 seasons he has averaged 16.4 points, 6.1 rebounds, and 2.6 assists per game.",
+      "bio": "Kyle Kuzma is a PF for the Milwaukee Bucks. Over 11 seasons he has averaged 16.4 points, 6.1 rebounds, and 2.6 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -14082,10 +14206,10 @@
       "name": "Anfernee Simons",
       "firstName": "Anfernee",
       "lastName": "Simons",
-      "team": "Portland Trail Blazers",
-      "teamShort": "POR",
-      "teamPrimary": "#E03A3E",
-      "teamSecondary": "#000000",
+      "team": "Philadelphia 76ers",
+      "teamShort": "PHI",
+      "teamPrimary": "#006BB6",
+      "teamSecondary": "#ED174C",
       "jersey": 22,
       "position": "SG",
       "height": "6'3\"",
@@ -14096,7 +14220,7 @@
       "college": "",
       "draft": "2018 · Rd 1, Pick 24",
       "experience": 7,
-      "bio": "Anfernee Simons is a SG for the Portland Trail Blazers. Over 10 seasons he has averaged 14.9 points, 2.5 rebounds, and 3.1 assists per game.",
+      "bio": "Anfernee Simons is a SG for the Philadelphia 76ers. Over 10 seasons he has averaged 14.9 points, 2.5 rebounds, and 3.1 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -14281,10 +14405,10 @@
       "name": "Cam Thomas",
       "firstName": "Cam",
       "lastName": "Thomas",
-      "team": "Brooklyn Nets",
-      "teamShort": "BKN",
-      "teamPrimary": "#000000",
-      "teamSecondary": "#AAAAAA",
+      "team": "Milwaukee Bucks",
+      "teamShort": "MIL",
+      "teamPrimary": "#00471B",
+      "teamSecondary": "#EEE1C6",
       "jersey": 21,
       "position": "SG",
       "height": "",
@@ -14295,7 +14419,7 @@
       "college": "",
       "draft": "2021 · Rd 1, Pick 27",
       "experience": 4,
-      "bio": "Cam Thomas is a SG for the Brooklyn Nets. Over 7 seasons he has averaged 14.7 points, 2.3 rebounds, and 2.2 assists per game.",
+      "bio": "Cam Thomas is a SG for the Milwaukee Bucks. Over 7 seasons he has averaged 14.7 points, 2.3 rebounds, and 2.2 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -14432,10 +14556,10 @@
       "name": "Nic Claxton",
       "firstName": "Nic",
       "lastName": "Claxton",
-      "team": "Brooklyn Nets",
-      "teamShort": "BKN",
-      "teamPrimary": "#000000",
-      "teamSecondary": "#AAAAAA",
+      "team": "Chicago Bulls",
+      "teamShort": "CHI",
+      "teamPrimary": "#CE1141",
+      "teamSecondary": "#000000",
       "jersey": 33,
       "position": "C",
       "height": "6'11\"",
@@ -14446,7 +14570,7 @@
       "college": "Georgia",
       "draft": "2019 · Rd 2, Pick 31",
       "experience": 6,
-      "bio": "Nic Claxton is a C for the Brooklyn Nets. Over 7 seasons he has averaged 10.6 points, 7.6 rebounds, and 2.1 assists per game.",
+      "bio": "Nic Claxton is a C for the Chicago Bulls. Over 7 seasons he has averaged 10.6 points, 7.6 rebounds, and 2.1 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -14583,10 +14707,10 @@
       "name": "Jerami Grant",
       "firstName": "Jerami",
       "lastName": "Grant",
-      "team": "Portland Trail Blazers",
-      "teamShort": "POR",
-      "teamPrimary": "#E03A3E",
-      "teamSecondary": "#000000",
+      "team": "Memphis Grizzlies",
+      "teamShort": "MEM",
+      "teamPrimary": "#12173F",
+      "teamSecondary": "#5D76A9",
       "jersey": 9,
       "position": "SF",
       "height": "6'7\"",
@@ -14597,7 +14721,7 @@
       "college": "Syracuse",
       "draft": "2014 · Rd 2, Pick 39",
       "experience": 11,
-      "bio": "Jerami Grant is a SF for the Portland Trail Blazers. Over 14 seasons he has averaged 12.8 points, 3.8 rebounds, and 1.5 assists per game.",
+      "bio": "Jerami Grant is a SF for the Memphis Grizzlies. Over 14 seasons he has averaged 12.8 points, 3.8 rebounds, and 1.5 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -14846,10 +14970,10 @@
       "name": "Jonathan Kuminga",
       "firstName": "Jonathan",
       "lastName": "Kuminga",
-      "team": "Golden State Warriors",
-      "teamShort": "GSW",
-      "teamPrimary": "#1D428A",
-      "teamSecondary": "#FFC72C",
+      "team": "Atlanta Hawks",
+      "teamShort": "ATL",
+      "teamPrimary": "#E03A3E",
+      "teamSecondary": "#C1D32F",
       "jersey": 0,
       "position": "SF",
       "height": "6'7\"",
@@ -14860,7 +14984,7 @@
       "college": "",
       "draft": "2021 · Rd 1, Pick 7",
       "experience": 4,
-      "bio": "Jonathan Kuminga is a SF for the Golden State Warriors. Over 7 seasons he has averaged 12.4 points, 4.3 rebounds, and 1.9 assists per game.",
+      "bio": "Jonathan Kuminga is a SF for the Atlanta Hawks. Over 7 seasons he has averaged 12.4 points, 4.3 rebounds, and 1.9 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -15233,7 +15357,7 @@
       "college": "",
       "draft": "2021 · Rd 1, Pick 2",
       "experience": 4,
-      "bio": "Jalen Green is a SG for the Houston Rockets. Over 5 seasons he has averaged 19.9 points, 4.2 rebounds, and 3.3 assists per game.",
+      "bio": "Jalen Green is a SG for the Phoenix Suns. Over 5 seasons he has averaged 19.9 points, 4.2 rebounds, and 3.3 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -15670,10 +15794,10 @@
       "name": "Jeremy Sochan",
       "firstName": "Jeremy",
       "lastName": "Sochan",
-      "team": "San Antonio Spurs",
-      "teamShort": "SAS",
-      "teamPrimary": "#000000",
-      "teamSecondary": "#C4CED4",
+      "team": "New York Knicks",
+      "teamShort": "NYK",
+      "teamPrimary": "#006BB6",
+      "teamSecondary": "#F58426",
       "jersey": 20,
       "position": "PF",
       "height": "6'8\"",
@@ -15684,7 +15808,7 @@
       "college": "Baylor",
       "draft": "2022 · Rd 1, Pick 9",
       "experience": 3,
-      "bio": "Jeremy Sochan is a PF for the San Antonio Spurs. Over 6 seasons he has averaged 8.9 points, 4.9 rebounds, and 2.2 assists per game.",
+      "bio": "Jeremy Sochan is a PF for the New York Knicks. Over 6 seasons he has averaged 8.9 points, 4.9 rebounds, and 2.2 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -15954,7 +16078,7 @@
       "college": "Villanova",
       "draft": "2018 · Rd 1, Pick 17",
       "experience": 7,
-      "bio": "Donte DiVincenzo is a SG for the New York Knicks. Over 10 seasons he has averaged 10.8 points, 4.2 rebounds, and 3 assists per game.",
+      "bio": "Donte DiVincenzo is a SG for the Minnesota Timberwolves. Over 10 seasons he has averaged 10.8 points, 4.2 rebounds, and 3 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -16400,7 +16524,7 @@
       "college": "Marquette",
       "draft": "2011 · Rd 1, Pick 30",
       "experience": 14,
-      "bio": "Jimmy Butler is a SF for the Miami Heat. Over 19 seasons he has averaged 18.3 points, 5.4 rebounds, and 4.4 assists per game.",
+      "bio": "Jimmy Butler is a SF for the Golden State Warriors. Over 19 seasons he has averaged 18.3 points, 5.4 rebounds, and 4.4 assists per game.",
       "accolades": [
         "NBA Eastern Conference Finals MVP",
         "All-NBA 2nd Team",
@@ -17049,10 +17173,10 @@
       "name": "Tobias Harris",
       "firstName": "Tobias",
       "lastName": "Harris",
-      "team": "Detroit Pistons",
-      "teamShort": "DET",
-      "teamPrimary": "#C8102E",
-      "teamSecondary": "#1D42BA",
+      "team": "San Antonio Spurs",
+      "teamShort": "SAS",
+      "teamPrimary": "#000000",
+      "teamSecondary": "#C4CED4",
       "jersey": 12,
       "position": "PF",
       "height": "6'8\"",
@@ -17063,7 +17187,7 @@
       "college": "Tennessee",
       "draft": "2011 · Rd 1, Pick 19",
       "experience": 15,
-      "bio": "Tobias Harris is a PF for the Philadelphia 76ers. Over 23 seasons he has averaged 16.1 points, 6.2 rebounds, and 2.3 assists per game.",
+      "bio": "Tobias Harris is a PF for the San Antonio Spurs. Over 23 seasons he has averaged 16.1 points, 6.2 rebounds, and 2.3 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -17470,7 +17594,7 @@
       "college": "Florida",
       "draft": "2007 · Rd 1, Pick 3",
       "experience": 18,
-      "bio": "Al Horford is a C for the Boston Celtics. Over 19 seasons he has averaged 12.7 points, 7.8 rebounds, and 3.2 assists per game.",
+      "bio": "Al Horford is a C for the Golden State Warriors. Over 19 seasons he has averaged 12.7 points, 7.8 rebounds, and 3.2 assists per game.",
       "accolades": [
         "All-NBA 3rd Team",
         "All-Defensive 2nd Team"
@@ -17802,10 +17926,10 @@
       "name": "Marcus Smart",
       "firstName": "Marcus",
       "lastName": "Smart",
-      "team": "Los Angeles Lakers",
-      "teamShort": "LAL",
-      "teamPrimary": "#552583",
-      "teamSecondary": "#FDB927",
+      "team": "Houston Rockets",
+      "teamShort": "HOU",
+      "teamPrimary": "#CE1141",
+      "teamSecondary": "#C4CED4",
       "jersey": 36,
       "position": "PG",
       "height": "6'3\"",
@@ -17816,7 +17940,7 @@
       "college": "Oklahoma State",
       "draft": "2014 · Rd 1, Pick 6",
       "experience": 12,
-      "bio": "Marcus Smart is a PG for the Memphis Grizzlies. Over 14 seasons he has averaged 10.4 points, 3.3 rebounds, and 4.4 assists per game.",
+      "bio": "Marcus Smart is a PG for the Houston Rockets. Over 14 seasons he has averaged 10.4 points, 3.3 rebounds, and 4.4 assists per game.",
       "accolades": [
         "Defensive Player of the Year",
         "3× All-Defensive 1st Team"
@@ -18068,10 +18192,10 @@
       "name": "D'Angelo Russell",
       "firstName": "D'Angelo",
       "lastName": "Russell",
-      "team": "Dallas Mavericks",
-      "teamShort": "DAL",
-      "teamPrimary": "#00538C",
-      "teamSecondary": "#002B5E",
+      "team": "Washington Wizards",
+      "teamShort": "WAS",
+      "teamPrimary": "#002B5C",
+      "teamSecondary": "#E31837",
       "jersey": 5,
       "position": "PG",
       "height": "6'3\"",
@@ -18082,7 +18206,7 @@
       "college": "Ohio State",
       "draft": "2015 · Rd 1, Pick 2",
       "experience": 10,
-      "bio": "D'Angelo Russell is a PG for the Los Angeles Lakers. Over 17 seasons he has averaged 17.1 points, 3.3 rebounds, and 5.7 assists per game.",
+      "bio": "D'Angelo Russell is a PG for the Washington Wizards. Over 17 seasons he has averaged 17.1 points, 3.3 rebounds, and 5.7 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -19155,7 +19279,13 @@
         "gp": 727,
         "seasons": 12
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2023-24",
+          "stat": "rpg"
+        }
+      ]
     },
     {
       "id": 93,
@@ -19205,7 +19335,7 @@
       "college": "Duke",
       "draft": "2020 · Rd 2, Pick 41",
       "experience": 5,
-      "bio": "Tre Jones is a PG for the San Antonio Spurs. Over 8 seasons he has averaged 9.1 points, 2.8 rebounds, and 4.7 assists per game.",
+      "bio": "Tre Jones is a PG for the Chicago Bulls. Over 8 seasons he has averaged 9.1 points, 2.8 rebounds, and 4.7 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -19557,10 +19687,10 @@
       "name": "Cole Anthony",
       "firstName": "Cole",
       "lastName": "Anthony",
-      "team": "Milwaukee Bucks",
-      "teamShort": "MIL",
-      "teamPrimary": "#00471B",
-      "teamSecondary": "#EEE1C6",
+      "team": "Phoenix Suns",
+      "teamShort": "PHX",
+      "teamPrimary": "#1D1160",
+      "teamSecondary": "#E56020",
       "jersey": 50,
       "position": "PG",
       "height": "6'2\"",
@@ -19571,7 +19701,7 @@
       "college": "North Carolina",
       "draft": "2020 · Rd 1, Pick 15",
       "experience": 5,
-      "bio": "Cole Anthony is a PG for the Orlando Magic. Over 6 seasons he has averaged 12 points, 4.1 rebounds, and 3.8 assists per game.",
+      "bio": "Cole Anthony is a PG for the Phoenix Suns. Over 6 seasons he has averaged 12 points, 4.1 rebounds, and 3.8 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -19706,7 +19836,7 @@
       "college": "Duke",
       "draft": "2018 · Rd 2, Pick 37",
       "experience": 7,
-      "bio": "Gary Trent Jr. is a SG for the Toronto Raptors. Over 10 seasons he has averaged 13.2 points, 2.2 rebounds, and 1.4 assists per game.",
+      "bio": "Gary Trent Jr. is a SG for the Milwaukee Bucks. Over 10 seasons he has averaged 13.2 points, 2.2 rebounds, and 1.4 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -20026,10 +20156,10 @@
       "name": "Isaiah Stewart",
       "firstName": "Isaiah",
       "lastName": "Stewart",
-      "team": "Detroit Pistons",
-      "teamShort": "DET",
-      "teamPrimary": "#C8102E",
-      "teamSecondary": "#1D42BA",
+      "team": "Memphis Grizzlies",
+      "teamShort": "MEM",
+      "teamPrimary": "#12173F",
+      "teamSecondary": "#5D76A9",
       "jersey": 28,
       "position": "C",
       "height": "6'8\"",
@@ -20040,7 +20170,7 @@
       "college": "Washington",
       "draft": "2020 · Rd 1, Pick 16",
       "experience": 5,
-      "bio": "Isaiah Stewart is a C for the Detroit Pistons. Over 6 seasons he has averaged 8.8 points, 6.8 rebounds, and 1.3 assists per game.",
+      "bio": "Isaiah Stewart is a C for the Memphis Grizzlies. Over 6 seasons he has averaged 8.8 points, 6.8 rebounds, and 1.3 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -20161,10 +20291,10 @@
       "name": "Tyus Jones",
       "firstName": "Tyus",
       "lastName": "Jones",
-      "team": "Washington Wizards",
-      "teamShort": "WAS",
-      "teamPrimary": "#002B5C",
-      "teamSecondary": "#E31837",
+      "team": "Denver Nuggets",
+      "teamShort": "DEN",
+      "teamPrimary": "#0E2240",
+      "teamSecondary": "#FEC524",
       "jersey": 5,
       "position": "PG",
       "height": "6'0\"",
@@ -20175,7 +20305,7 @@
       "college": "Duke",
       "draft": "2015 · Rd 1, Pick 24",
       "experience": 11,
-      "bio": "Tyus Jones is a PG for the Washington Wizards. Over 14 seasons he has averaged 6.9 points, 1.9 rebounds, and 4.1 assists per game.",
+      "bio": "Tyus Jones is a PG for the Denver Nuggets. Over 14 seasons he has averaged 6.9 points, 1.9 rebounds, and 4.1 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -21358,7 +21488,7 @@
       "college": "Missouri",
       "draft": "2018 · Rd 1, Pick 14",
       "experience": 6,
-      "bio": "Michael Porter Jr. is a SF for the Denver Nuggets. Over 7 seasons he has averaged 17.3 points, 6.5 rebounds, and 1.6 assists per game.",
+      "bio": "Michael Porter Jr. is a SF for the Brooklyn Nets. Over 7 seasons he has averaged 17.3 points, 6.5 rebounds, and 1.6 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -21495,10 +21625,10 @@
       "name": "James Harden",
       "firstName": "James",
       "lastName": "Harden",
-      "team": "Los Angeles Clippers",
-      "teamShort": "LAC",
-      "teamPrimary": "#C8102E",
-      "teamSecondary": "#1D428A",
+      "team": "Cleveland Cavaliers",
+      "teamShort": "CLE",
+      "teamPrimary": "#860038",
+      "teamSecondary": "#FDBB30",
       "jersey": 1,
       "position": "PG",
       "height": "6'5\"",
@@ -21509,7 +21639,7 @@
       "college": "Arizona State",
       "draft": "2009 · Rd 1, Pick 3",
       "experience": 16,
-      "bio": "James Harden is a PG for the Los Angeles Clippers. Over 23 seasons he has averaged 23.9 points, 5.7 rebounds, and 7.6 assists per game.",
+      "bio": "James Harden is a PG for the Cleveland Cavaliers. Over 23 seasons he has averaged 23.9 points, 5.7 rebounds, and 7.6 assists per game.",
       "accolades": [
         "MVP",
         "2× All-NBA 3rd Team",
@@ -21898,7 +22028,25 @@
         "gp": 1400,
         "seasons": 23
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2017-18",
+          "stat": "ppg"
+        },
+        {
+          "season": "2018-19",
+          "stat": "ppg"
+        },
+        {
+          "season": "2019-20",
+          "stat": "ppg"
+        },
+        {
+          "season": "2016-17",
+          "stat": "apg"
+        }
+      ]
     },
     {
       "id": 107,
@@ -21907,10 +22055,10 @@
       "name": "Norman Powell",
       "firstName": "Norman",
       "lastName": "Powell",
-      "team": "Miami Heat",
-      "teamShort": "MIA",
-      "teamPrimary": "#98002E",
-      "teamSecondary": "#F9A01B",
+      "team": "Chicago Bulls",
+      "teamShort": "CHI",
+      "teamPrimary": "#CE1141",
+      "teamSecondary": "#000000",
       "jersey": 0,
       "position": "SG",
       "height": "6'4\"",
@@ -21921,7 +22069,7 @@
       "college": "UCLA",
       "draft": "2015 · Rd 2, Pick 46",
       "experience": 11,
-      "bio": "Norman Powell is a SG for the Los Angeles Clippers. Over 15 seasons he has averaged 14.7 points, 2.8 rebounds, and 1.7 assists per game.",
+      "bio": "Norman Powell is a SG for the Chicago Bulls. Over 15 seasons he has averaged 14.7 points, 2.8 rebounds, and 1.7 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -22186,10 +22334,10 @@
       "name": "Ivica Zubac",
       "firstName": "Ivica",
       "lastName": "Zubac",
-      "team": "Los Angeles Clippers",
-      "teamShort": "LAC",
-      "teamPrimary": "#C8102E",
-      "teamSecondary": "#1D428A",
+      "team": "Indiana Pacers",
+      "teamShort": "IND",
+      "teamPrimary": "#002D62",
+      "teamSecondary": "#FDBB30",
       "jersey": 40,
       "position": "C",
       "height": "7'0\"",
@@ -22200,7 +22348,7 @@
       "college": "",
       "draft": "2016 · Rd 2, Pick 32",
       "experience": 9,
-      "bio": "Ivica Zubac is a C for the Los Angeles Clippers. Over 14 seasons he has averaged 10.6 points, 8.3 rebounds, and 1.5 assists per game.",
+      "bio": "Ivica Zubac is a C for the Indiana Pacers. Over 14 seasons he has averaged 10.6 points, 8.3 rebounds, and 1.5 assists per game.",
       "accolades": [
         "All-Defensive 2nd Team"
       ],
@@ -22634,10 +22782,10 @@
       "name": "Deandre Ayton",
       "firstName": "Deandre",
       "lastName": "Ayton",
-      "team": "Los Angeles Lakers",
-      "teamShort": "LAL",
-      "teamPrimary": "#552583",
-      "teamSecondary": "#FDB927",
+      "team": "Washington Wizards",
+      "teamShort": "WAS",
+      "teamPrimary": "#002B5C",
+      "teamSecondary": "#E31837",
       "jersey": 0,
       "position": "C",
       "height": "7'0\"",
@@ -22648,7 +22796,7 @@
       "college": "Arizona",
       "draft": "2018 · Rd 1, Pick 1",
       "experience": 6,
-      "bio": "Deandre Ayton is a C for the Portland Trail Blazers. Over 8 seasons he has averaged 15.8 points, 10.1 rebounds, and 1.5 assists per game.",
+      "bio": "Deandre Ayton is a C for the Washington Wizards. Over 8 seasons he has averaged 15.8 points, 10.1 rebounds, and 1.5 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -23224,10 +23372,10 @@
       "name": "Walker Kessler",
       "firstName": "Walker",
       "lastName": "Kessler",
-      "team": "Utah Jazz",
-      "teamShort": "UTA",
-      "teamPrimary": "#002B5C",
-      "teamSecondary": "#00471B",
+      "team": "Los Angeles Lakers",
+      "teamShort": "LAL",
+      "teamPrimary": "#552583",
+      "teamSecondary": "#FDB927",
       "jersey": 0,
       "position": "C",
       "height": "7'2\"",
@@ -23238,7 +23386,7 @@
       "college": "Auburn",
       "draft": "2022 · Rd 1, Pick 22",
       "experience": 4,
-      "bio": "Walker Kessler is a C for the Utah Jazz. Over 4 seasons he has averaged 9.5 points, 9.3 rebounds, and 1.2 assists per game.",
+      "bio": "Walker Kessler is a C for the Los Angeles Lakers. Over 4 seasons he has averaged 9.5 points, 9.3 rebounds, and 1.2 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -23327,10 +23475,10 @@
       "name": "Collin Sexton",
       "firstName": "Collin",
       "lastName": "Sexton",
-      "team": "Utah Jazz",
-      "teamShort": "UTA",
-      "teamPrimary": "#002B5C",
-      "teamSecondary": "#00471B",
+      "team": "Los Angeles Lakers",
+      "teamShort": "LAL",
+      "teamPrimary": "#552583",
+      "teamSecondary": "#FDB927",
       "jersey": 0,
       "position": "PG",
       "height": "6'3\"",
@@ -23341,7 +23489,7 @@
       "college": "Alabama",
       "draft": "2018 · Rd 1, Pick 8",
       "experience": 8,
-      "bio": "Collin Sexton is a PG for the Utah Jazz. Over 10 seasons he has averaged 18 points, 2.7 rebounds, and 3.6 assists per game.",
+      "bio": "Collin Sexton is a PG for the Los Angeles Lakers. Over 10 seasons he has averaged 18 points, 2.7 rebounds, and 3.6 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -24052,10 +24200,10 @@
       "name": "CJ McCollum",
       "firstName": "CJ",
       "lastName": "McCollum",
-      "team": "New Orleans Pelicans",
-      "teamShort": "NOP",
-      "teamPrimary": "#0C2340",
-      "teamSecondary": "#C8102E",
+      "team": "Atlanta Hawks",
+      "teamShort": "ATL",
+      "teamPrimary": "#E03A3E",
+      "teamSecondary": "#C1D32F",
       "jersey": 3,
       "position": "SG",
       "height": "6'3\"",
@@ -24066,7 +24214,7 @@
       "college": "Lehigh",
       "draft": "2013 · Rd 1, Pick 10",
       "experience": 12,
-      "bio": "CJ McCollum is a SG for the New Orleans Pelicans. Over 17 seasons he has averaged 19.6 points, 3.6 rebounds, and 3.9 assists per game.",
+      "bio": "CJ McCollum is a SG for the Atlanta Hawks. Over 17 seasons he has averaged 19.6 points, 3.6 rebounds, and 3.9 assists per game.",
       "accolades": [
         "Most Improved Player"
       ],
@@ -24468,10 +24616,10 @@
       "name": "Jaden Ivey",
       "firstName": "Jaden",
       "lastName": "Ivey",
-      "team": "Detroit Pistons",
-      "teamShort": "DET",
-      "teamPrimary": "#C8102E",
-      "teamSecondary": "#1D42BA",
+      "team": "Chicago Bulls",
+      "teamShort": "CHI",
+      "teamPrimary": "#CE1141",
+      "teamSecondary": "#000000",
       "jersey": 31,
       "position": "SG",
       "height": "6'3\"",
@@ -24482,7 +24630,7 @@
       "college": "Purdue",
       "draft": "2022 · Rd 1, Pick 5",
       "experience": 3,
-      "bio": "Jaden Ivey is a SG for the Detroit Pistons. Over 6 seasons he has averaged 13.9 points, 3.4 rebounds, and 3.7 assists per game.",
+      "bio": "Jaden Ivey is a SG for the Chicago Bulls. Over 6 seasons he has averaged 13.9 points, 3.4 rebounds, and 3.7 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -24692,10 +24840,10 @@
       "name": "Bennedict Mathurin",
       "firstName": "Bennedict",
       "lastName": "Mathurin",
-      "team": "Indiana Pacers",
-      "teamShort": "IND",
-      "teamPrimary": "#002D62",
-      "teamSecondary": "#FDBB30",
+      "team": "LA Clippers",
+      "teamShort": "LAC",
+      "teamPrimary": "#C8102E",
+      "teamSecondary": "#1D428A",
       "jersey": 9,
       "position": "SG",
       "height": "6'5\"",
@@ -24706,7 +24854,7 @@
       "college": "Arizona",
       "draft": "2022 · Rd 1, Pick 6",
       "experience": 3,
-      "bio": "Bennedict Mathurin is a SG for the Indiana Pacers. Over 6 seasons he has averaged 16.5 points, 4.8 rebounds, and 2 assists per game.",
+      "bio": "Bennedict Mathurin is a SG for the LA Clippers. Over 6 seasons he has averaged 16.5 points, 4.8 rebounds, and 2 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -25458,10 +25606,10 @@
       "name": "Mike Conley",
       "firstName": "Mike",
       "lastName": "Conley",
-      "team": "Minnesota Timberwolves",
-      "teamShort": "MIN",
-      "teamPrimary": "#0C2340",
-      "teamSecondary": "#236192",
+      "team": "Boston Celtics",
+      "teamShort": "BOS",
+      "teamPrimary": "#007A33",
+      "teamSecondary": "#BA9653",
       "jersey": 0,
       "position": "PG",
       "height": "6'1\"",
@@ -25472,7 +25620,7 @@
       "college": "Ohio State",
       "draft": "2007 · Rd 1, Pick 4",
       "experience": 19,
-      "bio": "Mike Conley is a PG for the Minnesota Timberwolves. Over 21 seasons he has averaged 13.5 points, 2.9 rebounds, and 5.6 assists per game.",
+      "bio": "Mike Conley is a PG for the Boston Celtics. Over 21 seasons he has averaged 13.5 points, 2.9 rebounds, and 5.6 assists per game.",
       "accolades": [
         "All-Defensive 2nd Team"
       ],
@@ -25835,10 +25983,10 @@
       "name": "Buddy Hield",
       "firstName": "Buddy",
       "lastName": "Hield",
-      "team": "Golden State Warriors",
-      "teamShort": "GSW",
-      "teamPrimary": "#1D428A",
-      "teamSecondary": "#FFC72C",
+      "team": "Atlanta Hawks",
+      "teamShort": "ATL",
+      "teamPrimary": "#E03A3E",
+      "teamSecondary": "#C1D32F",
       "jersey": 8,
       "position": "SG",
       "height": "6'4\"",
@@ -25849,7 +25997,7 @@
       "college": "Oklahoma",
       "draft": "2016 · Rd 1, Pick 6",
       "experience": 9,
-      "bio": "Buddy Hield is a SG for the Golden State Warriors. Over 18 seasons he has averaged 13.8 points, 3.8 rebounds, and 2.4 assists per game.",
+      "bio": "Buddy Hield is a SG for the Atlanta Hawks. Over 18 seasons he has averaged 13.8 points, 3.8 rebounds, and 2.4 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -26263,7 +26411,7 @@
       "college": "Oregon",
       "draft": "2017 · Rd 2, Pick 45",
       "experience": 8,
-      "bio": "Dillon Brooks is a SF for the Houston Rockets. Over 9 seasons he has averaged 14.8 points, 3.3 rebounds, and 2 assists per game.",
+      "bio": "Dillon Brooks is a SF for the Phoenix Suns. Over 9 seasons he has averaged 14.8 points, 3.3 rebounds, and 2 assists per game.",
       "accolades": [
         "All-Defensive 2nd Team"
       ],
@@ -26768,10 +26916,10 @@
       "name": "De'Andre Hunter",
       "firstName": "De'Andre",
       "lastName": "Hunter",
-      "team": "Cleveland Cavaliers",
-      "teamShort": "CLE",
-      "teamPrimary": "#860038",
-      "teamSecondary": "#FDBB30",
+      "team": "Sacramento Kings",
+      "teamShort": "SAC",
+      "teamPrimary": "#5A2D81",
+      "teamSecondary": "#63727A",
       "jersey": 15,
       "position": "SF",
       "height": "6'7\"",
@@ -26782,7 +26930,7 @@
       "college": "Virginia",
       "draft": "2019 · Rd 1, Pick 4",
       "experience": 6,
-      "bio": "De'Andre Hunter is a SF for the Cleveland Cavaliers. Over 11 seasons he has averaged 14.9 points, 4.1 rebounds, and 1.6 assists per game.",
+      "bio": "De'Andre Hunter is a SF for the Sacramento Kings. Over 11 seasons he has averaged 14.9 points, 4.1 rebounds, and 1.6 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -27365,10 +27513,10 @@
       "name": "Gradey Dick",
       "firstName": "Gradey",
       "lastName": "Dick",
-      "team": "Toronto Raptors",
-      "teamShort": "TOR",
-      "teamPrimary": "#CE1141",
-      "teamSecondary": "#000000",
+      "team": "LA Clippers",
+      "teamShort": "LAC",
+      "teamPrimary": "#C8102E",
+      "teamSecondary": "#1D428A",
       "jersey": 1,
       "position": "SG",
       "height": "6'7\"",
@@ -27379,7 +27527,7 @@
       "college": "Kansas",
       "draft": "2023 · Rd 1, Pick 13",
       "experience": 2,
-      "bio": "Gradey Dick is a SG for the Toronto Raptors. Over 3 seasons he has averaged 9.2 points, 2.5 rebounds, and 1.1 assists per game.",
+      "bio": "Gradey Dick is a SG for the LA Clippers. Over 3 seasons he has averaged 9.2 points, 2.5 rebounds, and 1.1 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -27999,7 +28147,7 @@
       "college": "Georgia",
       "draft": "2013 · Rd 1, Pick 8",
       "experience": 12,
-      "bio": "Kentavious Caldwell-Pope is a SG for the Orlando Magic. Over 13 seasons he has averaged 11 points, 3 rebounds, and 1.9 assists per game.",
+      "bio": "Kentavious Caldwell-Pope is a SG for the Memphis Grizzlies. Over 13 seasons he has averaged 11 points, 3 rebounds, and 1.9 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -28731,7 +28879,7 @@
       "college": "Virginia Tech",
       "draft": "2019 · Rd 1, Pick 17",
       "experience": 6,
-      "bio": "Nickeil Alexander-Walker is a SG for the Minnesota Timberwolves. Over 11 seasons he has averaged 10.2 points, 2.6 rebounds, and 2.5 assists per game.",
+      "bio": "Nickeil Alexander-Walker is a SG for the Atlanta Hawks. Over 11 seasons he has averaged 10.2 points, 2.6 rebounds, and 2.5 assists per game.",
       "accolades": [
         "Most Improved Player"
       ],
@@ -29552,10 +29700,10 @@
       "name": "Jared McCain",
       "firstName": "Jared",
       "lastName": "McCain",
-      "team": "Philadelphia 76ers",
-      "teamShort": "PHI",
-      "teamPrimary": "#006BB6",
-      "teamSecondary": "#ED174C",
+      "team": "Oklahoma City Thunder",
+      "teamShort": "OKC",
+      "teamPrimary": "#007AC1",
+      "teamSecondary": "#EF3B24",
       "jersey": 3,
       "position": "PG",
       "height": "6'3\"",
@@ -29566,7 +29714,7 @@
       "college": "Duke",
       "draft": "2024 · Rd 1, Pick 16",
       "experience": 1,
-      "bio": "Jared McCain is a PG for the Philadelphia 76ers. Over 4 seasons he has averaged 9.3 points, 2.1 rebounds, and 1.5 assists per game.",
+      "bio": "Jared McCain is a PG for the Oklahoma City Thunder. Over 4 seasons he has averaged 9.3 points, 2.1 rebounds, and 1.5 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -30222,7 +30370,13 @@
         "gp": 272,
         "seasons": 4
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2024-25",
+          "stat": "spg"
+        }
+      ]
     },
     {
       "id": 169,
@@ -30245,7 +30399,7 @@
       "college": "Dayton",
       "draft": "2023 · Rd 2, Pick 52",
       "experience": 2,
-      "bio": "Toumani Camara is a PF for the Portland Trail Blazers.",
+      "bio": "Toumani Camara is a PF for the Portland Trail Blazers. Over 3 seasons he has averaged 10.9 points, 5.3 rebounds, and 2 assists per game.",
       "accolades": [
         "All-Defensive 2nd Team"
       ],
@@ -30320,10 +30474,10 @@
       "name": "Cam Thomas",
       "firstName": "Cam",
       "lastName": "Thomas",
-      "team": "Brooklyn Nets",
-      "teamShort": "BKN",
-      "teamPrimary": "#000000",
-      "teamSecondary": "#AAAAAA",
+      "team": "Milwaukee Bucks",
+      "teamShort": "MIL",
+      "teamPrimary": "#00471B",
+      "teamSecondary": "#EEE1C6",
       "jersey": 24,
       "position": "SG",
       "height": "6'3\"",
@@ -30334,7 +30488,7 @@
       "college": "LSU",
       "draft": "2021 · Rd 1, Pick 27",
       "experience": 4,
-      "bio": "Cam Thomas is a SG for the Brooklyn Nets. Over 7 seasons he has averaged 14.7 points, 2.3 rebounds, and 2.2 assists per game.",
+      "bio": "Cam Thomas is a SG for the Milwaukee Bucks. Over 7 seasons he has averaged 14.7 points, 2.3 rebounds, and 2.2 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -30608,10 +30762,10 @@
       "name": "Quentin Grimes",
       "firstName": "Quentin",
       "lastName": "Grimes",
-      "team": "Philadelphia 76ers",
-      "teamShort": "PHI",
-      "teamPrimary": "#006BB6",
-      "teamSecondary": "#ED174C",
+      "team": "Los Angeles Lakers",
+      "teamShort": "LAL",
+      "teamPrimary": "#552583",
+      "teamSecondary": "#FDB927",
       "jersey": 0,
       "position": "SG",
       "height": "6'4\"",
@@ -30622,7 +30776,7 @@
       "college": "Houston",
       "draft": "2021 · Rd 1, Pick 25",
       "experience": 5,
-      "bio": "Quentin Grimes is a SG for the Philadelphia 76ers. Over 9 seasons he has averaged 11.2 points, 3.2 rebounds, and 2.3 assists per game.",
+      "bio": "Quentin Grimes is a SG for the Los Angeles Lakers. Over 9 seasons he has averaged 11.2 points, 3.2 rebounds, and 2.3 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -30974,10 +31128,10 @@
       "name": "Bogdan Bogdanovic",
       "firstName": "Bogdan",
       "lastName": "Bogdanovic",
-      "team": "Los Angeles Clippers",
-      "teamShort": "LAC",
-      "teamPrimary": "#C8102E",
-      "teamSecondary": "#1D428A",
+      "team": "Houston Rockets",
+      "teamShort": "HOU",
+      "teamPrimary": "#CE1141",
+      "teamSecondary": "#C4CED4",
       "jersey": 0,
       "position": "SG",
       "height": "6'5\"",
@@ -30988,7 +31142,7 @@
       "college": "",
       "draft": "2014 · Rd 1, Pick 27",
       "experience": 9,
-      "bio": "Bogdan Bogdanovic is a SG for the Los Angeles Clippers. Over 11 seasons he has averaged 13.7 points, 3.3 rebounds, and 3.1 assists per game.",
+      "bio": "Bogdan Bogdanovic is a SG for the Houston Rockets. Over 11 seasons he has averaged 13.7 points, 3.3 rebounds, and 3.1 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -31436,10 +31590,10 @@
       "name": "Josh Green",
       "firstName": "Josh",
       "lastName": "Green",
-      "team": "Charlotte Hornets",
-      "teamShort": "CHA",
-      "teamPrimary": "#1D1160",
-      "teamSecondary": "#00788C",
+      "team": "Minnesota Timberwolves",
+      "teamShort": "MIN",
+      "teamPrimary": "#0C2340",
+      "teamSecondary": "#236192",
       "jersey": 0,
       "position": "SG",
       "height": "6'6\"",
@@ -31450,7 +31604,7 @@
       "college": "Arizona",
       "draft": "2020 · Rd 1, Pick 18",
       "experience": 5,
-      "bio": "Josh Green is a SG for the Charlotte Hornets. Over 6 seasons he has averaged 6.3 points, 2.5 rebounds, and 1.4 assists per game.",
+      "bio": "Josh Green is a SG for the Minnesota Timberwolves. Over 6 seasons he has averaged 6.3 points, 2.5 rebounds, and 1.4 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -32328,10 +32482,10 @@
       "name": "Bobby Portis",
       "firstName": "Bobby",
       "lastName": "Portis",
-      "team": "Milwaukee Bucks",
-      "teamShort": "MIL",
-      "teamPrimary": "#00471B",
-      "teamSecondary": "#EEE1C6",
+      "team": "Miami Heat",
+      "teamShort": "MIA",
+      "teamPrimary": "#98002E",
+      "teamSecondary": "#F9A01B",
       "jersey": 9,
       "position": "PF",
       "height": "6'9\"",
@@ -32342,7 +32496,7 @@
       "college": "Arkansas",
       "draft": "2015 · Rd 1, Pick 22",
       "experience": 10,
-      "bio": "Bobby Portis is a PF for the Milwaukee Bucks. Over 13 seasons he has averaged 12.2 points, 7.1 rebounds, and 1.3 assists per game.",
+      "bio": "Bobby Portis is a PF for the Miami Heat. Over 13 seasons he has averaged 12.2 points, 7.1 rebounds, and 1.3 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -32575,10 +32729,10 @@
       "name": "Mitchell Robinson",
       "firstName": "Mitchell",
       "lastName": "Robinson",
-      "team": "New York Knicks",
-      "teamShort": "NYK",
-      "teamPrimary": "#006BB6",
-      "teamSecondary": "#F58426",
+      "team": "Boston Celtics",
+      "teamShort": "BOS",
+      "teamPrimary": "#007A33",
+      "teamSecondary": "#BA9653",
       "jersey": 0,
       "position": "C",
       "height": "7'0\"",
@@ -32742,10 +32896,10 @@
       "name": "Nick Richards",
       "firstName": "Nick",
       "lastName": "Richards",
-      "team": "Phoenix Suns",
-      "teamShort": "PHX",
-      "teamPrimary": "#1D1160",
-      "teamSecondary": "#E56020",
+      "team": "Chicago Bulls",
+      "teamShort": "CHI",
+      "teamPrimary": "#CE1141",
+      "teamSecondary": "#000000",
       "jersey": 13,
       "position": "C",
       "height": "6'11\"",
@@ -32756,7 +32910,7 @@
       "college": "Kentucky",
       "draft": "2020 · Rd 2, Pick 42",
       "experience": 5,
-      "bio": "Nick Richards is a C for the Phoenix Suns. Over 10 seasons he has averaged 7.2 points, 6 rebounds, and 0.6 assists per game.",
+      "bio": "Nick Richards is a C for the Chicago Bulls. Over 10 seasons he has averaged 7.2 points, 6 rebounds, and 0.6 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -33293,10 +33447,10 @@
       "name": "Andre Drummond",
       "firstName": "Andre",
       "lastName": "Drummond",
-      "team": "Philadelphia 76ers",
-      "teamShort": "PHI",
+      "team": "New York Knicks",
+      "teamShort": "NYK",
       "teamPrimary": "#006BB6",
-      "teamSecondary": "#ED174C",
+      "teamSecondary": "#F58426",
       "jersey": 0,
       "position": "C",
       "height": "6'11\"",
@@ -33307,7 +33461,7 @@
       "college": "UConn",
       "draft": "2012 · Rd 1, Pick 9",
       "experience": 14,
-      "bio": "Andre Drummond is a C for the Philadelphia 76ers. Over 20 seasons he has averaged 12.2 points, 11.9 rebounds, and 1.4 assists per game.",
+      "bio": "Andre Drummond is a C for the New York Knicks. Over 20 seasons he has averaged 12.2 points, 11.9 rebounds, and 1.4 assists per game.",
       "accolades": [
         "All-NBA 3rd Team"
       ],
@@ -33645,7 +33799,25 @@
         "gp": 1143,
         "seasons": 20
       },
-      "legend": false
+      "legend": false,
+      "leaders": [
+        {
+          "season": "2015-16",
+          "stat": "rpg"
+        },
+        {
+          "season": "2017-18",
+          "stat": "rpg"
+        },
+        {
+          "season": "2018-19",
+          "stat": "rpg"
+        },
+        {
+          "season": "2020-21",
+          "stat": "rpg"
+        }
+      ]
     },
     {
       "id": 186,
@@ -33654,10 +33826,10 @@
       "name": "Dennis Schroder",
       "firstName": "Dennis",
       "lastName": "Schroder",
-      "team": "Sacramento Kings",
-      "teamShort": "SAC",
-      "teamPrimary": "#5A2D81",
-      "teamSecondary": "#63727A",
+      "team": "Cleveland Cavaliers",
+      "teamShort": "CLE",
+      "teamPrimary": "#860038",
+      "teamSecondary": "#FDBB30",
       "jersey": 8,
       "position": "PG",
       "height": "6'1\"",
@@ -33668,7 +33840,7 @@
       "college": "",
       "draft": "2013 · Rd 1, Pick 17",
       "experience": 12,
-      "bio": "Dennis Schroder is a PG for the Sacramento Kings. Over 22 seasons he has averaged 13.5 points, 2.9 rebounds, and 5 assists per game.",
+      "bio": "Dennis Schroder is a PG for the Cleveland Cavaliers. Over 22 seasons he has averaged 13.5 points, 2.9 rebounds, and 5 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -34276,10 +34448,10 @@
       "name": "Tim Hardaway Jr.",
       "firstName": "Tim",
       "lastName": "Hardaway Jr.",
-      "team": "Denver Nuggets",
-      "teamShort": "DEN",
-      "teamPrimary": "#0E2240",
-      "teamSecondary": "#FEC524",
+      "team": "Miami Heat",
+      "teamShort": "MIA",
+      "teamPrimary": "#98002E",
+      "teamSecondary": "#F9A01B",
       "jersey": 11,
       "position": "SG",
       "height": "6'5\"",
@@ -34290,7 +34462,7 @@
       "college": "Michigan",
       "draft": "2013 · Rd 1, Pick 24",
       "experience": 13,
-      "bio": "Tim Hardaway Jr. is a SG for the Denver Nuggets. Over 15 seasons he has averaged 14 points, 2.9 rebounds, and 1.8 assists per game.",
+      "bio": "Tim Hardaway Jr. is a SG for the Miami Heat. Over 15 seasons he has averaged 14 points, 2.9 rebounds, and 1.8 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -34850,10 +35022,10 @@
       "name": "Kelly Oubre Jr.",
       "firstName": "Kelly",
       "lastName": "Oubre Jr.",
-      "team": "Philadelphia 76ers",
-      "teamShort": "PHI",
-      "teamPrimary": "#006BB6",
-      "teamSecondary": "#ED174C",
+      "team": "Indiana Pacers",
+      "teamShort": "IND",
+      "teamPrimary": "#002D62",
+      "teamSecondary": "#FDBB30",
       "jersey": 0,
       "position": "SF",
       "height": "6'8\"",
@@ -34864,7 +35036,7 @@
       "college": "Kansas",
       "draft": "2015 · Rd 1, Pick 15",
       "experience": 11,
-      "bio": "Kelly Oubre Jr. is a SF for the Philadelphia 76ers. Over 13 seasons he has averaged 13.5 points, 4.7 rebounds, and 1.2 assists per game.",
+      "bio": "Kelly Oubre Jr. is a SF for the Indiana Pacers. Over 13 seasons he has averaged 13.5 points, 4.7 rebounds, and 1.2 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -35394,10 +35566,10 @@
       "name": "Grayson Allen",
       "firstName": "Grayson",
       "lastName": "Allen",
-      "team": "Phoenix Suns",
-      "teamShort": "PHX",
+      "team": "Charlotte Hornets",
+      "teamShort": "CHA",
       "teamPrimary": "#1D1160",
-      "teamSecondary": "#E56020",
+      "teamSecondary": "#00788C",
       "jersey": 0,
       "position": "SG",
       "height": "6'3\"",
@@ -35408,7 +35580,7 @@
       "college": "Duke",
       "draft": "2018 · Rd 1, Pick 21",
       "experience": 9,
-      "bio": "Grayson Allen is a SG for the Phoenix Suns. Over 8 seasons he has averaged 11.2 points, 3 rebounds, and 2.2 assists per game.",
+      "bio": "Grayson Allen is a SG for the Charlotte Hornets. Over 8 seasons he has averaged 11.2 points, 3 rebounds, and 2.2 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -36382,10 +36554,10 @@
       "name": "Isaiah Joe",
       "firstName": "Isaiah",
       "lastName": "Joe",
-      "team": "Oklahoma City Thunder",
-      "teamShort": "OKC",
-      "teamPrimary": "#007AC1",
-      "teamSecondary": "#EF3B24",
+      "team": "Detroit Pistons",
+      "teamShort": "DET",
+      "teamPrimary": "#C8102E",
+      "teamSecondary": "#1D42BA",
       "jersey": 0,
       "position": "SG",
       "height": "6'4\"",
@@ -36396,7 +36568,7 @@
       "college": "Arkansas",
       "draft": "2020 · Rd 2, Pick 49",
       "experience": 5,
-      "bio": "Isaiah Joe is a SG for the Oklahoma City Thunder. Over 6 seasons he has averaged 8.2 points, 2.1 rebounds, and 1.2 assists per game.",
+      "bio": "Isaiah Joe is a SG for the Detroit Pistons. Over 6 seasons he has averaged 8.2 points, 2.1 rebounds, and 1.2 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -36650,7 +36822,7 @@
       "college": "Memphis",
       "draft": "2020 · Rd 1, Pick 20",
       "experience": 5,
-      "bio": "Precious Achiuwa is a PF for the New York Knicks. Over 8 seasons he has averaged 8 points, 6 rebounds, and 1.1 assists per game.",
+      "bio": "Precious Achiuwa is a PF for the Sacramento Kings. Over 8 seasons he has averaged 8 points, 6 rebounds, and 1.1 assists per game.",
       "accolades": [],
       "careerStats": [
         {
@@ -37160,7 +37332,17 @@
         "gp": 1346,
         "seasons": 20
       },
-      "legend": true
+      "legend": true,
+      "leaders": [
+        {
+          "season": "2005-06",
+          "stat": "ppg"
+        },
+        {
+          "season": "2006-07",
+          "stat": "ppg"
+        }
+      ]
     },
     {
       "id": 202,
@@ -37542,7 +37724,13 @@
         "gp": 1268,
         "seasons": 21
       },
-      "legend": true
+      "legend": true,
+      "leaders": [
+        {
+          "season": "1999-00",
+          "stat": "ppg"
+        }
+      ]
     },
     {
       "id": 203,
@@ -38639,7 +38827,33 @@
         "gp": 1064,
         "seasons": 20
       },
-      "legend": true
+      "legend": true,
+      "leaders": [
+        {
+          "season": "1998-99",
+          "stat": "ppg"
+        },
+        {
+          "season": "2000-01",
+          "stat": "ppg"
+        },
+        {
+          "season": "2001-02",
+          "stat": "ppg"
+        },
+        {
+          "season": "2004-05",
+          "stat": "ppg"
+        },
+        {
+          "season": "2001-02",
+          "stat": "spg"
+        },
+        {
+          "season": "2002-03",
+          "stat": "spg"
+        }
+      ]
     },
     {
       "id": 206,
@@ -39712,7 +39926,29 @@
         "gp": 1217,
         "seasons": 18
       },
-      "legend": true
+      "legend": true,
+      "leaders": [
+        {
+          "season": "2004-05",
+          "stat": "apg"
+        },
+        {
+          "season": "2005-06",
+          "stat": "apg"
+        },
+        {
+          "season": "2006-07",
+          "stat": "apg"
+        },
+        {
+          "season": "2009-10",
+          "stat": "apg"
+        },
+        {
+          "season": "2010-11",
+          "stat": "apg"
+        }
+      ]
     },
     {
       "id": 209,
@@ -41530,7 +41766,33 @@
         "gp": 1242,
         "seasons": 18
       },
-      "legend": true
+      "legend": true,
+      "leaders": [
+        {
+          "season": "2007-08",
+          "stat": "rpg"
+        },
+        {
+          "season": "2008-09",
+          "stat": "rpg"
+        },
+        {
+          "season": "2009-10",
+          "stat": "rpg"
+        },
+        {
+          "season": "2012-13",
+          "stat": "rpg"
+        },
+        {
+          "season": "2008-09",
+          "stat": "bpg"
+        },
+        {
+          "season": "2009-10",
+          "stat": "bpg"
+        }
+      ]
     },
     {
       "id": 214,
@@ -41908,7 +42170,13 @@
         "gp": 1337,
         "seasons": 21
       },
-      "legend": true
+      "legend": true,
+      "leaders": [
+        {
+          "season": "2012-13",
+          "stat": "ppg"
+        }
+      ]
     },
     {
       "id": 215,
@@ -42867,7 +43135,21 @@
         "gp": 1109,
         "seasons": 22
       },
-      "legend": true
+      "legend": true,
+      "leaders": [
+        {
+          "season": "2011-12",
+          "stat": "apg"
+        },
+        {
+          "season": "2012-13",
+          "stat": "apg"
+        },
+        {
+          "season": "2015-16",
+          "stat": "apg"
+        }
+      ]
     },
     {
       "id": 218,

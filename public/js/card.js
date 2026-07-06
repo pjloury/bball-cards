@@ -99,8 +99,8 @@ function buildCardBackHTML(c) {
         ${acc.length ? `<div class="card-back-accolades">${acc.map(a => `<span class="accolade">${a}</span>`).join('')}</div>` : ''}
         ${c.bio ? `<div class="card-back-bio-text">${c.bio}</div>` : ''}
         <div class="card-back-stats">
-          <div class="card-back-stats-title" style="background:${primary}">CAREER — REGULAR SEASON <span class="career-high-key">◆ career high</span></div>
-          <div class="stats-table-wrap">${buildStatsTable(stats)}</div>
+          <div class="card-back-stats-title" style="background:${primary}">CAREER — REGULAR SEASON${acc && stats.length ? '' : ''} <span class="leader-key">● led league</span></div>
+          <div class="stats-table-wrap">${buildStatsTable(stats, c.leaders)}</div>
         </div>
         <div class="card-back-footer">
           <span class="card-back-card-num">${serial || '#' + cardNum}</span>
@@ -117,17 +117,16 @@ function bioRow(label, val) {
 }
 function shorten(s, n) { return s && s.length > n ? s.slice(0, n - 1) + '…' : s; }
 
-function buildStatsTable(stats) {
+function buildStatsTable(stats, leaders) {
   if (!stats.length) return '<p class="stats-empty">Career stats unavailable</p>';
   const cols = [
     { k: 'season', l: 'YEAR' }, { k: 'team', l: 'TM' }, { k: 'gp', l: 'GP' }, { k: 'mpg', l: 'MPG' },
-    { k: 'ppg', l: 'PPG', hi: 1 }, { k: 'rpg', l: 'RPG', hi: 1 }, { k: 'apg', l: 'APG', hi: 1 },
-    { k: 'spg', l: 'SPG', hi: 1 }, { k: 'bpg', l: 'BPG', hi: 1 },
-    { k: 'fgPct', l: 'FG%', hi: 1, pct: 1 }, { k: 'threePct', l: '3P%', hi: 1, pct: 1 }, { k: 'ftPct', l: 'FT%', hi: 1, pct: 1 },
+    { k: 'ppg', l: 'PPG' }, { k: 'rpg', l: 'RPG' }, { k: 'apg', l: 'APG' },
+    { k: 'spg', l: 'SPG' }, { k: 'bpg', l: 'BPG' },
+    { k: 'fgPct', l: 'FG%', pct: 1 }, { k: 'threePct', l: '3P%', pct: 1 }, { k: 'ftPct', l: 'FT%', pct: 1 },
   ];
-  const elig = stats.filter(s => s.gp >= 20);
-  const highs = {};
-  for (const c of cols) if (c.hi) highs[c.k] = Math.max(0, ...elig.map(s => s[c.k] || 0));
+  // Seasons/stats the player LED THE LEAGUE in → highlighted (gold).
+  const led = new Set((Array.isArray(leaders) ? leaders : []).map(l => `${l.season}|${l.stat}`));
 
   const header = cols.map(c => `<th>${c.l}</th>`).join('');
   const rows = stats.map(s => {
@@ -136,8 +135,8 @@ function buildStatsTable(stats) {
       let disp = v == null ? '—' : v;
       if (c.pct) disp = v ? v.toFixed(1) : '—';
       else if (typeof v === 'number' && c.k !== 'gp') disp = v.toFixed(1);
-      const isHigh = c.hi && v && highs[c.k] && v === highs[c.k] && v > 0;
-      return `<td class="${isHigh ? 'career-high' : ''}">${disp}</td>`;
+      const isLeader = led.has(`${s.season}|${c.k}`);
+      return `<td class="${isLeader ? 'league-leader' : ''}">${disp}</td>`;
     }).join('');
     return `<tr class="${s.current ? 'current-season' : ''}">${cells}</tr>`;
   }).join('');

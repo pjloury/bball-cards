@@ -209,9 +209,9 @@ function careerAverages(stats) {
            seasons: played.length };
 }
 
-function generateBio(p, avg) {
+function generateBio(p, avg, team) {
   const a = avg && avg.ppg ? ` Over ${avg.seasons} seasons he has averaged ${avg.ppg} points, ${avg.rpg} rebounds, and ${avg.apg} assists per game.` : '';
-  return `${p.name} is a ${p.position} for the ${p.team}.${a}`;
+  return `${p.name} is a ${p.position} for the ${team || p.team}.${a}`;
 }
 
 async function main() {
@@ -239,9 +239,11 @@ async function main() {
     const fb = BIO_FALLBACK[p.nbaId] || {};
     // Current team from the latest played season (reliable). Legends keep their
     // curated iconic team; fall back to roster when there are no stats.
+    // CURRENT team from ESPN's roster assignment (reflects offseason moves like
+    // Giannis→Heat, Kawhi→Raptors — not last season's stats). Legends keep iconic.
     let teamShort = p.teamShort, team = p.team;
-    const derived = p.legend ? null : currentTeamShort(career, SEASON);
-    if (derived && TEAM_COLORS[derived] && TEAM_NAME_BY_SHORT[derived]) { teamShort = derived; team = TEAM_NAME_BY_SHORT[derived]; }
+    const espnShort = p.legend ? null : (cand && teamShortFromName(cand.sub));
+    if (espnShort && TEAM_COLORS[espnShort]) { teamShort = espnShort; team = cand.sub.trim(); }
     const colors = TEAM_COLORS[teamShort] || { primary: '#1a1a40', secondary: '#f7a900' };
     const avg = careerAverages(career);
     const rec = {
@@ -259,7 +261,7 @@ async function main() {
       college: bio.college || fb.college || '',
       draft: bio.draft || fb.draft || 'Undrafted',
       experience: bio.experience || null,
-      bio: fb.bio || generateBio(p, avg),
+      bio: fb.bio || generateBio(p, avg, team),
       accolades,
       careerStats: career,
       careerAverages: avg,

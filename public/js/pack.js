@@ -3,6 +3,7 @@
 const PACK_SIZE = 5;
 let packCards = [];       // the 5 cards this pack
 let revealIdx = 0;        // how many revealed
+let mintPromise = null;   // background mint (serial allocation) when signed in
 
 /* Roll a fresh pack of 5 unique players with per-card rarity + serial. */
 function weightedPick(pool) {
@@ -64,16 +65,11 @@ async function tearOpenPack() {
   wrap.classList.add('tearing');
   packCards = rollPack();
   revealIdx = 0;
-  // When signed in, allocate globally-unique serials before reveal (runs during
-  // the tear animation). Guests/offline keep provisional local serials. A hard
-  // timeout ensures a slow/failed mint can never block the reveal.
-  const minting = (Store.signedIn && window.HoopsAuth && HoopsAuth.mintPack)
-    ? Promise.race([
-        HoopsAuth.mintPack(packCards).catch(() => {}),
-        new Promise(r => setTimeout(r, 4000)),
-      ])
-    : Promise.resolve();
-  await Promise.all([minting, new Promise(r => setTimeout(r, 850))]);
+  // Mint globally-unique serials in the BACKGROUND (when signed in) — never
+  // block the reveal on it. Finalized in addPackToCollection before saving.
+  mintPromise = (Store.signedIn && window.HoopsAuth && HoopsAuth.mintPack)
+    ? HoopsAuth.mintPack(packCards).catch(() => {}) : null;
+  await new Promise(r => setTimeout(r, 850));   // just the tear animation
   showStage('reveal');
   setupReveal();
 }
@@ -165,10 +161,12 @@ function spawnSparkles(container) {
 function revealAll() { while (revealIdx < packCards.length) revealCurrentCard(); }
 
 /* Commit the pack to the collection. */
-function addPackToCollection() {
+async function addPackToCollection() {
+  // Ensure background minting finished so we store the real global serials.
+  if (mintPromise) { try { await Promise.race([mintPromise, new Promise(r => setTimeout(r, 3000))]); } catch {} }
   Store.addCards(packCards.map(c => ({
     uid: c.uid, playerId: c.playerId, rarity: c.rarity, serial: c.serial,
-    edition: c.edition, obtainedAt: c.obtainedAt,
+    edition: c.edition, obtainedAt: c.obtainedAt, minted: !!c.minted,
   })));
   Store.recordPackOpened();
   toast(`Added ${packCards.length} cards to your collection!`);

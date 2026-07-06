@@ -489,16 +489,10 @@
   background: rgba(0,0,0,0.07);
   font-weight: 700;
 }
-/* League leader highlight — RED */
+/* League leader highlight — GOLD, no marker */
 .stats-table td.league-leader {
-  color: #cc0000;
+  color: #d4af37;
   font-weight: 900;
-}
-.stats-table td.league-leader::after {
-  content: '★';
-  font-size: 7px;
-  vertical-align: super;
-  margin-left: 1px;
 }
 
 /* Card number / set info at very bottom */
@@ -595,11 +589,9 @@
 }
 #modal-card .card-back-accolades .accolade { font-size: 9.5px; padding: 2px 6px; }
 
-/* Career-high highlight (replaces league-leader red) */
-.stats-table td.career-high { color: #0a6; font-weight: 900; }
-.stats-table td.career-high::after { content: '◆'; font-size: 6px; vertical-align: super; margin-left: 1px; }
-.career-high-key { float: right; font-weight: 400; opacity: 0.75; font-size: 8px; }
-#modal-card .career-high-key { font-size: 10px; }
+/* Led-the-league key label */
+.leader-key { float: right; font-weight: 400; opacity: 0.85; font-size: 8px; color: #d4af37; }
+#modal-card .leader-key { font-size: 10px; }
 .stats-empty { text-align: center; padding: 16px; font-size: 10px; color: #888; }
 
 /* ══ Moment card (full-bleed action photo front) ═══════════════════════════ */
