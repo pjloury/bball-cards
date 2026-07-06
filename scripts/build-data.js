@@ -80,6 +80,18 @@ function teamShortFromName(sub) {
   return TEAM_BY_NAME[sub.trim().toLowerCase()] || null;
 }
 
+const TEAM_NAME_BY_SHORT = Object.fromEntries(
+  Object.entries(TEAM_BY_NAME).map(([name, short]) => [short, name.replace(/\b\w/g, c => c.toUpperCase()).replace('76Ers', '76ers').replace('La ', 'LA ')])
+);
+// A player's CURRENT team = the team of their most recent season (real game
+// data — reliable, unlike ESPN's search subtitles). Legends keep iconic teams.
+function currentTeamShort(career, season) {
+  if (!career || !career.length) return null;
+  const cur = career.filter(s => s.season === season);
+  const row = cur.length ? cur[cur.length - 1] : career[career.length - 1];
+  return row && row.team || null;
+}
+
 // ── Parse ESPN bio, merging the web-v3 athlete and the core-API athlete ──────
 function parseBio(web, core) {
   const bio = {};
@@ -225,10 +237,11 @@ async function main() {
       accolades = parseAwards(bData);
     }
     const fb = BIO_FALLBACK[p.nbaId] || {};
-    // Prefer ESPN's current team (from the search subtitle) over the roster's.
-    const espnShort = cand && teamShortFromName(cand.sub);
-    const teamShort = espnShort || p.teamShort;
-    const team = espnShort ? cand.sub.trim() : p.team;
+    // Current team from the latest played season (reliable). Legends keep their
+    // curated iconic team; fall back to roster when there are no stats.
+    let teamShort = p.teamShort, team = p.team;
+    const derived = p.legend ? null : currentTeamShort(career, SEASON);
+    if (derived && TEAM_COLORS[derived] && TEAM_NAME_BY_SHORT[derived]) { teamShort = derived; team = TEAM_NAME_BY_SHORT[derived]; }
     const colors = TEAM_COLORS[teamShort] || { primary: '#1a1a40', secondary: '#f7a900' };
     const avg = careerAverages(career);
     const rec = {

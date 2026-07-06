@@ -60,6 +60,7 @@ function rollSerial(rarityKey) {
 const photoFront  = nbaId => `/img/players/${nbaId}.png`;
 const photoHero   = nbaId => `/img/players/${nbaId}-hero.jpg`;
 const photoAction = nbaId => `/img/players/${nbaId}-action.jpg`;
+const teamLogo    = short => `/img/teams/${short}.png`;
 
 /* Rarity comparison for "best card" surfacing (higher = rarer, lower serial wins ties). */
 function cardBetter(a, b) {

@@ -65,9 +65,14 @@ async function tearOpenPack() {
   packCards = rollPack();
   revealIdx = 0;
   // When signed in, allocate globally-unique serials before reveal (runs during
-  // the tear animation). Guests/offline keep provisional local serials.
+  // the tear animation). Guests/offline keep provisional local serials. A hard
+  // timeout ensures a slow/failed mint can never block the reveal.
   const minting = (Store.signedIn && window.HoopsAuth && HoopsAuth.mintPack)
-    ? HoopsAuth.mintPack(packCards).catch(() => {}) : Promise.resolve();
+    ? Promise.race([
+        HoopsAuth.mintPack(packCards).catch(() => {}),
+        new Promise(r => setTimeout(r, 4000)),
+      ])
+    : Promise.resolve();
   await Promise.all([minting, new Promise(r => setTimeout(r, 850))]);
   showStage('reveal');
   setupReveal();

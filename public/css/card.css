@@ -640,3 +640,13 @@
   text-align: center; margin-top: 12px; font-family: 'Barlow Condensed', sans-serif;
   font-size: 12px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase;
 }
+
+/* ── Team logo (tasteful mark, bottom-right of the front) ──────────────────── */
+.card-team-logo {
+  position: absolute; right: 12px; bottom: 34px; width: 42px; height: 42px;
+  object-fit: contain; z-index: 7; pointer-events: none;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.55));
+  opacity: 0.96;
+}
+#modal-card .card-team-logo { width: 58px; height: 58px; right: 16px; bottom: 46px; }
+.card-outer.mini .card-team-logo, .mini .card-team-logo { width: 26px; height: 26px; right: 7px; bottom: 22px; }

@@ -65,6 +65,7 @@ function buildCardFrontHTML(c, size = 'default') {
           <div class="card-team-name">${c.team || ''}</div>
         </div>
         <div class="card-number-badge">#${cardNum}</div>
+        <img class="card-team-logo" src="${teamLogo(c.teamShort)}" alt="" loading="lazy" onerror="this.remove()" />
       </div>
     </div>`;
 }
