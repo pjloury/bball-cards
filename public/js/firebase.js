@@ -57,34 +57,33 @@ window.HoopsAuth = {
       <button class="auth-btn" onclick="HoopsAuth.signOut()">Sign out</button></span>`;
   },
 
-  /* ── Global mint: allocate a globally-unique serial for one (player,rarity) ──
-     Atomic Firestore transaction bumps counters/{player}_{rarity} and writes a
-     mints/{...}_{serial} ownership record. Guarantees each serial is owned by
-     exactly one user. On a sold-out edition, downgrades rarity to one with room.
+  /* ── Global mint: claim a globally-unique RANDOM serial for one (player,rarity) ──
+     Serials are random (like physical print numbers) — being first to OPEN a
+     pack doesn't mean you got print #1; low serials are just lucky and scarce.
+     An atomic transaction claims mints/{player}_{rarity}_{serial} only if it's
+     unclaimed, so each printed instance is owned by exactly one user. If an
+     edition is (nearly) full, we downgrade rarity to one with room.
   */
   async _mintOne(playerId, rarity) {
     const { doc, runTransaction } = this._fsMod;
     const order = ['common', 'silver', 'gold', 'prismatic'];
     let tier = rarity;
-    for (let attempt = 0; attempt < 5; attempt++) {
+    for (let d = 0; d < 4; d++) {
       const edition = RARITY[tier].edition;
-      const key = `${playerId}_${tier}`;
-      try {
-        const serial = await runTransaction(this.db, async tx => {
-          const cRef = doc(this.db, 'counters', key);
-          const snap = await tx.get(cRef);
-          const minted = snap.exists() ? (snap.data().minted || 0) : 0;
-          if (minted >= edition) throw new Error('SOLD_OUT');
-          const s = minted + 1;
-          tx.set(cRef, { minted: s }, { merge: true });
-          tx.set(doc(this.db, 'mints', `${key}_${s}`), { owner: this.uid, playerId, rarity: tier, serial: s, at: Date.now() });
-          return s;
-        });
-        return { rarity: tier, serial, edition };
-      } catch (e) {
-        if (String(e).includes('SOLD_OUT')) { tier = order[Math.max(0, order.indexOf(tier) - 1)]; continue; }
-        throw e;
+      for (let a = 0; a < 20; a++) {
+        const s = 1 + Math.floor(Math.random() * edition);   // random print number
+        try {
+          const claimed = await runTransaction(this.db, async tx => {
+            const mRef = doc(this.db, 'mints', `${playerId}_${tier}_${s}`);
+            if ((await tx.get(mRef)).exists()) return false;  // already printed/owned → try another
+            tx.set(mRef, { owner: this.uid, playerId, rarity: tier, serial: s, at: Date.now() });
+            return true;
+          });
+          if (claimed) return { rarity: tier, serial: s, edition };
+        } catch { /* contention → retry with a new random serial */ }
       }
+      tier = order[Math.max(0, order.indexOf(tier) - 1)];   // edition full → downgrade
+      if (tier === 'common' && d > 0) break;
     }
     return null;
   },

@@ -94,9 +94,11 @@ function revealCurrentCard() {
   flash.className = `reveal-flash flash-${card.rarity} show`;
   setTimeout(() => flash.classList.remove('show'), 700);
 
-  // Big center reveal
+  // Big center reveal — flippable (click, or swipe side-to-side on mobile)
   const stage = document.getElementById('reveal-center');
-  stage.innerHTML = `<div class="card-outer full reveal-pop rarity-${card.rarity}"><div class="card-3d">${buildCardFrontHTML(card)}</div></div>`;
+  stage.innerHTML = `<div class="reveal-perspective"><div class="card-3d reveal-pop rarity-${card.rarity}" id="reveal-3d">${buildCardFrontHTML(card)}${buildCardBackHTML(card)}</div></div>
+    <div class="reveal-flip-hint">tap / swipe to flip</div>`;
+  attachRevealFlip();
   if (card.rarity === 'gold' || card.rarity === 'prismatic') spawnSparkles(stage);
 
   // Add mini to tray
@@ -123,6 +125,23 @@ function revealCurrentCard() {
   } else {
     document.getElementById('reveal-hint').textContent = `${packCards.length - revealIdx} card${packCards.length - revealIdx > 1 ? 's' : ''} left — tap to reveal`;
   }
+}
+
+/* Make the big revealed card flippable: click or side-to-side swipe. */
+function attachRevealFlip() {
+  const p = document.querySelector('#reveal-center .reveal-perspective');
+  const c = document.getElementById('reveal-3d');
+  if (!p || !c) return;
+  let flipped = false;
+  const flip = () => { flipped = !flipped; c.classList.toggle('flipped', flipped); };
+  p.addEventListener('click', flip);
+  let sx = 0, sy = 0, lx = 0, ly = 0;
+  p.addEventListener('touchstart', e => { const t = e.changedTouches[0]; sx = lx = t.clientX; sy = ly = t.clientY; }, { passive: true });
+  p.addEventListener('touchmove', e => { const t = e.changedTouches[0]; if (t) { lx = t.clientX; ly = t.clientY; } }, { passive: true });
+  p.addEventListener('touchend', e => {
+    const t = e.changedTouches[0], ex = t ? t.clientX : lx, ey = t ? t.clientY : ly, dx = ex - sx, dy = ey - sy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { e.preventDefault(); flip(); }
+  });
 }
 
 function spawnSparkles(container) {

@@ -130,6 +130,27 @@ function openCardModal(card, list) {
   renderModal();
   document.getElementById('card-modal').classList.remove('hidden');
   document.addEventListener('keydown', modalKeys);
+  setupModalGestures();
+}
+
+/* Touch gestures for card viewing: swipe L/R = browse, down = close, tap = flip. */
+let _gesturesReady = false;
+function setupModalGestures() {
+  if (_gesturesReady) return;
+  const el = document.querySelector('.modal-perspective');
+  if (!el) return;
+  _gesturesReady = true;
+  let sx = 0, sy = 0, lx = 0, ly = 0;
+  el.addEventListener('touchstart', e => { const t = e.changedTouches[0]; sx = lx = t.clientX; sy = ly = t.clientY; }, { passive: true });
+  el.addEventListener('touchmove', e => { const t = e.changedTouches[0]; if (t) { lx = t.clientX; ly = t.clientY; } }, { passive: true });
+  el.addEventListener('touchend', e => {
+    const t = e.changedTouches[0];
+    const ex = t ? t.clientX : lx, ey = t ? t.clientY : ly;
+    const dx = ex - sx, dy = ey - sy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { e.preventDefault(); modalNav(dx < 0 ? 1 : -1); }
+    else if (dy > 90 && dy > Math.abs(dx)) { e.preventDefault(); closeCardModal(); }
+    // else: a tap — the element's click handler flips the card
+  });
 }
 function renderModal() {
   const c = modalList[modalIdx] || modalList[0];

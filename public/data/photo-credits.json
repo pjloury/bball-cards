@@ -107,24 +107,6 @@
     "width": 2012,
     "height": 3000
   },
-  "201933": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "Baron The (Charlotte) Bobcat?",
-    "link": "https://bleacherreport.com/articles/511833-why-the-charlotte-bobcats-should-acquire-baron-davis",
-    "source_name": "Bleacher Report",
-    "width": 2216,
-    "height": 3000
-  },
-  "201935": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "1 Ambitious Trade Target for Every NBA Team",
-    "link": "https://bleacherreport.com/articles/10114879-1-ambitious-trade-target-for-every-nba-team",
-    "source_name": "Bleacher Report",
-    "width": 1800,
-    "height": 2700
-  },
   "201939": {
     "source": "google",
     "via": "serpapi",
@@ -178,24 +160,6 @@
     "source_name": "NBA.com",
     "width": 4223,
     "height": 5278
-  },
-  "202710": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "Joel Embiid's return leads Sixers to 99-79 victory over Heat in Game 3",
-    "link": "https://www.inquirer.com/sixers/sixers-heat-joel-embiid-jimmy-butler-nba-playoffs-20220506.html",
-    "source_name": "The Philadelphia Inquirer",
-    "width": 2000,
-    "height": 2706
-  },
-  "203076": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "Who would win a USA vs. the world NBA All-Star game? | Dallas Mavericks",
-    "link": "https://www.nba.com/mavs/usavstheworld",
-    "source_name": "NBA.com",
-    "width": 2626,
-    "height": 3283
   },
   "203078": {
     "source": "google",
@@ -278,15 +242,6 @@
     "width": 3000,
     "height": 3750
   },
-  "203903": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "How the New York Knicks won the 2026 NBA Finals, ending their 53-year title  drought - The Athletic",
-    "link": "https://www.nytimes.com/athletic/live-blogs/knicks-vs-spurs-live-updates-nba-finals-game-5-score-result/CllNC3PHGOrS/VFXXh4fENARb/",
-    "source_name": "How the New York Knicks won the 2026 NBA Finals, ending their 53-year title  drought - The Athletic",
-    "width": 960,
-    "height": 1440
-  },
   "203935": {
     "source": "google",
     "via": "serpapi",
@@ -347,15 +302,6 @@
     "source_name": "USA Today",
     "width": 3387,
     "height": 4513
-  },
-  "1626156": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "Lakers string together back-to-back wins by edging Raptors | Reuters",
-    "link": "https://www.reuters.com/sports/basketball/lakers-string-together-back-to-back-wins-by-edging-raptors--flm-2024-01-10/",
-    "source_name": "Reuters",
-    "width": 3879,
-    "height": 5819
   },
   "1626157": {
     "source": "google",
@@ -519,15 +465,6 @@
     "width": 2000,
     "height": 2500
   },
-  "1628389": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "NBA roundup: Spurs off to first 5-0 start in team history | Reuters",
-    "link": "https://www.reuters.com/sports/nba-roundup-spurs-off-first-5-0-start-team-history--flm-2025-10-31/",
-    "source_name": "Reuters",
-    "width": 1920,
-    "height": 2400
-  },
   "1628398": {
     "source": "google",
     "via": "serpapi",
@@ -536,15 +473,6 @@
     "source_name": "Bleacher Report",
     "width": 1800,
     "height": 2700
-  },
-  "1628401": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "Miami Heat Not Rising to Expectations In Second Loss To Boston Celtics",
-    "link": "https://bleacherreport.com/articles/515950-miami-heat-not-rising-to-expectations-in-second-loss-to-boston-celtics",
-    "source_name": "Bleacher Report",
-    "width": 2219,
-    "height": 3000
   },
   "1628415": {
     "source": "google",
@@ -581,15 +509,6 @@
     "source_name": "Bleacher Report",
     "width": 2597,
     "height": 3896
-  },
-  "1628976": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "3 Keys in Orlando Magic's dress rehearsal vs. Pelicans",
-    "link": "https://www.si.com/nba/magic/onsi/3-keys-in-orlando-magic-s-dress-rehearsal-vs-pelicans-01k7ph2c5ad8",
-    "source_name": "Sports Illustrated",
-    "width": 2191,
-    "height": 3286
   },
   "1628983": {
     "source": "google",
@@ -887,15 +806,6 @@
     "source_name": "Sports Illustrated",
     "width": 3511,
     "height": 4681
-  },
-  "1630231": {
-    "source": "google",
-    "via": "serpapi",
-    "title": "Grading Every Team's 2025 NBA Trade Deadline",
-    "link": "https://bleacherreport.com/articles/10153346-grading-every-teams-2025-nba-trade-deadline",
-    "source_name": "Bleacher Report",
-    "width": 1800,
-    "height": 2700
   },
   "1630529": {
     "source": "google",
