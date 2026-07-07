@@ -99,8 +99,8 @@ function buildCardBackHTML(c) {
         ${acc.length ? `<div class="card-back-accolades">${acc.map(a => `<span class="accolade">${a}</span>`).join('')}</div>` : ''}
         ${c.bio ? `<div class="card-back-bio-text">${c.bio}</div>` : ''}
         <div class="card-back-stats">
-          <div class="card-back-stats-title" style="background:${primary}">CAREER — REGULAR SEASON${acc && stats.length ? '' : ''} <span class="leader-key">● led league</span></div>
-          <div class="stats-table-wrap">${buildStatsTable(stats, c.leaders)}</div>
+          <div class="card-back-stats-title" style="background:${primary}">CAREER <span class="leader-key">● led league · ①②③ All-NBA</span></div>
+          <div class="stats-table-wrap">${buildStatsTable(stats, c.leaders, c.careerAverages, c.awards)}</div>
         </div>
         <div class="card-back-footer">
           <span class="card-back-card-num">${serial || '#' + cardNum}</span>
@@ -117,30 +117,69 @@ function bioRow(label, val) {
 }
 function shorten(s, n) { return s && s.length > n ? s.slice(0, n - 1) + '…' : s; }
 
-function buildStatsTable(stats, leaders) {
-  if (!stats.length) return '<p class="stats-empty">Career stats unavailable</p>';
-  const cols = [
-    { k: 'season', l: 'YEAR' }, { k: 'team', l: 'TM' }, { k: 'gp', l: 'GP' }, { k: 'mpg', l: 'MPG' },
-    { k: 'ppg', l: 'PPG' }, { k: 'rpg', l: 'RPG' }, { k: 'apg', l: 'APG' },
-    { k: 'spg', l: 'SPG' }, { k: 'bpg', l: 'BPG' },
-    { k: 'fgPct', l: 'FG%', pct: 1 }, { k: 'threePct', l: '3P%', pct: 1 }, { k: 'ftPct', l: 'FT%', pct: 1 },
-  ];
-  // Seasons/stats the player LED THE LEAGUE in → highlighted (gold).
-  const led = new Set((Array.isArray(leaders) ? leaders : []).map(l => `${l.season}|${l.stat}`));
+const STAT_COLS = [
+  { k: 'season', l: 'YEAR' }, { k: 'team', l: 'TM' }, { k: 'gp', l: 'GP' }, { k: 'mpg', l: 'MPG' },
+  { k: 'ppg', l: 'PPG' }, { k: 'rpg', l: 'RPG' }, { k: 'apg', l: 'APG' },
+  { k: 'spg', l: 'SPG' }, { k: 'bpg', l: 'BPG' },
+  { k: 'fgPct', l: 'FG%', pct: 1 }, { k: 'threePct', l: '3P%', pct: 1 }, { k: 'ftPct', l: 'FT%', pct: 1 },
+];
+const CIRCLED = { '1st': '①', '2nd': '②', '3rd': '③' };
+function fmtStat(s, c) {
+  const v = s[c.k];
+  if (v == null) return '—';
+  if (c.pct) return v ? v.toFixed(1) : '—';
+  if (typeof v === 'number' && c.k !== 'gp') return v.toFixed(1);
+  return v;
+}
+const _statsReg = {}; let _statsSeq = 0;
+const STATS_PER_PAGE = 5;
 
-  const header = cols.map(c => `<th>${c.l}</th>`).join('');
-  const rows = stats.map(s => {
-    const cells = cols.map(c => {
-      let v = s[c.k];
-      let disp = v == null ? '—' : v;
-      if (c.pct) disp = v ? v.toFixed(1) : '—';
-      else if (typeof v === 'number' && c.k !== 'gp') disp = v.toFixed(1);
-      const isLeader = led.has(`${s.season}|${c.k}`);
-      return `<td class="${isLeader ? 'league-leader' : ''}">${disp}</td>`;
+// Paginated career-stats table with a bold CAREER footer, league-leader gold,
+// and per-season All-NBA markers. Pagination state lives in _statsReg[sid].
+function buildStatsTable(stats, leaders, careerAvg, awards) {
+  if (!stats.length) return '<p class="stats-empty">Career stats unavailable</p>';
+  const sid = 'st' + (_statsSeq++);
+  _statsReg[sid] = {
+    stats, careerAvg: careerAvg || {}, awards: awards || {},
+    led: new Set((Array.isArray(leaders) ? leaders : []).map(l => `${l.season}|${l.stat}`)),
+    page: 0,
+  };
+  return `<div class="stats-paged" id="${sid}">${renderStatsInner(sid)}</div>`;
+}
+
+function renderStatsInner(sid) {
+  const r = _statsReg[sid];
+  const pages = Math.max(1, Math.ceil(r.stats.length / STATS_PER_PAGE));
+  if (r.page >= pages) r.page = pages - 1;
+  const slice = r.stats.slice(r.page * STATS_PER_PAGE, (r.page + 1) * STATS_PER_PAGE);
+  const header = STAT_COLS.map(c => `<th>${c.l}</th>`).join('');
+  const body = slice.map(s => {
+    const allNba = r.awards[s.season];
+    const cells = STAT_COLS.map(c => {
+      let disp = fmtStat(s, c);
+      if (c.k === 'season' && allNba) disp += `<sup class="allnba-mark" title="All-NBA ${allNba} Team">${CIRCLED[allNba] || '★'}</sup>`;
+      return `<td class="${r.led.has(`${s.season}|${c.k}`) ? 'league-leader' : ''}">${disp}</td>`;
     }).join('');
-    return `<tr class="${s.current ? 'current-season' : ''}">${cells}</tr>`;
+    return `<tr>${cells}</tr>`;
   }).join('');
-  return `<table class="stats-table"><thead><tr>${header}</tr></thead><tbody>${rows}</tbody></table>`;
+  const ca = r.careerAvg;
+  const careerRow = ca && ca.ppg != null ? `<tr class="career-row">
+    <td colspan="2">CAREER</td><td>${ca.gp || '—'}</td><td>—</td>
+    <td>${(ca.ppg || 0).toFixed(1)}</td><td>${(ca.rpg || 0).toFixed(1)}</td><td>${(ca.apg || 0).toFixed(1)}</td>
+    <td>${(ca.spg || 0).toFixed(1)}</td><td>${(ca.bpg || 0).toFixed(1)}</td>
+    <td>${(ca.fgPct || 0).toFixed(1)}</td><td>${(ca.threePct || 0).toFixed(1)}</td><td>${(ca.ftPct || 0).toFixed(1)}</td></tr>` : '';
+  const pager = pages > 1 ? `<div class="stats-pager">
+    <button class="stats-pg-btn" onclick="event.stopPropagation();statsNav('${sid}',-1)" ${r.page === 0 ? 'disabled' : ''}>‹</button>
+    <span>${slice[0].season} – ${slice[slice.length - 1].season} · ${r.page + 1}/${pages}</span>
+    <button class="stats-pg-btn" onclick="event.stopPropagation();statsNav('${sid}',1)" ${r.page >= pages - 1 ? 'disabled' : ''}>›</button></div>` : '';
+  return `<table class="stats-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody><tfoot>${careerRow}</tfoot></table>${pager}`;
+}
+
+function statsNav(sid, d) {
+  const r = _statsReg[sid]; if (!r) return;
+  const pages = Math.ceil(r.stats.length / STATS_PER_PAGE);
+  r.page = Math.max(0, Math.min(pages - 1, r.page + d));
+  const el = document.getElementById(sid); if (el) el.innerHTML = renderStatsInner(sid);
 }
 
 /* Library grid card (front only). */

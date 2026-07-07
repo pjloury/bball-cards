@@ -642,3 +642,30 @@
 }
 #modal-card .card-team-logo { width: 58px; height: 58px; right: 16px; bottom: 46px; }
 .card-outer.mini .card-team-logo, .mini .card-team-logo { width: 26px; height: 26px; right: 7px; bottom: 22px; }
+
+/* ── Paginated stats: bold career footer, All-NBA marks, pager ─────────────── */
+.stats-table tfoot { position: sticky; bottom: 0; }
+.stats-table tfoot .career-row td {
+  font-weight: 900; color: #111; background: #e0ddd4;
+  border-top: 2px solid rgba(0,0,0,0.3);
+}
+.stats-table tfoot .career-row td:first-child { text-align: left; padding-left: 8px; letter-spacing: 1px; }
+.allnba-mark { color: #d4af37; font-size: 7px; margin-left: 1px; font-weight: 900; }
+#modal-card .allnba-mark { font-size: 9px; }
+.stats-pager {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 5px 4px 2px; font-family: 'Barlow Condensed', sans-serif; font-size: 8.5px;
+  letter-spacing: 0.5px; color: #666;
+}
+.stats-pg-btn {
+  background: rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.18); border-radius: 4px;
+  width: 22px; height: 17px; cursor: pointer; font-size: 11px; line-height: 1; color: #222; padding: 0;
+}
+.stats-pg-btn:disabled { opacity: 0.3; cursor: default; }
+#modal-card .stats-pager { font-size: 11px; }
+#modal-card .stats-pg-btn { width: 28px; height: 22px; font-size: 14px; }
+
+/* Give the stats area room; keep bio compact so a stats page fits without scroll */
+#modal-card .card-back-bio-text { max-height: 3.4em; overflow: hidden; padding: 5px 12px; }
+.stats-table-wrap { overflow-y: auto; }   /* pagination reduces rows; scroll is a safety */
+#modal-card .stats-table td, #modal-card .stats-table th { padding: 3px 3px; }

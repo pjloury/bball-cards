@@ -132,6 +132,24 @@ const AWARD_ORDER = [
   'Defensive Player of the Year', 'Rookie of the Year', 'All-Star MVP', 'All-Star',
   'All-NBA', 'All-Defensive', 'Scoring', 'Sixth Man', 'Most Improved',
 ];
+// Per-season All-NBA selections → { "2024-25": "1st"|"2nd"|"3rd" } (best level).
+function parseAwardSeasons(bioData) {
+  const out = {};
+  if (!bioData || !Array.isArray(bioData.awards)) return out;
+  const rank = { '1st': 3, '2nd': 2, '3rd': 1 };
+  for (const a of bioData.awards) {
+    const m = /All-NBA (1st|2nd|3rd)/.exec(a.name || '');
+    if (!m) continue;
+    const tag = m[1];
+    for (const s of a.seasons || []) {
+      const y = parseInt(s, 10); if (!y) continue;
+      const key = `${y - 1}-${String(y).slice(2)}`;
+      if (!out[key] || rank[tag] > rank[out[key]]) out[key] = tag;
+    }
+  }
+  return out;
+}
+
 function parseAwards(bioData) {
   if (!bioData || !Array.isArray(bioData.awards)) return [];
   const items = bioData.awards.map(w => {
@@ -224,7 +242,7 @@ async function main() {
     process.stdout.write(`  [${String(p.id).padStart(3)}] ${p.name.padEnd(26)} `);
     const cand = await resolveEspnId(p.name, p.team);
     const espnId = cand && cand.id;
-    let bio = {}, career = [], accolades = [];
+    let bio = {}, career = [], accolades = [], awardSeasons = {};
     if (espnId) {
       const [aData, cData, sData, bData] = await Promise.all([
         getJSON(`https://site.web.api.espn.com/apis/common/v3/sports/basketball/nba/athletes/${espnId}`),
@@ -235,6 +253,7 @@ async function main() {
       bio = parseBio(aData && aData.athlete, cData);
       career = parseCareer(sData);
       accolades = parseAwards(bData);
+      awardSeasons = parseAwardSeasons(bData);
     }
     const fb = BIO_FALLBACK[p.nbaId] || {};
     // Current team from the latest played season (reliable). Legends keep their
@@ -263,6 +282,7 @@ async function main() {
       experience: bio.experience || null,
       bio: fb.bio || generateBio(p, avg, team),
       accolades,
+      awards: awardSeasons,
       careerStats: career,
       careerAverages: avg,
     };
