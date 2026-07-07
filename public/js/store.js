@@ -65,10 +65,11 @@ const Store = {
   todayStr() { return new Date().toLocaleDateString('en-CA'); }, // YYYY-MM-DD local
   canOpenToday() { return this.state.lastPackDate !== this.todayStr(); },
 
-  // Guests get one free pack; opening more requires signing in. When auth isn't
-  // configured at all, this never gates (local-only mode stays fully open).
+  // Sign-in is required to open packs (so collections persist per-account and
+  // can't be farmed by logging out/in). When auth isn't configured at all, this
+  // never gates (local-only dev mode stays fully open).
   needsAuthToOpen() {
-    return this.authAvailable && !this.signedIn && this.state.packsOpened >= 1;
+    return this.authAvailable && !this.signedIn;
   },
   nextPackTime() { const d = new Date(); d.setHours(24, 0, 0, 0); return d; },
 

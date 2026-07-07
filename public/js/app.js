@@ -30,7 +30,7 @@ function renderHome() {
   const btn = document.getElementById('hero-open-btn');
   const timer = document.getElementById('hero-timer');
   if (Store.needsAuthToOpen()) {
-    statusText.textContent = 'Sign in to open a new pack daily and sync your collection.';
+    statusText.textContent = 'Sign in to open your daily pack and save your collection.';
     btn.textContent = 'SIGN IN WITH GOOGLE';
     btn.onclick = () => HoopsAuth.signIn();
     btn.classList.remove('hidden'); timer.classList.add('hidden');
